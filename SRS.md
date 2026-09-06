@@ -997,21 +997,6 @@ Các module được ưu tiên dựa trên mức độ quan trọng đối với
 
 ---
 
-# 5.9. Kết luận về Scope
 
-Trong thời gian **7 tuần**, CAB System sẽ ưu tiên triển khai các chức năng trực tiếp phục vụ quy trình nghiệp vụ cốt lõi:
-
-> **Đăng nhập → Đặt xe → Tìm tài xế → Phân công → Thực hiện chuyến → Tính cước → Thanh toán → Đánh giá**
-
-Các chức năng nâng cao như AI, Loyalty, Promotion, Predictive Analytics và Business Intelligence sẽ được đưa ra khỏi phạm vi MVP để đảm bảo dự án có thể hoàn thành đúng thời hạn.
-
-Việc giới hạn phạm vi giúp nhóm phát triển:
-
-- Tập trung vào các Business Goals quan trọng nhất.
-- Giảm rủi ro trong thời gian phát triển 7 tuần.
-- Đảm bảo hoàn thành các chức năng cốt lõi.
-- Có thể triển khai MVP sớm.
-- Tạo nền tảng để phát triển các chức năng nâng cao trong Phase 2.
-````
 
 
