@@ -414,8 +414,604 @@ Các mục tiêu nghiệp vụ trọng tâm bao gồm:
 8. Đảm bảo tính ổn định và khả năng mở rộng.
 9. Đảm bảo bảo mật và an toàn dữ liệu.
 10. Xây dựng nền tảng có khả năng phát triển lâu dài.
+Đúng rồi. **Bước 5 nên là Scope / Project Scope**, tức là sau khi có các **Business Goals (BG)** thì mình xác định trong **7 tuần** sẽ làm những module nào, cái nào làm trong Phase 1, cái nào để Phase sau.
 
-Các Business Goals trên sẽ là cơ sở để tiếp tục xác định **Business Requirements, Functional Requirements, Non-Functional Requirements, Use Cases và Business Rules** cho hệ thống CAB System.
+ Với CAB System này, mình đề xuất **MVP trong 7 tuần**, tập trung vào luồng nghiệp vụ cốt lõi:
+
+ > **Đăng nhập → Đặt xe → Tìm tài xế → Nhận chuyến → Thực hiện chuyến → Tính cước → Thanh toán → Hoàn thành**
+
+ Dưới đây là phần Markdown bạn có thể **thêm vào `SRS.md` ngay sau phần Business Goals**:
+# 5. Project Scope
+
+## 5.1. Mục đích
+
+Dựa trên các Business Goals đã xác định, dự án CAB System được giới hạn phạm vi phát triển trong thời gian **7 tuần**.
+
+Do thời gian phát triển có giới hạn, hệ thống được tập trung vào các chức năng nghiệp vụ cốt lõi nhằm đảm bảo có thể triển khai được một phiên bản **MVP (Minimum Viable Product)**.
+
+Các chức năng nâng cao và các yêu cầu chưa được xác định rõ sẽ được đưa vào phạm vi phát triển trong các giai đoạn tiếp theo.
+
+---
+
+## 5.2. Phạm vi phát triển trong giai đoạn MVP
+
+### Các module chính
+
+| STT | Module | Mã BG liên quan | Phạm vi |
+|---:|---|---|---|
+| 1 | Authentication & Account | BG-01, BG-09 | **In Scope** |
+| 2 | Customer Management | BG-01, BG-09 | **In Scope** |
+| 3 | Driver Management | BG-02, BG-03, BG-09 | **In Scope** |
+| 4 | Vehicle Management | BG-06 | **In Scope** |
+| 5 | Booking Management | BG-01, BG-02, BG-03 | **In Scope** |
+| 6 | Driver Matching & Assignment | BG-02 | **In Scope** |
+| 7 | Trip Management | BG-03 | **In Scope** |
+| 8 | Driver Location Tracking | BG-02, BG-03 | **In Scope** |
+| 9 | Fare Calculation | BG-04 | **In Scope** |
+| 10 | Payment Management | BG-04 | **In Scope** |
+| 11 | Notification | BG-05 | **In Scope** |
+| 12 | Rating & Review | BG-01, BG-03 | **In Scope** |
+| 13 | Operation Management | BG-06 | **In Scope** |
+| 14 | Basic Reporting | BG-07 | **In Scope** |
+| 15 | Authorization & Audit Log | BG-09 | **In Scope** |
+| 16 | Scalability & Deployment | BG-08, BG-10 | **In Scope – nền tảng cơ bản** |
+
+---
+
+# 5.3. Chi tiết phạm vi từng module
+
+## 5.3.1. Authentication & Account
+
+### In Scope
+
+- Đăng ký tài khoản khách hàng.
+- Đăng nhập.
+- Đăng xuất.
+- Xác thực người dùng.
+- Cập nhật thông tin cá nhân.
+- Quản lý trạng thái tài khoản.
+- Phân biệt vai trò:
+  - Customer
+  - Driver
+  - Operator
+  - Administrator
+
+### Out of Scope
+
+- Đăng nhập bằng mạng xã hội.
+- Xác thực sinh trắc học.
+- Single Sign-On (SSO).
+- Multi-factor Authentication nâng cao.
+
+---
+
+## 5.3.2. Customer Management
+
+### In Scope
+
+- Xem thông tin khách hàng.
+- Cập nhật thông tin cá nhân.
+- Quản lý trạng thái tài khoản.
+- Xem lịch sử chuyến đi.
+- Xem thông tin thanh toán của chuyến.
+- Đánh giá tài xế sau khi hoàn thành chuyến.
+
+### Out of Scope
+
+- Chương trình khách hàng thân thiết.
+- Tích điểm.
+- Voucher nâng cao.
+- Membership.
+
+---
+
+## 5.3.3. Driver Management
+
+### In Scope
+
+- Đăng ký tài xế hoặc nhân viên vận hành tạo tài khoản.
+- Quản lý hồ sơ tài xế.
+- Cập nhật thông tin tài xế.
+- Cập nhật trạng thái hoạt động.
+- Chuyển trạng thái:
+  - Online
+  - Offline
+  - Available
+  - Busy
+- Nhận yêu cầu chuyến.
+- Chấp nhận hoặc từ chối chuyến.
+
+### Out of Scope
+
+- Hệ thống chấm điểm tài xế nâng cao.
+- Hệ thống thưởng/phạt tự động.
+- Tính hoa hồng phức tạp.
+
+---
+
+## 5.3.4. Vehicle Management
+
+### In Scope
+
+- Thêm phương tiện.
+- Cập nhật thông tin phương tiện.
+- Xem thông tin phương tiện.
+- Liên kết phương tiện với tài xế.
+- Quản lý loại xe.
+
+### Out of Scope
+
+- Quản lý bảo dưỡng phương tiện.
+- Theo dõi nhiên liệu.
+- Quản lý chi phí vận hành phương tiện.
+
+---
+
+## 5.3.5. Booking Management
+
+### In Scope
+
+Khách hàng có thể:
+
+- Nhập điểm đón.
+- Nhập điểm đến.
+- Lựa chọn loại xe.
+- Tạo yêu cầu đặt xe.
+- Hủy yêu cầu theo chính sách.
+- Xem trạng thái yêu cầu.
+
+Các trạng thái cơ bản:
+
+```text
+REQUESTED
+    ↓
+SEARCHING_DRIVER
+    ↓
+DRIVER_ASSIGNED
+    ↓
+DRIVER_ARRIVING
+    ↓
+DRIVER_ARRIVED
+    ↓
+PASSENGER_PICKED_UP
+    ↓
+IN_PROGRESS
+    ↓
+COMPLETED
+```
+
+### Out of Scope
+
+- Đặt xe định kỳ.
+- Đặt xe cho nhiều điểm đến.
+- Đặt xe nhóm.
+- Đặt xe trước trong thời gian dài.
+
+---
+
+## 5.3.6. Driver Matching & Assignment
+
+### In Scope
+
+Hệ thống thực hiện:
+
+1. Nhận yêu cầu đặt xe.
+2. Xác định các tài xế phù hợp.
+3. Kiểm tra trạng thái tài xế.
+4. Xác định vị trí tài xế.
+5. Ưu tiên tài xế phù hợp và gần khách hàng.
+6. Gửi yêu cầu đến tài xế.
+7. Chờ tài xế phản hồi.
+8. Nếu tài xế từ chối hoặc không phản hồi:
+   - Tìm tài xế tiếp theo.
+9. Nếu không tìm được tài xế:
+   - Cập nhật trạng thái.
+   - Thông báo cho khách hàng.
+
+### Out of Scope
+
+Các thuật toán matching nâng cao như:
+
+- Machine Learning.
+- AI prediction.
+- Dynamic driver scoring.
+- Dự đoán nhu cầu theo khu vực.
+- Tối ưu đội xe theo thời gian thực ở quy mô lớn.
+
+---
+
+## 5.3.7. Trip Management
+
+### In Scope
+
+Tài xế có thể cập nhật:
+
+- Đã nhận chuyến.
+- Đang đến điểm đón.
+- Đã đến điểm đón.
+- Đã đón khách.
+- Đang di chuyển.
+- Hoàn thành chuyến.
+
+Khách hàng có thể xem:
+
+- Trạng thái chuyến.
+- Thông tin tài xế.
+- Thông tin phương tiện.
+- Vị trí tài xế.
+- ETA dự kiến.
+
+Nhân viên vận hành có thể:
+
+- Xem chuyến đang diễn ra.
+- Xem trạng thái chuyến.
+- Hỗ trợ xử lý chuyến lỗi.
+
+---
+
+## 5.3.8. Driver Location Tracking
+
+### In Scope
+
+- Ghi nhận vị trí hiện tại của tài xế.
+- Cập nhật vị trí định kỳ.
+- Sử dụng vị trí để hỗ trợ tìm tài xế.
+- Hiển thị vị trí tài xế cho khách hàng trong quá trình chuyến.
+- Hỗ trợ tính ETA.
+
+### Out of Scope
+
+- Lưu lịch sử GPS dài hạn.
+- Phân tích hành trình nâng cao.
+- Heatmap giao thông.
+- Phân tích hành vi lái xe.
+
+---
+
+## 5.3.9. Fare Calculation
+
+### In Scope
+
+Hệ thống có khả năng:
+
+- Xác định loại dịch vụ.
+- Tính cước dựa trên thông tin chuyến.
+- Xác định số tiền khách hàng phải thanh toán.
+- Lưu thông tin cước của chuyến.
+- Hiển thị số tiền cần thanh toán.
+
+### Lưu ý
+
+Công thức tính cước cụ thể **chưa được khách hàng xác nhận**, do đó cần được làm rõ trước khi triển khai chính thức.
+
+### Out of Scope
+
+- Dynamic pricing phức tạp.
+- Surge pricing theo AI.
+- Hệ thống khuyến mãi nâng cao.
+- Loyalty pricing.
+
+---
+
+## 5.3.10. Payment Management
+
+### In Scope
+
+Hỗ trợ:
+
+- Thanh toán tiền mặt.
+- Thanh toán điện tử.
+- Tích hợp với payment gateway bên ngoài.
+- Nhận kết quả giao dịch.
+- Cập nhật trạng thái thanh toán.
+- Thông báo thanh toán thành công/thất bại.
+- Cho phép retry thanh toán theo chính sách.
+
+Hệ thống **không lưu trực tiếp thông tin nhạy cảm của thẻ hoặc tài khoản thanh toán**.
+
+### Out of Scope
+
+- Tự xây dựng payment gateway.
+- Lưu thông tin thẻ ngân hàng.
+- Tích hợp nhiều payment gateway trong MVP.
+- Hệ thống ví điện tử riêng của CAB.
+
+---
+
+## 5.3.11. Notification
+
+### In Scope
+
+Hệ thống hỗ trợ thông báo các sự kiện chính:
+
+| Sự kiện | Customer | Driver | Operator |
+|---|:---:|:---:|:---:|
+| Yêu cầu đặt xe được tiếp nhận | ✓ | | |
+| Có yêu cầu chuyến mới | | ✓ | |
+| Tài xế nhận chuyến | ✓ | | |
+| Tài xế đến điểm đón | ✓ | | |
+| Chuyến hoàn thành | ✓ | ✓ | |
+| Thanh toán thành công | ✓ | | |
+| Thanh toán thất bại | ✓ | | |
+| Chuyến có thay đổi | ✓ | ✓ | |
+
+### Out of Scope
+
+- Omnichannel notification nâng cao.
+- Marketing notification.
+- Campaign notification.
+- Hệ thống notification analytics nâng cao.
+
+---
+
+## 5.3.12. Rating & Review
+
+### In Scope
+
+- Khách hàng đánh giá tài xế sau chuyến.
+- Chấm điểm tài xế.
+- Nhập nhận xét.
+- Lưu đánh giá.
+- Hiển thị điểm đánh giá cơ bản của tài xế.
+
+### Out of Scope
+
+- Hệ thống ranking tài xế.
+- Phân tích sentiment.
+- AI phân tích đánh giá.
+
+---
+
+## 5.3.13. Operation Management
+
+### In Scope
+
+Nhân viên vận hành có thể:
+
+- Quản lý khách hàng.
+- Quản lý tài xế.
+- Quản lý phương tiện.
+- Xem chuyến đang diễn ra.
+- Kiểm tra trạng thái tài xế.
+- Tra cứu lịch sử chuyến.
+- Tra cứu lịch sử giao dịch.
+- Hỗ trợ xử lý chuyến bị lỗi.
+
+### Out of Scope
+
+- Tự động điều phối toàn bộ hoạt động vận hành.
+- Workforce management nâng cao.
+- Quản lý nhân sự.
+- Tính lương nhân viên.
+
+---
+
+## 5.3.14. Basic Reporting
+
+### In Scope
+
+Hệ thống cung cấp các báo cáo cơ bản:
+
+- Tổng số chuyến.
+- Số chuyến hoàn thành.
+- Số chuyến hủy.
+- Tỷ lệ hoàn thành.
+- Tỷ lệ hủy.
+- Doanh thu.
+- Số lượng tài xế hoạt động.
+- Hiệu quả hoạt động cơ bản của tài xế.
+
+### Out of Scope
+
+- Business Intelligence nâng cao.
+- Predictive Analytics.
+- AI Forecasting.
+- Data Warehouse hoàn chỉnh.
+
+---
+
+## 5.3.15. Authorization & Audit Log
+
+### In Scope
+
+- Phân quyền theo vai trò.
+- Kiểm soát chức năng quản trị.
+- Phân biệt quyền Operator và Administrator.
+- Ghi log các thao tác quan trọng.
+- Lưu thời gian, người thực hiện và hành động.
+
+### Out of Scope
+
+- SIEM hoàn chỉnh.
+- Security Operation Center.
+- Threat Intelligence.
+- Advanced Security Analytics.
+
+---
+
+# 5.4. Scope Matrix
+
+| Module | MVP 7 tuần | Phase 2 | Ghi chú |
+|---|:---:|:---:|---|
+| Authentication & Account | ✓ | | Chức năng bắt buộc |
+| Customer Management | ✓ | | Chức năng bắt buộc |
+| Driver Management | ✓ | | Chức năng bắt buộc |
+| Vehicle Management | ✓ | | Chức năng bắt buộc |
+| Booking Management | ✓ | | Core Business |
+| Driver Matching | ✓ | | Core Business |
+| Trip Management | ✓ | | Core Business |
+| Location Tracking | ✓ | | Cần cho matching và ETA |
+| Fare Calculation | ✓ | | Công thức cần xác nhận |
+| Payment | ✓ | | Tích hợp payment gateway |
+| Notification | ✓ | | Chỉ các notification quan trọng |
+| Rating & Review | ✓ | | Chức năng sau chuyến |
+| Operation Management | ✓ | | Chức năng quản trị cốt lõi |
+| Basic Reporting | ✓ | | Chỉ báo cáo cơ bản |
+| Authorization | ✓ | | Bắt buộc về bảo mật |
+| Audit Log | ✓ | | Bắt buộc về kiểm soát |
+| Advanced Analytics | | ✓ | Phát triển sau MVP |
+| Loyalty / Membership | | ✓ | Chưa cần cho MVP |
+| Voucher / Promotion | | ✓ | Chưa cần cho MVP |
+| Advanced Driver Ranking | | ✓ | Chưa cần cho MVP |
+| AI Driver Matching | | ✓ | Chưa cần cho MVP |
+| Predictive Analytics | | ✓ | Chưa cần cho MVP |
+| Multiple Payment Gateway | | ✓ | Có thể mở rộng sau |
+| Advanced Notification | | ✓ | Có thể mở rộng sau |
+
+---
+
+# 5.5. In Scope
+
+Trong phạm vi MVP 7 tuần, hệ thống tập trung vào **core booking flow**:
+
+```mermaid
+flowchart LR
+
+    C["Customer"]
+    B["Booking"]
+    M["Driver Matching"]
+    D["Driver"]
+    T["Trip"]
+    F["Fare"]
+    P["Payment"]
+    N["Notification"]
+    R["Rating"]
+    O["Operation"]
+
+    C --> B
+    B --> M
+    M --> D
+    D --> T
+    T --> F
+    F --> P
+    T --> R
+
+    B -.-> N
+    M -.-> N
+    T -.-> N
+    P -.-> N
+
+    O -.-> B
+    O -.-> D
+    O -.-> T
+    O -.-> P
+```
+
+### Core Flow
+
+```text
+Customer
+   ↓
+Create Booking
+   ↓
+Search Driver
+   ↓
+Assign Driver
+   ↓
+Driver Accept
+   ↓
+Driver Arrive
+   ↓
+Pick Up Customer
+   ↓
+Trip In Progress
+   ↓
+Complete Trip
+   ↓
+Calculate Fare
+   ↓
+Payment
+   ↓
+Rating
+```
+
+---
+
+# 5.6. Out of Scope
+
+Các chức năng sau **không thuộc phạm vi MVP 7 tuần**:
+
+- Loyalty Program.
+- Membership.
+- Voucher và Promotion nâng cao.
+- Đặt xe định kỳ.
+- Đặt xe nhiều điểm.
+- AI Driver Matching.
+- Machine Learning.
+- Predictive Analytics.
+- Dynamic Pricing nâng cao.
+- Advanced Driver Ranking.
+- Marketing Campaign.
+- Advanced Notification Analytics.
+- Data Warehouse.
+- Business Intelligence nâng cao.
+- Quản lý bảo dưỡng phương tiện.
+- Quản lý nhiên liệu.
+- Workforce Management.
+- Tích hợp nhiều Payment Gateway trong cùng MVP.
+
+Các chức năng này có thể được xem xét trong **Phase 2** sau khi MVP được triển khai và đánh giá.
+
+---
+
+# 5.7. Phạm vi theo Business Goals
+
+| Business Goal | Module chính | MVP |
+|---|---|:---:|
+| **BG-01** | Authentication, Customer, Booking | ✓ |
+| **BG-02** | Driver, Driver Matching, Location Tracking | ✓ |
+| **BG-03** | Trip Management, Location Tracking | ✓ |
+| **BG-04** | Fare Calculation, Payment | ✓ |
+| **BG-05** | Notification | ✓ |
+| **BG-06** | Operation Management, Vehicle Management | ✓ |
+| **BG-07** | Basic Reporting | ✓ |
+| **BG-08** | Scalability, Deployment | ✓ |
+| **BG-09** | Authentication, Authorization, Audit Log | ✓ |
+| **BG-10** | Modular Architecture, API Integration | ✓ |
+
+---
+
+# 5.8. Ưu tiên phát triển
+
+Các module được ưu tiên dựa trên mức độ quan trọng đối với hoạt động kinh doanh.
+
+| Priority | Module | Lý do |
+|---|---|---|
+| **P0 – Critical** | Authentication | Người dùng cần xác thực để sử dụng hệ thống |
+| **P0 – Critical** | Booking | Chức năng cốt lõi của CAB System |
+| **P0 – Critical** | Driver Matching | Đảm bảo yêu cầu đặt xe được xử lý |
+| **P0 – Critical** | Trip Management | Quản lý toàn bộ vòng đời chuyến |
+| **P0 – Critical** | Driver Management | Cần thiết để vận hành đội tài xế |
+| **P0 – Critical** | Fare Calculation | Xác định số tiền khách hàng phải trả |
+| **P0 – Critical** | Payment | Hoàn tất quy trình giao dịch |
+| **P1 – High** | Location Tracking | Hỗ trợ matching và ETA |
+| **P1 – High** | Notification | Đảm bảo người dùng nhận được thông tin |
+| **P1 – High** | Operation Management | Hỗ trợ nhân viên vận hành |
+| **P1 – High** | Authorization | Đảm bảo bảo mật và phân quyền |
+| **P1 – High** | Audit Log | Hỗ trợ kiểm tra và xử lý sự cố |
+| **P2 – Medium** | Rating & Review | Tăng chất lượng dịch vụ |
+| **P2 – Medium** | Basic Reporting | Hỗ trợ quản lý |
+| **P3 – Future** | AI Matching | Có thể phát triển sau MVP |
+| **P3 – Future** | Loyalty / Promotion | Không ảnh hưởng đến core booking flow |
+| **P3 – Future** | Advanced Analytics | Phát triển khi có đủ dữ liệu |
+
+---
+
+# 5.9. Kết luận về Scope
+
+Trong thời gian **7 tuần**, CAB System sẽ ưu tiên triển khai các chức năng trực tiếp phục vụ quy trình nghiệp vụ cốt lõi:
+
+> **Đăng nhập → Đặt xe → Tìm tài xế → Phân công → Thực hiện chuyến → Tính cước → Thanh toán → Đánh giá**
+
+Các chức năng nâng cao như AI, Loyalty, Promotion, Predictive Analytics và Business Intelligence sẽ được đưa ra khỏi phạm vi MVP để đảm bảo dự án có thể hoàn thành đúng thời hạn.
+
+Việc giới hạn phạm vi giúp nhóm phát triển:
+
+- Tập trung vào các Business Goals quan trọng nhất.
+- Giảm rủi ro trong thời gian phát triển 7 tuần.
+- Đảm bảo hoàn thành các chức năng cốt lõi.
+- Có thể triển khai MVP sớm.
+- Tạo nền tảng để phát triển các chức năng nâng cao trong Phase 2.
 ````
 
- **Lưu ý quan trọng:** Trong bản này mình đã sửa một lỗi logic trong `quadrantChart`: Mermaid quy ước quadrant theo vị trí trục, nên mình đặt **Manage Closely = góc trên bên phải**, **Keep Satisfied = trên bên trái**, **Monitor = dưới bên trái**, **Keep Informed = dưới bên phải**. Như vậy bảng và sơ đồ khớp nhau.
+
