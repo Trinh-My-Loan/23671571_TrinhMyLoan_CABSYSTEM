@@ -394,29 +394,7 @@ Bảng dưới đây thể hiện stakeholder chính liên quan đến từng Bu
 
 ---
 
-# 7. Tổng kết
 
-CAB System hướng đến việc xây dựng một nền tảng đặt xe trực tuyến có khả năng phục vụ khách hàng, tài xế và bộ phận vận hành trên cùng một hệ thống.
-
-Các mục tiêu nghiệp vụ trọng tâm bao gồm:
-
-1. Cung cấp nền tảng đặt xe trực tuyến.
-2. Tự động hóa việc tìm kiếm và phân công tài xế.
-3. Theo dõi và quản lý toàn bộ vòng đời chuyến đi.
-4. Quản lý tính cước và thanh toán.
-5. Cung cấp hệ thống thông báo linh hoạt.
-6. Nâng cao hiệu quả vận hành.
-7. Cung cấp báo cáo phục vụ quản lý.
-8. Đảm bảo tính ổn định và khả năng mở rộng.
-9. Đảm bảo bảo mật và an toàn dữ liệu.
-10. Xây dựng nền tảng có khả năng phát triển lâu dài.
-Đúng rồi. **Bước 5 nên là Scope / Project Scope**, tức là sau khi có các **Business Goals (BG)** thì mình xác định trong **7 tuần** sẽ làm những module nào, cái nào làm trong Phase 1, cái nào để Phase sau.
-
- Với CAB System này, mình đề xuất **MVP trong 7 tuần**, tập trung vào luồng nghiệp vụ cốt lõi:
-
- > **Đăng nhập → Đặt xe → Tìm tài xế → Nhận chuyến → Thực hiện chuyến → Tính cước → Thanh toán → Hoàn thành**
-
- Dưới đây là phần Markdown bạn có thể **thêm vào `SRS.md` ngay sau phần Business Goals**:
 # 5. Project Scope
 
 ## 5.1. Mục đích
