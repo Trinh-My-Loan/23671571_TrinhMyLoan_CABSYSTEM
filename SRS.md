@@ -421,4 +421,4 @@ Các mục tiêu nghiệp vụ trọng tâm bao gồm:
 Các Business Goals trên sẽ là cơ sở để tiếp tục xác định **Business Requirements, Functional Requirements, Non-Functional Requirements, Use Cases và Business Rules** cho hệ thống CAB System.
 ````
 
- 
+ **Lưu ý quan trọng:** Trong bản này mình đã sửa một lỗi logic trong `quadrantChart`: Mermaid quy ước quadrant theo vị trí trục, nên mình đặt **Manage Closely = góc trên bên phải**, **Keep Satisfied = trên bên trái**, **Monitor = dưới bên trái**, **Keep Informed = dưới bên phải**. Như vậy bảng và sơ đồ khớp nhau.
