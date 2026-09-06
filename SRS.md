@@ -42,32 +42,33 @@ Dựa trên yêu cầu của khách hàng, các stakeholder của CAB System đ�
 
 ## 2.3. Stakeholder Power / Interest Matrix
 
-quadrantChart
-    title Stakeholder Power / Interest Matrix
-    x-axis "Low Interest" --> "High Interest"
-    y-axis "Low Power" --> "High Power"
 
-    quadrant-1 "Manage Closely"
-    quadrant-2 "Keep Satisfied"
-    quadrant-3 "Monitor"
-    quadrant-4 "Keep Informed"
+### Sơ đồ quan hệ đơn giản hơn
 
-    "Ban giám đốc": [0.85, 0.90]
-    "Nhân viên vận hành": [0.85, 0.80]
-    "Quản trị viên hệ thống": [0.80, 0.85]
-    "Kế toán / Tài chính": [0.75, 0.75]
-    "Business Analyst": [0.90, 0.85]
-    "Đội phát triển": [0.85, 0.75]
-    "DevOps": [0.80, 0.80]
+Nếu thầy/cô yêu cầu **chỉ vẽ stakeholder → hệ thống**, dùng bản này sẽ dễ nhìn hơn:
 
-    "Khách hàng": [0.85, 0.30]
-    "Tài xế": [0.80, 0.25]
-    "Chăm sóc khách hàng": [0.75, 0.30]
-    "QA / Tester": [0.70, 0.25]
+```markdown
+```mermaid
+flowchart LR
+    KH["Khách hàng"]
+    TX["Tài xế"]
+    NV["Nhân viên vận hành"]
+    LD["Ban lãnh đạo"]
+    BA["Business Analyst"]
+    DEV["Nhóm phát triển"]
+    TT["NCC thanh toán"]
+    TB["NCC thông báo"]
 
-    "Nhà cung cấp thanh toán": [0.25, 0.75]
-    "Nhà cung cấp bản đồ / GPS": [0.25, 0.30]
-    "Nhà cung cấp thông báo": [0.20, 0.25]
+    CAB(("CAB System"))
+
+    KH --> CAB
+    TX --> CAB
+    NV --> CAB
+    LD --> CAB
+    BA --> CAB
+    DEV --> CAB
+    CAB --> TT
+    CAB --> TB
 
 # 3. Business Goals
 
