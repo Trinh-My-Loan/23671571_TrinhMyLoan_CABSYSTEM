@@ -234,4 +234,298 @@ mindmap
       Ensure Access Control
       Enable Future Expansion
 ```
+# 5. Project Scope
+
+## 5.1. Scope Identification
+
+Dựa trên các Business Goals đã xác định, phạm vi dự án được giới hạn dựa trên:
+
+* Thời gian phát triển dự án: **7 tuần**.
+* Mục tiêu xây dựng phiên bản MVP.
+* Ưu tiên các chức năng cốt lõi của hệ thống đặt xe.
+* Các module phải trực tiếp hỗ trợ Business Goals.
+* Các chức năng nâng cao sẽ được phát triển trong các giai đoạn sau.
+
+Quy trình cốt lõi của CAB System:
+
+```text
+Account
+   ↓
+Booking
+   ↓
+Driver Matching
+   ↓
+Trip Management
+   ↓
+Fare Calculation
+   ↓
+Payment
+   ↓
+Notification
+   ↓
+Rating
+```
+
+---
+
+## 5.2. Business Goals to Modules Mapping
+
+| Business Goal                                          | Module đề xuất                                                                   |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| BG-01: Automate Driver Matching and Assignment         | Booking Management, Driver Matching                                              |
+| BG-02: Improve Trip Visibility                         | Trip Management, Location Tracking                                               |
+| BG-03: Centralize Fare and Payment Management          | Fare Calculation, Payment Management                                             |
+| BG-04: Improve Operational Efficiency                  | Customer Management, Driver Management, Vehicle Management, Operation Management |
+| BG-05: Support System Scalability                      | System Architecture, Module-based Design                                         |
+| BG-06: Provide Timely Notifications                    | Notification Management                                                          |
+| BG-07: Support Business Monitoring and Decision Making | Basic Reporting                                                                  |
+| BG-08: Ensure Data Security                            | Authentication, Authorization                                                    |
+| BG-09: Ensure Access Control                           | Authorization, Role Management                                                   |
+| BG-10: Enable Future System Expansion                  | Modular Architecture, Integration Design                                         |
+
+---
+
+# 5.3. In Scope – MVP Modules
+
+Trong phạm vi MVP, các module sau sẽ được phát triển.
+
+| ID   | Module                              | Mục đích                                    |
+| ---- | ----------------------------------- | ------------------------------------------- |
+| M-01 | Authentication & Account Management | Quản lý tài khoản và xác thực người dùng    |
+| M-02 | Customer Management                 | Quản lý thông tin khách hàng                |
+| M-03 | Driver Management                   | Quản lý thông tin và trạng thái tài xế      |
+| M-04 | Vehicle Management                  | Quản lý phương tiện của tài xế              |
+| M-05 | Booking Management                  | Tiếp nhận và quản lý yêu cầu đặt xe         |
+| M-06 | Driver Matching & Assignment        | Tìm và phân công tài xế phù hợp             |
+| M-07 | Trip Management                     | Quản lý quá trình thực hiện chuyến đi       |
+| M-08 | Fare Calculation                    | Tính cước chuyến đi                         |
+| M-09 | Payment Management                  | Quản lý thanh toán                          |
+| M-10 | Notification Management             | Gửi thông báo cho khách hàng và tài xế      |
+| M-11 | Operation Management                | Hỗ trợ nhân viên vận hành quản lý hệ thống  |
+| M-12 | Authorization & Access Control      | Phân quyền người dùng và kiểm soát truy cập |
+
+---
+
+## 5.4. Module Priority
+
+Do giới hạn thời gian 7 tuần, các module được phân loại theo mức độ ưu tiên.
+
+### P0 – Must Have
+
+Các module bắt buộc phải có để hệ thống có thể vận hành:
+
+| Module                              | Business Goal hỗ trợ |
+| ----------------------------------- | -------------------- |
+| Authentication & Account Management | BG-08, BG-09         |
+| Driver Management                   | BG-01, BG-04         |
+| Booking Management                  | BG-01, BG-02         |
+| Driver Matching & Assignment        | BG-01                |
+| Trip Management                     | BG-02                |
+| Fare Calculation                    | BG-03                |
+| Payment Management                  | BG-03                |
+| Basic Authorization                 | BG-08, BG-09         |
+
+---
+
+### P1 – Should Have
+
+Các module quan trọng nhưng có thể triển khai ở mức cơ bản trong MVP:
+
+| Module                  | Business Goal hỗ trợ |
+| ----------------------- | -------------------- |
+| Customer Management     | BG-04                |
+| Vehicle Management      | BG-04                |
+| Notification Management | BG-06                |
+| Operation Management    | BG-04                |
+| Location Tracking       | BG-02                |
+
+---
+
+### P2 – Could Have
+
+Các module có giá trị bổ sung nhưng không ảnh hưởng trực tiếp đến khả năng vận hành cơ bản của hệ thống:
+
+| Module                        | Business Goal hỗ trợ    |
+| ----------------------------- | ----------------------- |
+| Rating & Review               | Improve Service Quality |
+| Basic Reporting               | BG-07                   |
+| Driver Performance Statistics | BG-07                   |
+| Audit Log                     | BG-08                   |
+
+---
+
+# 5.5. Module Scope Diagram
+
+```mermaid
+flowchart TB
+
+    CAB[CAB System]
+
+    CAB --> CORE[Core Modules - P0]
+    CAB --> HIGH[Important Modules - P1]
+    CAB --> OPTIONAL[Optional Modules - P2]
+
+    CORE --> A[Authentication & Account]
+    CORE --> B[Driver Management]
+    CORE --> C[Booking Management]
+    CORE --> D[Driver Matching]
+    CORE --> E[Trip Management]
+    CORE --> F[Fare Calculation]
+    CORE --> G[Payment Management]
+    CORE --> H[Authorization]
+
+    HIGH --> I[Customer Management]
+    HIGH --> J[Vehicle Management]
+    HIGH --> K[Notification]
+    HIGH --> L[Operation Management]
+    HIGH --> M[Location Tracking]
+
+    OPTIONAL --> N[Rating & Review]
+    OPTIONAL --> O[Basic Reporting]
+    OPTIONAL --> P[Driver Statistics]
+    OPTIONAL --> Q[Audit Log]
+```
+
+---
+
+# 5.6. Core Business Flow
+
+Các module trong MVP tập trung hỗ trợ quy trình nghiệp vụ chính:
+
+```mermaid
+flowchart LR
+
+    A[Customer Login]
+    --> B[Create Booking]
+    --> C[Driver Matching]
+    --> D[Driver Assignment]
+    --> E[Trip Execution]
+    --> F[Fare Calculation]
+    --> G[Payment]
+    --> H[Trip Completed]
+```
+
+Các module hỗ trợ:
+
+```mermaid
+flowchart TB
+
+    A[Authentication]
+    B[Driver Management]
+    C[Vehicle Management]
+    D[Notification]
+    E[Authorization]
+
+    A --> CORE[Core Business Flow]
+    B --> CORE
+    C --> CORE
+    D --> CORE
+    E --> CORE
+```
+
+---
+
+# 5.7. Out of Scope
+
+Các chức năng sau không thuộc phạm vi MVP do giới hạn thời gian và nguồn lực:
+
+### Advanced Features
+
+* AI Driver Matching.
+* Machine Learning.
+* Predictive Analytics.
+* Advanced Driver Ranking.
+* Dynamic Pricing.
+* Demand Forecasting.
+
+### Customer Experience Features
+
+* Loyalty Program.
+* Membership.
+* Voucher và Promotion.
+* Referral Program.
+* Subscription.
+
+### Advanced Booking
+
+* Scheduled Booking.
+* Recurring Booking.
+* Multi-stop Trip.
+* Ride Sharing.
+
+### Advanced Analytics
+
+* Business Intelligence Dashboard.
+* Advanced Analytics.
+* Real-time Analytics.
+* Predictive Reporting.
+
+Các chức năng trên có thể được xem xét phát triển trong các giai đoạn tiếp theo.
+
+---
+
+# 5.8. Scope Boundary
+
+```mermaid
+flowchart TB
+
+    subgraph MVP["MVP Scope - 7 Weeks"]
+
+        A[Authentication]
+        B[Booking]
+        C[Driver Management]
+        D[Driver Matching]
+        E[Trip Management]
+        F[Fare Calculation]
+        G[Payment]
+        H[Notification]
+        I[Basic Operation Management]
+
+    end
+
+    subgraph FUTURE["Future Scope"]
+
+        J[AI Matching]
+        K[Dynamic Pricing]
+        L[Loyalty Program]
+        M[Advanced Analytics]
+        N[Promotion]
+        O[Ride Sharing]
+
+    end
+
+    MVP --> FUTURE
+```
+
+---
+
+# 5.9. Scope Summary
+
+Dự án CAB System trong giai đoạn MVP tập trung vào các chức năng cần thiết để vận hành một hệ thống đặt xe cơ bản.
+
+### Core Modules
+
+* Authentication & Account Management
+* Driver Management
+* Booking Management
+* Driver Matching & Assignment
+* Trip Management
+* Fare Calculation
+* Payment Management
+
+### Supporting Modules
+
+* Vehicle Management
+* Notification Management
+* Operation Management
+* Authorization & Access Control
+
+### Future Modules
+
+* Rating & Review
+* Advanced Reporting
+* AI Driver Matching
+* Dynamic Pricing
+* Loyalty Program
+* Advanced Analytics
 
