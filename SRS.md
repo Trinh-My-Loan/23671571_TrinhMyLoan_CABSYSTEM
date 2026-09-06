@@ -1607,34 +1607,106 @@ stateDiagram-v2
 | EX-07 | Unauthorized Access          | Từ chối truy cập        |
 | EX-08 | Driver Unavailable           | Tìm Driver khác         |
 
-````
+# 10. Non-Functional Requirements
 
-### Lưu ý nhỏ về ký hiệu
+## 10.1. Overview
 
-Ở đây mình khuyên dùng:
+Non-Functional Requirements mô tả các yêu cầu về chất lượng và cách hệ thống hoạt động, không phải các chức năng nghiệp vụ cụ thể.
 
-- `BG` = Business Goal
-- `BR` = Business Requirement
-- `BP` = Business Process
-- `SR` = System Requirement
-- `EX` = Exception
+---
 
-Tuy nhiên vì trước đó bạn đã dùng **BR cho Business Requirements**, thì phần Business Rules không nên tiếp tục dùng BR vì sẽ bị trùng. Nên đổi thành:
+## 10.2. Performance
 
-```text
-RULE-01
-RULE-02
-...
-````
+| ID     | Requirement                                                                       |
+| ------ | --------------------------------------------------------------------------------- |
+| NFR-01 | Hệ thống phải phản hồi các thao tác thông thường trong thời gian hợp lý.          |
+| NFR-02 | Hệ thống phải xử lý việc tìm kiếm Driver mà không làm gián đoạn quá trình đặt xe. |
+| NFR-03 | Hệ thống phải hỗ trợ nhiều người dùng truy cập đồng thời.                         |
 
-hoặc chuyên nghiệp hơn:
+---
 
-```text
-BUS-RULE-01
-BUS-RULE-02
-```
+## 10.3. Availability
 
-Mình khuyên dùng **RULE-01 → RULE-15** trong file cuối cùng để tránh nhầm với Business Requirements.
+| ID     | Requirement                                                                                              |
+| ------ | -------------------------------------------------------------------------------------------------------- |
+| NFR-04 | Hệ thống phải đảm bảo hoạt động ổn định trong quá trình vận hành.                                        |
+| NFR-05 | Lỗi của một dịch vụ bên ngoài không được làm toàn bộ hệ thống ngừng hoạt động.                           |
+| NFR-06 | Hệ thống phải có khả năng xử lý khi Payment Provider hoặc Notification Provider tạm thời không khả dụng. |
 
+---
+
+## 10.4. Security
+
+| ID     | Requirement                                                                       |
+| ------ | --------------------------------------------------------------------------------- |
+| NFR-07 | Người dùng phải được xác thực trước khi truy cập các chức năng yêu cầu tài khoản. |
+| NFR-08 | Hệ thống phải kiểm soát quyền truy cập dựa trên vai trò người dùng.               |
+| NFR-09 | Dữ liệu cá nhân của Customer và Driver phải được bảo vệ.                          |
+| NFR-10 | Hệ thống không được lưu trực tiếp thông tin thanh toán nhạy cảm.                  |
+| NFR-11 | Thông tin trao đổi giữa người dùng và hệ thống phải được bảo vệ.                  |
+
+---
+
+## 10.5. Scalability
+
+| ID     | Requirement                                                             |
+| ------ | ----------------------------------------------------------------------- |
+| NFR-12 | Hệ thống phải có khả năng mở rộng khi số lượng Customer và Driver tăng. |
+| NFR-13 | Các module chính phải có khả năng mở rộng độc lập khi cần thiết.        |
+| NFR-14 | Hệ thống phải hỗ trợ bổ sung các dịch vụ mới trong tương lai.           |
+
+---
+
+## 10.6. Reliability
+
+| ID     | Requirement                                                         |
+| ------ | ------------------------------------------------------------------- |
+| NFR-15 | Dữ liệu Booking, Trip và Payment phải được lưu chính xác.           |
+| NFR-16 | Hệ thống phải hạn chế việc tạo dữ liệu trùng lặp.                   |
+| NFR-17 | Trạng thái Booking, Trip và Payment phải được đồng bộ và nhất quán. |
+
+---
+
+## 10.7. Usability
+
+| ID     | Requirement                                                                                   |
+| ------ | --------------------------------------------------------------------------------------------- |
+| NFR-18 | Giao diện phải dễ sử dụng đối với Customer, Driver và Operator.                               |
+| NFR-19 | Người dùng phải nhận được thông báo rõ ràng khi xảy ra lỗi.                                   |
+| NFR-20 | Các thao tác chính như đặt xe và cập nhật trạng thái chuyến đi phải đơn giản và dễ thực hiện. |
+
+---
+
+## 10.8. Maintainability
+
+| ID     | Requirement                                                          |
+| ------ | -------------------------------------------------------------------- |
+| NFR-21 | Hệ thống phải được thiết kế theo cấu trúc module để dễ bảo trì.      |
+| NFR-22 | Các thay đổi ở một module nên hạn chế ảnh hưởng đến các module khác. |
+| NFR-23 | Mã nguồn và tài liệu hệ thống phải dễ bảo trì và cập nhật.           |
+
+---
+
+## 10.9. Compatibility
+
+| ID     | Requirement                                                                        |
+| ------ | ---------------------------------------------------------------------------------- |
+| NFR-24 | Hệ thống phải hỗ trợ các trình duyệt hiện đại.                                     |
+| NFR-25 | Hệ thống phải có khả năng tích hợp với các dịch vụ bên ngoài như Payment Provider. |
+
+---
+
+## 10.10. Non-Functional Requirements Summary
+
+| Category        | Related Requirements |
+| --------------- | -------------------- |
+| Performance     | NFR-01 → NFR-03      |
+| Availability    | NFR-04 → NFR-06      |
+| Security        | NFR-07 → NFR-11      |
+| Scalability     | NFR-12 → NFR-14      |
+| Reliability     | NFR-15 → NFR-17      |
+| Usability       | NFR-18 → NFR-20      |
+| Maintainability | NFR-21 → NFR-23      |
+| Compatibility   | NFR-24 → NFR-25      |
 
 
