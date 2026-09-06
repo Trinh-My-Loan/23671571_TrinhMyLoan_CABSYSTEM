@@ -1458,6 +1458,183 @@ Hệ thống phải thông báo các sự kiện quan trọng cho người dùng
 | SR-08.06 | Hệ thống phải thông báo kết quả thanh toán cho Customer.       |
 | SR-08.07 | Hệ thống phải thông báo Customer khi không tìm được Driver.    |
 
+# 9. Business Rules and Exceptions
+
+## 9.1. Business Rules
+
+| ID    | Business Rule                                                            |
+| ----- | ------------------------------------------------------------------------ |
+| BR-01 | Người dùng phải đăng nhập để sử dụng các chức năng yêu cầu tài khoản.    |
+| BR-02 | Customer phải cung cấp điểm đón và điểm đến trước khi tạo Booking.       |
+| BR-03 | Booking chỉ được tạo khi thông tin hợp lệ.                               |
+| BR-04 | Chỉ Driver ở trạng thái Available mới được nhận chuyến.                  |
+| BR-05 | Một Driver chỉ được thực hiện một chuyến tại một thời điểm.              |
+| BR-06 | Driver có quyền chấp nhận hoặc từ chối yêu cầu chuyến đi.                |
+| BR-07 | Khi Driver từ chối hoặc không phản hồi, hệ thống phải tìm Driver khác.   |
+| BR-08 | Customer không cần tạo lại Booking khi Driver từ chối chuyến.            |
+| BR-09 | Mỗi Trip phải được quản lý theo trạng thái xác định.                     |
+| BR-10 | Giá cước được tính dựa trên thông tin thực tế của chuyến đi.             |
+| BR-11 | Thanh toán điện tử phải được xử lý thông qua Payment Provider.           |
+| BR-12 | Hệ thống không lưu trực tiếp thông tin thanh toán nhạy cảm.              |
+| BR-13 | Kết quả thanh toán phải được cập nhật vào Trip tương ứng.                |
+| BR-14 | Người dùng chỉ được truy cập các chức năng phù hợp với vai trò của mình. |
+| BR-15 | Các sự kiện quan trọng phải được thông báo đến người dùng liên quan.     |
+
+---
+
+## 9.2. Driver Status Rules
+
+| Status    | Description                                             |
+| --------- | ------------------------------------------------------- |
+| OFFLINE   | Driver không hoạt động trên hệ thống.                   |
+| ONLINE    | Driver đang trực tuyến nhưng chưa sẵn sàng nhận chuyến. |
+| AVAILABLE | Driver sẵn sàng nhận chuyến.                            |
+| BUSY      | Driver đang thực hiện chuyến đi.                        |
+
+### Status Transition
+
+```mermaid
+stateDiagram-v2
+    OFFLINE --> ONLINE
+    ONLINE --> AVAILABLE
+    AVAILABLE --> BUSY
+    BUSY --> AVAILABLE
+    AVAILABLE --> OFFLINE
+```
+
+---
+
+## 9.3. Trip Status Rules
+
+```mermaid
+stateDiagram-v2
+    [*] --> Assigned
+    Assigned --> Arriving
+    Arriving --> Arrived
+    Arrived --> PickedUp
+    PickedUp --> InProgress
+    InProgress --> Completed
+    Completed --> [*]
+```
+
+| Status     | Description               |
+| ---------- | ------------------------- |
+| Assigned   | Driver đã được phân công. |
+| Arriving   | Driver đang đến điểm đón. |
+| Arrived    | Driver đã đến điểm đón.   |
+| PickedUp   | Customer đã lên xe.       |
+| InProgress | Chuyến đi đang diễn ra.   |
+| Completed  | Chuyến đi đã hoàn thành.  |
+
+---
+
+# 9.4. Exceptions
+
+## EX-01: Invalid Booking Information
+
+**Condition:** Customer nhập thiếu hoặc sai thông tin đặt xe.
+
+**System Handling:** Hệ thống thông báo lỗi và yêu cầu Customer nhập lại.
+
+---
+
+## EX-02: No Driver Available
+
+**Condition:** Không tìm thấy Driver phù hợp.
+
+**System Handling:** Cập nhật trạng thái Booking và thông báo cho Customer.
+
+---
+
+## EX-03: Driver Rejects Trip
+
+**Condition:** Driver từ chối yêu cầu chuyến đi.
+
+**System Handling:** Hệ thống tiếp tục tìm Driver khác.
+
+---
+
+## EX-04: Driver Does Not Respond
+
+**Condition:** Driver không phản hồi trong thời gian quy định.
+
+**System Handling:** Hệ thống chuyển sang tìm Driver khác.
+
+---
+
+## EX-05: Payment Failed
+
+**Condition:** Giao dịch thanh toán điện tử thất bại.
+
+**System Handling:** Thông báo Customer và cho phép thanh toán lại.
+
+---
+
+## EX-06: Payment Provider Unavailable
+
+**Condition:** Payment Provider không phản hồi hoặc gặp sự cố.
+
+**System Handling:** Ghi nhận giao dịch ở trạng thái Pending và thông báo cho Customer.
+
+---
+
+## EX-07: Unauthorized Access
+
+**Condition:** User cố truy cập chức năng không thuộc quyền của mình.
+
+**System Handling:** Từ chối truy cập và thông báo lỗi phù hợp.
+
+---
+
+## EX-08: Driver Becomes Unavailable
+
+**Condition:** Driver đã được chọn nhưng chuyển sang trạng thái không thể nhận chuyến.
+
+**System Handling:** Hệ thống tìm Driver khác.
+
+---
+
+## 9.5. Exception Summary
+
+| ID    | Exception                    | System Handling         |
+| ----- | ---------------------------- | ----------------------- |
+| EX-01 | Invalid Booking Information  | Yêu cầu nhập lại        |
+| EX-02 | No Driver Available          | Thông báo Customer      |
+| EX-03 | Driver Rejects Trip          | Tìm Driver khác         |
+| EX-04 | Driver No Response           | Tìm Driver khác         |
+| EX-05 | Payment Failed               | Cho phép thanh toán lại |
+| EX-06 | Payment Provider Unavailable | Pending Payment         |
+| EX-07 | Unauthorized Access          | Từ chối truy cập        |
+| EX-08 | Driver Unavailable           | Tìm Driver khác         |
+
+````
+
+### Lưu ý nhỏ về ký hiệu
+
+Ở đây mình khuyên dùng:
+
+- `BG` = Business Goal
+- `BR` = Business Requirement
+- `BP` = Business Process
+- `SR` = System Requirement
+- `EX` = Exception
+
+Tuy nhiên vì trước đó bạn đã dùng **BR cho Business Requirements**, thì phần Business Rules không nên tiếp tục dùng BR vì sẽ bị trùng. Nên đổi thành:
+
+```text
+RULE-01
+RULE-02
+...
+````
+
+hoặc chuyên nghiệp hơn:
+
+```text
+BUS-RULE-01
+BUS-RULE-02
+```
+
+Mình khuyên dùng **RULE-01 → RULE-15** trong file cuối cùng để tránh nhầm với Business Requirements.
 
 
 
