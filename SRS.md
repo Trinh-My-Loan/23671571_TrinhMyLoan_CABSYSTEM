@@ -14,65 +14,31 @@ Dựa trên yêu cầu của khách hàng, các stakeholder của CAB System đ�
 
 ## 1.2. Danh sách Stakeholder và Vai trò
 
-| STT | Stakeholder | Loại | Vai trò |
-|---:|---|---|---|
-| 1 | Ban giám đốc | Internal | Định hướng dự án, phê duyệt ngân sách, xác định mục tiêu và theo dõi hiệu quả kinh doanh |
-| 2 | Khách hàng | External | Đăng ký, đăng nhập, đặt xe, theo dõi chuyến, thanh toán và đánh giá tài xế |
-| 3 | Tài xế | External | Cập nhật hồ sơ, trạng thái hoạt động, nhận chuyến, thực hiện chuyến và cập nhật trạng thái |
-| 4 | Nhân viên vận hành | Internal | Quản lý khách hàng, tài xế, phương tiện, chuyến đi và xử lý các trường hợp bất thường |
-| 5 | Quản trị viên hệ thống | Internal | Quản lý tài khoản, phân quyền, cấu hình, bảo mật và giám sát hệ thống |
-| 6 | Bộ phận kế toán / tài chính | Internal | Quản lý giao dịch, doanh thu, thanh toán và đối soát tài chính |
-| 7 | Bộ phận chăm sóc khách hàng | Internal | Hỗ trợ khách hàng, tiếp nhận khiếu nại và xử lý các vấn đề liên quan đến chuyến đi |
-| 8 | Business Analyst | Internal | Thu thập, phân tích, làm rõ, quản lý và xác nhận yêu cầu nghiệp vụ |
-| 9 | Đội phát triển phần mềm | Internal | Phân tích kỹ thuật, thiết kế, phát triển, tích hợp và bảo trì hệ thống |
-| 10 | QA / Tester | Internal | Xây dựng kế hoạch kiểm thử, kiểm thử chức năng và đảm bảo chất lượng hệ thống |
-| 11 | DevOps / System Administrator | Internal | Triển khai, giám sát, vận hành, sao lưu và đảm bảo tính ổn định của hệ thống |
-| 12 | Nhà cung cấp thanh toán | External | Cung cấp dịch vụ xử lý thanh toán điện tử |
-| 13 | Nhà cung cấp bản đồ / GPS | External | Cung cấp dữ liệu vị trí, khoảng cách, định tuyến và hỗ trợ tính ETA |
-| 14 | Nhà cung cấp dịch vụ thông báo | External | Cung cấp các kênh gửi Push Notification, SMS hoặc Email |
+## 1. Stakeholder
 
----
+| Stakeholder | Vai trò |
+|---|---|
+| Khách hàng | Đăng ký, đặt xe, theo dõi chuyến đi, thanh toán và đánh giá tài xế |
+| Tài xế | Nhận chuyến, cập nhật trạng thái chuyến đi và cung cấp thông tin vị trí |
+| Nhân viên vận hành | Quản lý khách hàng, tài xế, phương tiện và chuyến đi; xử lý sự cố |
+| Ban lãnh đạo | Đưa ra yêu cầu, theo dõi báo cáo và hiệu quả hoạt động của hệ thống |
+| Business Analyst | Thu thập, làm rõ và phân tích yêu cầu với các bên liên quan |
+| Nhà cung cấp thanh toán | Cung cấp dịch vụ thanh toán điện tử cho hệ thống |
+| Nhà cung cấp thông báo | Cung cấp các kênh gửi thông báo cho khách hàng và tài xế |
+| Nhóm phát triển hệ thống | Phân tích, thiết kế, xây dựng và triển khai hệ thống CAB |
+## 2. Stakeholder Matrix
 
-# 2. Stakeholder Matrix
-
-## 2.1. Tiêu chí đánh giá
-
-Stakeholder được phân loại dựa trên hai tiêu chí:
-
-- **Power:** Mức độ ảnh hưởng của stakeholder đến quyết định, phạm vi và kết quả dự án.
-- **Interest:** Mức độ quan tâm của stakeholder đối với hệ thống và kết quả dự án.
-
-### Các nhóm Stakeholder
-
-| Nhóm | Power | Interest | Chiến lược |
+| Stakeholder | Power | Interest | Chiến lược |
 |---|---|---|---|
-| **Manage Closely** | Cao | Cao | Quản lý chặt chẽ, trao đổi thường xuyên và tham gia vào các quyết định quan trọng |
-| **Keep Satisfied** | Cao | Thấp | Đảm bảo stakeholder hài lòng và cung cấp thông tin cần thiết |
-| **Keep Informed** | Thấp | Cao | Cập nhật thông tin thường xuyên và thu thập phản hồi |
-| **Monitor** | Thấp | Thấp | Theo dõi và cập nhật khi cần thiết |
+| Ban lãnh đạo | Cao | Cao | Quản lý chặt chẽ |
+| Nhân viên vận hành | Cao | Cao | Quản lý chặt chẽ |
+| Business Analyst | Cao | Cao | Quản lý chặt chẽ |
+| Khách hàng | Thấp | Cao | Giữ hài lòng |
+| Tài xế | Thấp | Cao | Giữ hài lòng |
+| Nhà cung cấp thanh toán | Cao | Trung bình | Duy trì quan hệ |
+| Nhà cung cấp thông báo | Trung bình | Trung bình | Theo dõi |
+| Nhóm phát triển hệ thống | Trung bình | Cao | Giữ được thông tin |
 
----
-
-## 2.2. Phân loại Stakeholder
-
-| Stakeholder | Power | Interest | Nhóm | Chiến lược |
-|---|---|---|---|---|
-| Ban giám đốc | Cao | Cao | Manage Closely | Báo cáo tiến độ, rủi ro, chi phí và kết quả dự án |
-| Nhân viên vận hành | Cao | Cao | Manage Closely | Tham gia phân tích và xác nhận quy trình nghiệp vụ |
-| Quản trị viên hệ thống | Cao | Cao | Manage Closely | Tham gia về phân quyền, bảo mật và vận hành |
-| Kế toán / Tài chính | Cao | Cao | Manage Closely | Xác nhận yêu cầu thanh toán, doanh thu và báo cáo |
-| Business Analyst | Cao | Cao | Manage Closely | Phân tích, quản lý và xác nhận yêu cầu |
-| Đội phát triển phần mềm | Cao | Cao | Manage Closely | Phối hợp thiết kế và triển khai giải pháp |
-| DevOps / System Administrator | Cao | Cao | Manage Closely | Phối hợp triển khai, giám sát và đảm bảo hệ thống hoạt động |
-| Khách hàng | Thấp | Cao | Keep Informed | Thu thập phản hồi và cập nhật thông tin |
-| Tài xế | Thấp | Cao | Keep Informed | Thu thập phản hồi và hướng dẫn sử dụng |
-| Chăm sóc khách hàng | Thấp | Cao | Keep Informed | Thu thập vấn đề hỗ trợ và phản hồi từ khách hàng |
-| QA / Tester | Thấp | Cao | Keep Informed | Cập nhật yêu cầu và tiêu chí kiểm thử |
-| Nhà cung cấp thanh toán | Cao | Thấp | Keep Satisfied | Quản lý tích hợp và đảm bảo dịch vụ ổn định |
-| Nhà cung cấp bản đồ / GPS | Thấp | Thấp | Monitor | Theo dõi chất lượng và tính ổn định của dịch vụ |
-| Nhà cung cấp thông báo | Thấp | Thấp | Monitor | Theo dõi khả năng gửi thông báo |
-
----
 
 ## 2.3. Stakeholder Power / Interest Matrix
 
