@@ -1,8 +1,5 @@
-Được. Bản hiện tại của bạn **bị lỗi cấu trúc ở cuối** vì phần `Stakeholder Matrix` chưa đóng Mermaid và phần Business Goals bị dính vào. Ngoài ra mình chỉnh lại một số chỗ để bài **đồng nhất mã BG, stakeholder, matrix và Mermaid**, phù hợp để nộp SRS.
 
- Bạn có thể **xóa toàn bộ `SRS.md` hiện tại và dán nguyên đoạn dưới đây**:
 
-````
 # SRS – CAB System
 
 # 1. Stakeholder Analysis
