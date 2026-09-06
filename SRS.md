@@ -2654,5 +2654,186 @@ Acceptance Criteria (AC) xác định các điều kiện mà hệ thống phả
 | Notification         | AC-31 → AC-34 |
 | Operation Management | AC-35 → AC-39 |
 | Authorization        | AC-40 → AC-43 |
+# 14. Requirements Traceability Matrix
+
+## 14.1. Overview
+
+Requirements Traceability Matrix (RTM) được sử dụng để theo dõi mối liên hệ giữa các yêu cầu từ cấp độ nghiệp vụ đến cấp độ hệ thống và tiêu chí chấp nhận.
+
+Ma trận truy vết giúp đảm bảo:
+
+* Mỗi yêu cầu khách hàng được xử lý.
+* Mỗi System Requirement phục vụ một mục tiêu nghiệp vụ.
+* Mỗi Use Case có nguồn gốc rõ ràng.
+* Mỗi chức năng có Acceptance Criteria để kiểm tra.
+
+---
+
+## 14.2. Traceability Flow
+
+```mermaid
+flowchart LR
+
+    CR[Customer Requirements]
+    BG[Business Goals]
+    BR[Business Requirements]
+    BP[Business Processes]
+    SR[System Requirements]
+    UC[Use Cases]
+    AC[Acceptance Criteria]
+
+    CR --> BG
+    BG --> BR
+    BR --> BP
+    BP --> SR
+    SR --> UC
+    UC --> AC
+```
+
+---
+
+# 14.3. Requirements Traceability Matrix
+
+| Customer Requirement | Business Goal | Business Requirement | Business Process | System Requirement | Use Case            | Acceptance Criteria |
+| -------------------- | ------------- | -------------------- | ---------------- | ------------------ | ------------------- | ------------------- |
+| CR-01                | BG-01         | BR-01                | BP-01            | SR-01              | UC-01, UC-02, UC-03 | AC-01 → AC-05       |
+| CR-02                | BG-02         | BR-02                | BP-01            | SR-02              | UC-07, UC-08        | AC-06 → AC-09       |
+| CR-03                | BG-03         | BR-03                | BP-02            | SR-03              | UC-04, UC-05        | AC-10 → AC-13       |
+| CR-04                | BG-03         | BR-04                | BP-03            | SR-04              | UC-09, UC-10        | AC-14 → AC-18       |
+| CR-05                | BG-04         | BR-05                | BP-04            | SR-05              | UC-06, UC-11        | AC-19 → AC-22       |
+| CR-06                | BG-05         | BR-06                | BP-05            | SR-06              | UC-12               | AC-23 → AC-25       |
+| CR-07                | BG-05         | BR-07                | BP-05            | SR-07              | UC-13               | AC-26 → AC-30       |
+| CR-08                | BG-06         | BR-08                | BP-06            | SR-08              | UC-14               | AC-31 → AC-34       |
+| CR-09                | BG-07         | BR-09                | BP-07            | SR-09              | UC-15 → UC-19       | AC-35 → AC-39       |
+| CR-10                | BG-08         | BR-01                | BP-01            | SR-01              | UC-20, UC-21        | AC-40 → AC-43       |
+
+---
+
+# 14.4. System Requirement Traceability
+
+| SR    | Module                    | Related Use Cases                 | Acceptance Criteria          |
+| ----- | ------------------------- | --------------------------------- | ---------------------------- |
+| SR-01 | User & Account Management | UC-01, UC-02, UC-03, UC-20, UC-21 | AC-01 → AC-05, AC-40 → AC-43 |
+| SR-02 | Driver Management         | UC-07, UC-08                      | AC-06 → AC-09                |
+| SR-03 | Booking Management        | UC-04, UC-05                      | AC-10 → AC-13                |
+| SR-04 | Driver Matching           | UC-09, UC-10                      | AC-14 → AC-18                |
+| SR-05 | Trip Management           | UC-06, UC-11                      | AC-19 → AC-22                |
+| SR-06 | Fare Calculation          | UC-12                             | AC-23 → AC-25                |
+| SR-07 | Payment Management        | UC-13                             | AC-26 → AC-30                |
+| SR-08 | Notification Management   | UC-14                             | AC-31 → AC-34                |
+| SR-09 | Operation Management      | UC-15 → UC-19                     | AC-35 → AC-39                |
+
+---
+
+# 14.5. Business Goal Traceability
+
+| Business Goal | Related Business Requirements | System Requirements |
+| ------------- | ----------------------------- | ------------------- |
+| BG-01         | BR-01                         | SR-01               |
+| BG-02         | BR-02, BR-03                  | SR-02, SR-03        |
+| BG-03         | BR-03, BR-04                  | SR-03, SR-04        |
+| BG-04         | BR-05                         | SR-05               |
+| BG-05         | BR-06, BR-07                  | SR-06, SR-07        |
+| BG-06         | BR-08                         | SR-08               |
+| BG-07         | BR-09                         | SR-09               |
+| BG-08         | BR-01                         | SR-01               |
+
+---
+
+# 14.6. Use Case Traceability
+
+| Use Case                   | System Requirement | Related Entity        |
+| -------------------------- | ------------------ | --------------------- |
+| UC-01 Register Account     | SR-01              | User                  |
+| UC-02 Login                | SR-01              | User, Role            |
+| UC-03 Manage Profile       | SR-01              | User                  |
+| UC-04 Create Booking       | SR-03              | Customer, Booking     |
+| UC-05 View Booking Status  | SR-03              | Booking               |
+| UC-06 Track Trip           | SR-05              | Trip                  |
+| UC-07 Update Driver Status | SR-02              | Driver                |
+| UC-08 Manage Vehicle       | SR-02              | Vehicle               |
+| UC-09 Accept Trip          | SR-04              | Driver, Booking, Trip |
+| UC-10 Reject Trip          | SR-04              | Driver, Booking       |
+| UC-11 Update Trip Status   | SR-05              | Trip                  |
+| UC-12 View Fare            | SR-06              | Trip                  |
+| UC-13 Make Payment         | SR-07              | Payment               |
+| UC-14 View Notification    | SR-08              | Notification          |
+| UC-15 Manage Customers     | SR-09              | Customer              |
+| UC-16 Manage Drivers       | SR-09              | Driver                |
+| UC-17 Manage Vehicles      | SR-09              | Vehicle               |
+| UC-18 Monitor Active Trips | SR-09              | Trip                  |
+| UC-19 View Trip History    | SR-09              | Trip                  |
+| UC-20 Manage User Accounts | SR-01              | User                  |
+| UC-21 Manage Roles         | SR-01              | Role                  |
+
+---
+
+# 14.7. Traceability Summary
+
+```text
+CR
+│
+├── BG
+│    │
+│    ├── BR
+│    │     │
+│    │     ├── BP
+│    │     │     │
+│    │     │     ├── SR
+│    │     │     │     │
+│    │     │     │     ├── UC
+│    │     │     │     │     │
+│    │     │     │     │     └── AC
+│    │     │     │
+│    │     │     └── NFR
+│    │
+│    └── Project Scope
+│
+└── Stakeholder
+```
+
+---
+
+# 14.8. Traceability Rules
+
+Mỗi yêu cầu trong hệ thống cần đảm bảo:
+
+| Rule  | Description                                                              |
+| ----- | ------------------------------------------------------------------------ |
+| TR-01 | Mỗi SR phải liên kết với ít nhất một BR hoặc BP.                         |
+| TR-02 | Mỗi Use Case phải liên kết với ít nhất một SR.                           |
+| TR-03 | Mỗi Use Case chính phải có Acceptance Criteria.                          |
+| TR-04 | Mỗi Business Goal phải được hỗ trợ bởi ít nhất một Business Requirement. |
+| TR-05 | Các yêu cầu ngoài Project Scope không được đưa vào thiết kế MVP.         |
+
+---
+
+## 14.9. Final Requirement Traceability Model
+
+```mermaid
+flowchart TD
+
+    Stakeholder[Stakeholder]
+
+    Stakeholder --> CR[Customer Requirements]
+
+    CR --> BG[Business Goals]
+
+    BG --> Scope[Project Scope]
+
+    BG --> BR[Business Requirements]
+
+    BR --> BP[Business Processes]
+
+    BP --> SR[System Requirements]
+
+    SR --> UC[Use Cases]
+
+    UC --> AC[Acceptance Criteria]
+
+    SR --> NFR[Non-Functional Requirements]
+
+    SR --> ERD[Entities and ERD]
+```
 
 
