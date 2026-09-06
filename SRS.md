@@ -1290,14 +1290,441 @@ Calculate Fare
       ↓
 Payment
 ```
+# 8. System Requirements and Functional Decomposition
 
-Đây cũng sẽ là quy trình quan trọng nhất để sau này bạn vẽ:
+## 8.1. Overview
 
-* BPMN Diagram
-* Activity Diagram
-* Use Case Diagram
-* Sequence Diagram
+Dựa trên các Business Processes đã xác định ở phần trước, quy trình nghiệp vụ được phân rã thành các chức năng mà hệ thống CAB cần cung cấp.
 
-Nếu đây là bài BA chính thức, mình khuyên phần sau nên chuyển sang **BPMN 2.0 có Pool và Lane**, thay vì chỉ dùng Flowchart Mermaid. Như vậy bài sẽ chuyên nghiệp và đúng chuẩn "Business Process Modeling" hơn.
+Mỗi System Requirement (SR) mô tả một khả năng cụ thể mà hệ thống phải đáp ứng để hỗ trợ quy trình nghiệp vụ.
+
+Quá trình phân rã yêu cầu:
+
+```text
+Business Process
+      ↓
+Business Activity
+      ↓
+System Function
+      ↓
+System Requirement (SR)
+```
+
+---
+
+## 8.2. Business Process to System Requirements Mapping
+
+| Business Process                   | System Requirements |
+| ---------------------------------- | ------------------- |
+| BP-01 User & Driver Management     | SR-01 → SR-09       |
+| BP-02 Ride Booking                 | SR-10 → SR-16       |
+| BP-03 Driver Matching & Assignment | SR-17 → SR-24       |
+| BP-04 Trip Execution               | SR-25 → SR-31       |
+| BP-05 Fare Calculation & Payment   | SR-32 → SR-40       |
+| BP-06 Notification                 | SR-41 → SR-45       |
+| BP-07 Operation Management         | SR-46 → SR-52       |
+
+---
+
+# 8.3. SR-01: User & Account Management
+
+**Related Business Process:** BP-01
+**Related Business Requirement:** BR-01
+
+Hệ thống phải hỗ trợ quản lý tài khoản và xác thực người dùng.
+
+| ID       | System Requirement                                                      |
+| -------- | ----------------------------------------------------------------------- |
+| SR-01.01 | Hệ thống phải cho phép Customer đăng ký tài khoản.                      |
+| SR-01.02 | Hệ thống phải cho phép Driver đăng ký hoặc được Operator tạo tài khoản. |
+| SR-01.03 | Hệ thống phải xác thực người dùng khi đăng nhập.                        |
+| SR-01.04 | Hệ thống phải cho phép người dùng đăng xuất.                            |
+| SR-01.05 | Hệ thống phải cho phép người dùng xem thông tin tài khoản.              |
+| SR-01.06 | Hệ thống phải cho phép người dùng cập nhật thông tin cá nhân.           |
+| SR-01.07 | Hệ thống phải xác định vai trò của người dùng sau khi đăng nhập.        |
+| SR-01.08 | Hệ thống phải kiểm soát quyền truy cập theo vai trò.                    |
+| SR-01.09 | Hệ thống phải quản lý trạng thái hoạt động của tài khoản.               |
+
+### Functional Decomposition
+
+```mermaid
+mindmap
+  root((User & Account Management))
+    Registration
+      Customer Registration
+      Driver Registration
+    Authentication
+      Login
+      Logout
+    Profile Management
+      View Profile
+      Update Profile
+    Access Control
+      Identify Role
+      Manage Permissions
+```
+
+---
+
+# 8.4. SR-02: Driver Management
+
+**Related Business Process:** BP-01
+**Related Business Requirement:** BR-02
+
+Hệ thống phải hỗ trợ quản lý thông tin và trạng thái hoạt động của Driver.
+
+| ID       | System Requirement                                                   |
+| -------- | -------------------------------------------------------------------- |
+| SR-02.01 | Hệ thống phải lưu thông tin cơ bản của Driver.                       |
+| SR-02.02 | Hệ thống phải cho phép Driver cập nhật hồ sơ cá nhân.                |
+| SR-02.03 | Hệ thống phải quản lý thông tin phương tiện của Driver.              |
+| SR-02.04 | Hệ thống phải cho phép Driver cập nhật trạng thái hoạt động.         |
+| SR-02.05 | Hệ thống phải xác định Driver có đủ điều kiện nhận chuyến hay không. |
+| SR-02.06 | Hệ thống phải xác định Driver đang thực hiện chuyến đi.              |
+| SR-02.07 | Hệ thống phải ngăn Driver nhận nhiều chuyến cùng lúc.                |
+
+### Driver Status
+
+```text
+OFFLINE
+ONLINE
+AVAILABLE
+BUSY
+```
+
+---
+
+# 8.5. SR-03: Ride Booking Management
+
+**Related Business Process:** BP-02
+**Related Business Requirement:** BR-03
+
+Hệ thống phải hỗ trợ Customer tạo và quản lý yêu cầu đặt xe.
+
+| ID       | System Requirement                                             |
+| -------- | -------------------------------------------------------------- |
+| SR-03.01 | Hệ thống phải cho phép Customer nhập điểm đón.                 |
+| SR-03.02 | Hệ thống phải cho phép Customer nhập điểm đến.                 |
+| SR-03.03 | Hệ thống phải cho phép Customer lựa chọn loại xe hoặc dịch vụ. |
+| SR-03.04 | Hệ thống phải kiểm tra thông tin đặt xe trước khi tạo Booking. |
+| SR-03.05 | Hệ thống phải tạo Booking khi thông tin hợp lệ.                |
+| SR-03.06 | Hệ thống phải gán mã định danh cho mỗi Booking.                |
+| SR-03.07 | Hệ thống phải quản lý trạng thái Booking.                      |
+| SR-03.08 | Hệ thống phải cho phép Customer xem trạng thái Booking.        |
+
+### Functional Decomposition
+
+```mermaid
+mindmap
+  root((Booking Management))
+    Create Booking
+      Enter Pickup Location
+      Enter Destination
+      Select Vehicle Type
+      Validate Information
+    Manage Booking
+      Create Booking ID
+      Update Status
+      View Booking Status
+```
+
+---
+
+# 8.6. SR-04: Driver Matching & Assignment
+
+**Related Business Process:** BP-03
+**Related Business Requirement:** BR-04
+
+Hệ thống phải tự động tìm kiếm và phân công Driver phù hợp cho Booking.
+
+| ID       | System Requirement                                                             |
+| -------- | ------------------------------------------------------------------------------ |
+| SR-04.01 | Hệ thống phải xác định danh sách Driver đang sẵn sàng.                         |
+| SR-04.02 | Hệ thống phải kiểm tra trạng thái hoạt động của Driver.                        |
+| SR-04.03 | Hệ thống phải lấy vị trí hiện tại của Driver.                                  |
+| SR-04.04 | Hệ thống phải xác định Driver phù hợp với Booking.                             |
+| SR-04.05 | Hệ thống phải ưu tiên Driver theo vị trí hoặc tiêu chí vận hành.               |
+| SR-04.06 | Hệ thống phải gửi yêu cầu chuyến đi đến Driver.                                |
+| SR-04.07 | Hệ thống phải ghi nhận phản hồi Accept hoặc Reject của Driver.                 |
+| SR-04.08 | Hệ thống phải phân công Driver khi Driver chấp nhận chuyến.                    |
+| SR-04.09 | Hệ thống phải tiếp tục tìm Driver khác khi Driver từ chối hoặc không phản hồi. |
+| SR-04.10 | Hệ thống phải thông báo Customer khi không tìm được Driver.                    |
+
+### Functional Decomposition
+
+```mermaid
+mindmap
+  root((Driver Matching))
+    Find Drivers
+      Get Available Drivers
+      Check Driver Status
+      Get Driver Location
+    Select Driver
+      Evaluate Eligibility
+      Prioritize Drivers
+    Send Request
+      Send Trip Request
+      Wait for Response
+    Process Response
+      Accept Trip
+      Reject Trip
+      No Response
+    Assignment
+      Assign Driver
+      Update Booking
+    Exception
+      Find Another Driver
+      Notify Customer
+```
+
+---
+
+# 8.7. SR-05: Trip Management
+
+**Related Business Process:** BP-04
+**Related Business Requirement:** BR-05
+
+Hệ thống phải quản lý toàn bộ vòng đời của chuyến đi.
+
+| ID       | System Requirement                                                      |
+| -------- | ----------------------------------------------------------------------- |
+| SR-05.01 | Hệ thống phải tạo Trip sau khi Driver được phân công.                   |
+| SR-05.02 | Hệ thống phải liên kết Trip với Customer và Driver.                     |
+| SR-05.03 | Hệ thống phải quản lý trạng thái Trip.                                  |
+| SR-05.04 | Hệ thống phải cho phép Driver cập nhật trạng thái chuyến đi.            |
+| SR-05.05 | Hệ thống phải cho phép Customer theo dõi trạng thái chuyến đi.          |
+| SR-05.06 | Hệ thống phải lưu thời gian của các sự kiện quan trọng trong chuyến đi. |
+| SR-05.07 | Hệ thống phải lưu lịch sử chuyến đi sau khi hoàn thành.                 |
+
+### Trip Lifecycle
+
+```mermaid
+stateDiagram-v2
+
+    [*] --> Assigned
+
+    Assigned --> Arriving
+
+    Arriving --> Arrived
+
+    Arrived --> PickedUp
+
+    PickedUp --> InProgress
+
+    InProgress --> Completed
+
+    Completed --> [*]
+```
+
+---
+
+# 8.8. SR-06: Fare Calculation
+
+**Related Business Process:** BP-05
+**Related Business Requirement:** BR-06
+
+Hệ thống phải tính toán giá cước cho chuyến đi.
+
+| ID       | System Requirement                                        |
+| -------- | --------------------------------------------------------- |
+| SR-06.01 | Hệ thống phải thu thập thông tin cần thiết để tính cước.  |
+| SR-06.02 | Hệ thống phải xác định loại dịch vụ của chuyến đi.        |
+| SR-06.03 | Hệ thống phải tính giá cước dựa trên thông tin chuyến đi. |
+| SR-06.04 | Hệ thống phải lưu thông tin giá cước.                     |
+| SR-06.05 | Hệ thống phải hiển thị giá cước cho Customer.             |
+
+> Công thức tính giá cước sẽ được xác định chi tiết trong quá trình làm rõ yêu cầu.
+
+---
+
+# 8.9. SR-07: Payment Management
+
+**Related Business Process:** BP-05
+**Related Business Requirement:** BR-07
+
+Hệ thống phải hỗ trợ xử lý thanh toán cho chuyến đi.
+
+| ID       | System Requirement                                                 |
+| -------- | ------------------------------------------------------------------ |
+| SR-07.01 | Hệ thống phải cho phép Customer lựa chọn phương thức thanh toán.   |
+| SR-07.02 | Hệ thống phải hỗ trợ thanh toán bằng tiền mặt.                     |
+| SR-07.03 | Hệ thống phải hỗ trợ thanh toán điện tử.                           |
+| SR-07.04 | Hệ thống phải gửi yêu cầu thanh toán điện tử đến Payment Provider. |
+| SR-07.05 | Hệ thống phải nhận kết quả thanh toán từ Payment Provider.         |
+| SR-07.06 | Hệ thống phải cập nhật trạng thái thanh toán.                      |
+| SR-07.07 | Hệ thống phải xử lý trường hợp thanh toán thất bại.                |
+| SR-07.08 | Hệ thống phải cho phép thực hiện lại thanh toán khi cần thiết.     |
+
+### Functional Decomposition
+
+```mermaid
+mindmap
+  root((Payment Management))
+    Payment Method
+      Cash
+      Electronic Payment
+    Payment Processing
+      Send Payment Request
+      Receive Payment Result
+    Payment Status
+      Successful
+      Failed
+      Pending
+    Exception Handling
+      Retry Payment
+      Notify Failure
+```
+
+---
+
+# 8.10. SR-08: Notification Management
+
+**Related Business Process:** BP-06
+**Related Business Requirement:** BR-08
+
+Hệ thống phải thông báo các sự kiện quan trọng cho người dùng.
+
+| ID       | System Requirement                                             |
+| -------- | -------------------------------------------------------------- |
+| SR-08.01 | Hệ thống phải tạo thông báo khi Booking được tạo.              |
+| SR-08.02 | Hệ thống phải thông báo Driver khi có yêu cầu chuyến đi mới.   |
+| SR-08.03 | Hệ thống phải thông báo Customer khi Driver được phân công.    |
+| SR-08.04 | Hệ thống phải thông báo Customer khi Driver đến điểm đón.      |
+| SR-08.05 | Hệ thống phải thông báo các bên liên quan khi Trip hoàn thành. |
+| SR-08.06 | Hệ thống phải thông báo kết quả thanh toán cho Customer.       |
+| SR-08.07 | Hệ thống phải thông báo Customer khi không tìm được Driver.    |
+
+---
+
+# 8.11. SR-09: Operation Management
+
+**Related Business Process:** BP-07
+**Related Business Requirement:** BR-09
+
+Hệ thống phải hỗ trợ Operator quản lý hoạt động vận hành.
+
+| ID       | System Requirement                                              |
+| -------- | --------------------------------------------------------------- |
+| SR-09.01 | Hệ thống phải cho phép Operator quản lý thông tin Customer.     |
+| SR-09.02 | Hệ thống phải cho phép Operator quản lý Driver.                 |
+| SR-09.03 | Hệ thống phải cho phép Operator quản lý thông tin Vehicle.      |
+| SR-09.04 | Hệ thống phải cho phép Operator theo dõi các Trip đang diễn ra. |
+| SR-09.05 | Hệ thống phải cho phép Operator tra cứu lịch sử Trip.           |
+| SR-09.06 | Hệ thống phải hỗ trợ Operator xử lý các trường hợp phát sinh.   |
+
+---
+
+# 8.12. Functional Decomposition Diagram
+
+Sơ đồ dưới đây thể hiện việc phân rã hệ thống từ cấp cao xuống các chức năng nghiệp vụ chính.
+
+```mermaid
+mindmap
+  root((CAB System))
+
+    User Management
+      Registration
+      Authentication
+      Profile Management
+      Authorization
+
+    Driver Management
+      Driver Profile
+      Vehicle Management
+      Driver Status
+
+    Booking Management
+      Create Booking
+      Validate Booking
+      Manage Booking Status
+
+    Driver Matching
+      Find Drivers
+      Select Driver
+      Send Trip Request
+      Assign Driver
+
+    Trip Management
+      Create Trip
+      Update Trip Status
+      Track Trip
+      Store Trip History
+
+    Fare Management
+      Collect Trip Data
+      Calculate Fare
+      Display Fare
+
+    Payment Management
+      Cash Payment
+      Electronic Payment
+      Payment Status
+
+    Notification
+      Booking Notification
+      Trip Notification
+      Payment Notification
+
+    Operation Management
+      Manage Customers
+      Manage Drivers
+      Manage Vehicles
+      Monitor Trips
+```
+
+---
+
+# 8.13. System Requirements Traceability
+
+Bảng dưới đây thể hiện khả năng truy vết từ Business Goal đến System Requirement.
+
+| Business Goal | Business Requirement | Business Process | System Requirements |
+| ------------- | -------------------- | ---------------- | ------------------- |
+| BG-01         | BR-04                | BP-03            | SR-04               |
+| BG-02         | BR-03, BR-05         | BP-02, BP-04     | SR-03, SR-05        |
+| BG-03         | BR-06, BR-07         | BP-05            | SR-06, SR-07        |
+| BG-04         | BR-02, BR-09         | BP-01, BP-07     | SR-02, SR-09        |
+| BG-06         | BR-08                | BP-06            | SR-08               |
+| BG-08         | BR-01                | BP-01            | SR-01               |
+| BG-09         | BR-01                | BP-01            | SR-01               |
+
+---
+
+# 8.14. System Requirements Summary
+
+| SR    | System Module             | Main Functions                              |
+| ----- | ------------------------- | ------------------------------------------- |
+| SR-01 | User & Account Management | Registration, Login, Profile, Authorization |
+| SR-02 | Driver Management         | Driver Profile, Vehicle, Status             |
+| SR-03 | Booking Management        | Create, Validate, Track Booking             |
+| SR-04 | Driver Matching           | Find, Select, Assign Driver                 |
+| SR-05 | Trip Management           | Manage Trip Lifecycle                       |
+| SR-06 | Fare Calculation          | Calculate and Display Fare                  |
+| SR-07 | Payment Management        | Process and Track Payment                   |
+| SR-08 | Notification Management   | Send Event Notifications                    |
+| SR-09 | Operation Management      | Manage and Monitor Operations               |
+
+---
+
+# 8.15. Requirement Hierarchy
+
+```mermaid
+flowchart TD
+
+    CR[Customer Requirements]
+
+    CR --> BG[Business Goals]
+
+    BG --> BR[Business Requirements]
+
+    BR --> BP[Business Processes]
+
+    BP --> SR[System Requirements]
+
+    SR --> UC[Use Cases]
+
+    UC --> SD[System Design]
+```
+
 
 
