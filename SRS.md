@@ -134,14 +134,3 @@ Các bên cung cấp dịch vụ bên ngoài:
 
 ```
 
-### Lưu ý
-
-Mình đã chỉnh Stakeholder Matrix theo hướng hợp lý cho bài BA:
-
-- **Customer và Driver**: Power thấp nhưng Interest cao → `Keep Informed`.
-- **Management, Administrator, Operator**: Power và Interest cao → `Manage Closely`.
-- **Payment Provider**: có ảnh hưởng khá lớn nhưng không trực tiếp quan tâm toàn bộ dự án → `Keep Satisfied`.
-- **Notification Provider**: ảnh hưởng và mức quan tâm trung bình → `Monitor`.
-
-Phần này đặt ngay sau **Introduction**, trước **Business Goals** là hợp lý nhất trong file `SRS.md`.
-```
