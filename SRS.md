@@ -528,4 +528,204 @@ Dự án CAB System trong giai đoạn MVP tập trung vào các chức năng c�
 * Dynamic Pricing
 * Loyalty Program
 * Advanced Analytics
+# 6. Business Requirements
+
+## 6.1. Overview
+
+Dựa trên các Business Goals và phạm vi MVP đã xác định, CAB System cần đáp ứng các Business Requirements sau.
+
+Các Business Requirements tập trung vào những nhu cầu nghiệp vụ cốt lõi của doanh nghiệp trong phạm vi dự án 7 tuần.
+
+---
+
+## 6.2. Business Requirements by Module
+
+### BR-01. Account & Authentication
+
+Hệ thống cần hỗ trợ quản lý tài khoản và xác thực người dùng để đảm bảo chỉ những người dùng hợp lệ mới có thể sử dụng các chức năng tương ứng.
+
+**Business Requirements:**
+
+* BR-01.01: Hệ thống phải hỗ trợ các nhóm người dùng chính gồm Customer, Driver và Operator.
+* BR-01.02: Người dùng phải được xác thực trước khi sử dụng các chức năng yêu cầu tài khoản.
+* BR-01.03: Mỗi nhóm người dùng chỉ được truy cập các chức năng phù hợp với vai trò của mình.
+* BR-01.04: Hệ thống phải cho phép người dùng quản lý thông tin tài khoản cơ bản.
+
+---
+
+### BR-02. Driver Management
+
+Hệ thống cần hỗ trợ doanh nghiệp quản lý thông tin và trạng thái hoạt động của tài xế.
+
+**Business Requirements:**
+
+* BR-02.01: Hệ thống phải lưu trữ thông tin cơ bản của tài xế.
+* BR-02.02: Hệ thống phải quản lý thông tin phương tiện của tài xế.
+* BR-02.03: Tài xế phải có trạng thái hoạt động để xác định khả năng nhận chuyến.
+* BR-02.04: Chỉ tài xế đủ điều kiện và đang sẵn sàng mới được tham gia quá trình nhận chuyến.
+* BR-02.05: Một tài xế không được thực hiện nhiều chuyến tại cùng một thời điểm.
+
+---
+
+### BR-03. Booking Management
+
+Hệ thống cần cho phép khách hàng tạo và quản lý yêu cầu đặt xe.
+
+**Business Requirements:**
+
+* BR-03.01: Khách hàng phải cung cấp điểm đón và điểm đến khi tạo yêu cầu đặt xe.
+* BR-03.02: Khách hàng phải lựa chọn loại dịch vụ hoặc loại xe phù hợp.
+* BR-03.03: Mỗi yêu cầu đặt xe phải được hệ thống quản lý theo trạng thái.
+* BR-03.04: Khách hàng phải có khả năng theo dõi trạng thái yêu cầu đặt xe.
+* BR-03.05: Hệ thống phải thông báo cho khách hàng khi có thay đổi quan trọng liên quan đến yêu cầu đặt xe.
+
+---
+
+### BR-04. Driver Matching & Assignment
+
+Hệ thống cần tự động hỗ trợ quá trình tìm kiếm và phân công tài xế phù hợp cho khách hàng.
+
+**Business Requirements:**
+
+* BR-04.01: Hệ thống phải xác định các tài xế phù hợp với yêu cầu đặt xe.
+* BR-04.02: Việc lựa chọn tài xế phải dựa trên trạng thái hoạt động và vị trí của tài xế.
+* BR-04.03: Hệ thống nên ưu tiên tài xế phù hợp và gần khách hàng.
+* BR-04.04: Tài xế phải có quyền chấp nhận hoặc từ chối yêu cầu chuyến đi.
+* BR-04.05: Nếu tài xế từ chối hoặc không phản hồi, hệ thống phải tiếp tục tìm tài xế khác.
+* BR-04.06: Khách hàng không phải tạo lại yêu cầu khi hệ thống tìm tài xế khác.
+* BR-04.07: Nếu không tìm được tài xế phù hợp, khách hàng phải được thông báo.
+
+---
+
+### BR-05. Trip Management
+
+Hệ thống cần quản lý toàn bộ vòng đời của một chuyến đi.
+
+**Business Requirements:**
+
+* BR-05.01: Mỗi chuyến đi phải được quản lý theo các trạng thái rõ ràng.
+* BR-05.02: Tài xế phải cập nhật trạng thái trong quá trình thực hiện chuyến đi.
+* BR-05.03: Khách hàng phải có khả năng theo dõi trạng thái hiện tại của chuyến đi.
+* BR-05.04: Bộ phận vận hành phải có khả năng theo dõi các chuyến đi đang diễn ra.
+* BR-05.05: Hệ thống phải lưu lịch sử chuyến đi sau khi hoàn thành.
+
+---
+
+### BR-06. Fare Calculation
+
+Hệ thống cần hỗ trợ xác định chi phí của chuyến đi.
+
+**Business Requirements:**
+
+* BR-06.01: Hệ thống phải xác định giá cước sau khi chuyến đi hoàn thành.
+* BR-06.02: Giá cước phải dựa trên loại dịch vụ và thông tin của chuyến đi.
+* BR-06.03: Thông tin giá cước phải được lưu cùng với chuyến đi.
+* BR-06.04: Khách hàng phải biết số tiền cần thanh toán.
+
+> Công thức tính giá cước chi tiết sẽ được xác định trong quá trình làm rõ yêu cầu.
+
+---
+
+### BR-07. Payment Management
+
+Hệ thống cần hỗ trợ quản lý thanh toán cho các chuyến đi.
+
+**Business Requirements:**
+
+* BR-07.01: Hệ thống phải hỗ trợ thanh toán bằng tiền mặt.
+* BR-07.02: Hệ thống phải hỗ trợ phương thức thanh toán điện tử.
+* BR-07.03: Thanh toán điện tử phải được xử lý thông qua nhà cung cấp thanh toán bên ngoài.
+* BR-07.04: Hệ thống không được lưu trực tiếp thông tin thanh toán nhạy cảm của khách hàng.
+* BR-07.05: Kết quả thanh toán phải được cập nhật vào chuyến đi tương ứng.
+* BR-07.06: Khi thanh toán thất bại, khách hàng phải được thông báo và xử lý theo chính sách của doanh nghiệp.
+
+---
+
+### BR-08. Notification Management
+
+Hệ thống cần cung cấp thông báo về các sự kiện quan trọng trong quá trình đặt và thực hiện chuyến đi.
+
+**Business Requirements:**
+
+* BR-08.01: Khách hàng phải nhận được thông báo khi yêu cầu đặt xe được tiếp nhận.
+* BR-08.02: Tài xế phải nhận được thông báo khi có yêu cầu chuyến đi phù hợp.
+* BR-08.03: Khách hàng phải được thông báo khi tài xế nhận chuyến.
+* BR-08.04: Khách hàng phải được thông báo khi tài xế đến điểm đón.
+* BR-08.05: Các bên liên quan phải được thông báo khi chuyến đi hoàn thành.
+* BR-08.06: Khách hàng phải được thông báo về kết quả thanh toán.
+
+---
+
+### BR-09. Operation Management
+
+Hệ thống cần hỗ trợ bộ phận vận hành quản lý các hoạt động chính của doanh nghiệp.
+
+**Business Requirements:**
+
+* BR-09.01: Nhân viên vận hành phải có khả năng quản lý thông tin khách hàng.
+* BR-09.02: Nhân viên vận hành phải có khả năng quản lý tài xế.
+* BR-09.03: Nhân viên vận hành phải có khả năng quản lý thông tin phương tiện.
+* BR-09.04: Nhân viên vận hành phải có khả năng theo dõi các chuyến đi đang diễn ra.
+* BR-09.05: Nhân viên vận hành phải có khả năng tra cứu lịch sử chuyến đi.
+* BR-09.06: Nhân viên vận hành phải có khả năng hỗ trợ xử lý các trường hợp phát sinh.
+
+---
+
+### BR-10. Authorization & Access Control
+
+Hệ thống cần kiểm soát quyền truy cập của người dùng.
+
+**Business Requirements:**
+
+* BR-10.01: Hệ thống phải phân quyền dựa trên vai trò của người dùng.
+* BR-10.02: Người dùng chỉ được truy cập các chức năng phù hợp với vai trò.
+* BR-10.03: Các chức năng quản trị nhạy cảm phải được giới hạn quyền truy cập.
+* BR-10.04: Các thao tác quan trọng cần có khả năng truy vết khi cần thiết.
+
+---
+
+## 6.3. Business Requirements Summary
+
+| ID    | Business Requirement                   | Related Module           |
+| ----- | -------------------------------------- | ------------------------ |
+| BR-01 | Quản lý và xác thực người dùng         | Account & Authentication |
+| BR-02 | Quản lý tài xế và trạng thái hoạt động | Driver Management        |
+| BR-03 | Quản lý yêu cầu đặt xe                 | Booking Management       |
+| BR-04 | Tự động tìm và phân công tài xế        | Driver Matching          |
+| BR-05 | Quản lý vòng đời chuyến đi             | Trip Management          |
+| BR-06 | Tính giá cước chuyến đi                | Fare Calculation         |
+| BR-07 | Quản lý thanh toán                     | Payment Management       |
+| BR-08 | Quản lý thông báo                      | Notification Management  |
+| BR-09 | Hỗ trợ hoạt động vận hành              | Operation Management     |
+| BR-10 | Phân quyền và kiểm soát truy cập       | Authorization            |
+
+---
+
+## 6.4. Business Requirement Relationship
+
+```mermaid
+flowchart TB
+
+    BG[Business Goals]
+
+    BG --> M1[Account & Authentication]
+    BG --> M2[Driver Management]
+    BG --> M3[Booking Management]
+    BG --> M4[Driver Matching]
+    BG --> M5[Trip Management]
+    BG --> M6[Fare Calculation]
+    BG --> M7[Payment Management]
+    BG --> M8[Notification Management]
+    BG --> M9[Operation Management]
+
+    M1 --> BR1[BR-01]
+    M2 --> BR2[BR-02]
+    M3 --> BR3[BR-03]
+    M4 --> BR4[BR-04]
+    M5 --> BR5[BR-05]
+    M6 --> BR6[BR-06]
+    M7 --> BR7[BR-07]
+    M8 --> BR8[BR-08]
+    M9 --> BR9[BR-09]
+```
 
