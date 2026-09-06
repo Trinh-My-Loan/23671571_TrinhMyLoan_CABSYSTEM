@@ -132,7 +132,6 @@ Các bên cung cấp dịch vụ bên ngoài:
 * Payment Provider
 * Notification Provider
 
-```
 # 4. Business Goals
 
 ## 4.1. Business Goal Identification
