@@ -728,4 +728,576 @@ flowchart TB
     M8 --> BR8[BR-08]
     M9 --> BR9[BR-09]
 ```
+# 7. Business Process Modeling
+
+## 7.1. Overview
+
+Dựa trên các Business Requirements đã xác định, CAB System có các quy trình nghiệp vụ chính sau:
+
+| ID    | Business Process                     | Related Business Requirements |
+| ----- | ------------------------------------ | ----------------------------- |
+| BP-01 | User & Driver Management             | BR-01, BR-02, BR-10           |
+| BP-02 | Ride Booking Process                 | BR-03                         |
+| BP-03 | Driver Matching & Assignment Process | BR-04                         |
+| BP-04 | Trip Execution Process               | BR-05                         |
+| BP-05 | Fare Calculation & Payment Process   | BR-06, BR-07                  |
+| BP-06 | Notification Process                 | BR-08                         |
+| BP-07 | Operation Management Process         | BR-09                         |
+
+Các quy trình trên liên kết với nhau để tạo thành quy trình nghiệp vụ tổng thể của hệ thống CAB.
+
+---
+
+# 7.2. Overall Business Process
+
+Quy trình nghiệp vụ tổng thể của hệ thống bắt đầu từ khi khách hàng tạo yêu cầu đặt xe và kết thúc khi chuyến đi được thanh toán và hoàn thành.
+
+```mermaid
+flowchart LR
+
+    A([Start])
+
+    A --> B[Customer Login]
+
+    B --> C[Create Booking]
+
+    C --> D[Find Suitable Driver]
+
+    D --> E{Driver Found?}
+
+    E -- No --> F[Notify Customer]
+    F --> Z([End])
+
+    E -- Yes --> G[Send Trip Request]
+
+    G --> H{Driver Accept?}
+
+    H -- No --> D
+
+    H -- Yes --> I[Assign Driver]
+
+    I --> J[Driver Arrives]
+
+    J --> K[Passenger Picked Up]
+
+    K --> L[Trip In Progress]
+
+    L --> M[Trip Completed]
+
+    M --> N[Calculate Fare]
+
+    N --> O[Payment]
+
+    O --> P{Payment Successful?}
+
+    P -- No --> Q[Notify Payment Failure]
+    Q --> O
+
+    P -- Yes --> R[Notify Payment Success]
+
+    R --> S([End])
+```
+
+---
+
+# 7.3. BP-01: User & Driver Management Process
+
+**Objective:**
+Quản lý tài khoản, thông tin người dùng và trạng thái hoạt động của tài xế.
+
+**Actors:**
+
+* Customer
+* Driver
+* Operator
+* Administrator
+
+### Process Flow
+
+```mermaid
+flowchart TD
+
+    A([Start])
+
+    A --> B{User Type}
+
+    B -- Customer --> C[Register Account]
+
+    B -- Driver --> D{Registration Method}
+
+    D -- Self Registration --> E[Register Driver Account]
+
+    D -- Created by Operator --> F[Operator Creates Driver Account]
+
+    C --> G[Authenticate User]
+
+    E --> G
+    F --> G
+
+    G --> H[Access System]
+
+    H --> I{Driver?}
+
+    I -- No --> Z([End])
+
+    I -- Yes --> J[Update Driver Profile]
+
+    J --> K[Update Vehicle Information]
+
+    K --> L[Update Working Status]
+
+    L --> Z
+```
+
+### Business Rules Applied
+
+* User phải được xác thực trước khi sử dụng hệ thống.
+* Driver phải có trạng thái hoạt động.
+* Chỉ Driver đang sẵn sàng mới có thể nhận chuyến.
+* Quyền truy cập phụ thuộc vào vai trò người dùng.
+
+---
+
+# 7.4. BP-02: Ride Booking Process
+
+**Objective:**
+Cho phép khách hàng tạo và theo dõi yêu cầu đặt xe.
+
+**Primary Actor:** Customer
+
+### Process Flow
+
+```mermaid
+flowchart TD
+
+    A([Start])
+
+    A --> B[Login]
+
+    B --> C[Enter Pickup Location]
+
+    C --> D[Enter Destination]
+
+    D --> E[Select Vehicle Type]
+
+    E --> F{Valid Information?}
+
+    F -- No --> G[Display Error]
+
+    G --> C
+
+    F -- Yes --> H[Create Booking]
+
+    H --> I[Booking Request Created]
+
+    I --> J[Update Booking Status]
+
+    J --> K[Notify Customer]
+
+    K --> L([End])
+```
+
+### Business Rules Applied
+
+* Customer phải cung cấp điểm đón.
+* Customer phải cung cấp điểm đến.
+* Customer phải chọn loại xe.
+* Booking phải được quản lý theo trạng thái.
+
+---
+
+# 7.5. BP-03: Driver Matching & Assignment Process
+
+**Objective:**
+Tự động tìm và phân công Driver phù hợp cho Booking.
+
+**Actors:**
+
+* System
+* Driver
+* Customer
+
+### Process Flow
+
+```mermaid
+flowchart TD
+
+    A([Booking Created])
+
+    A --> B[Get Available Drivers]
+
+    B --> C[Check Driver Status]
+
+    C --> D[Check Driver Location]
+
+    D --> E[Select Suitable Driver]
+
+    E --> F{Driver Available?}
+
+    F -- No --> G[Notify Customer No Driver Found]
+
+    G --> Z([End])
+
+    F -- Yes --> H[Send Trip Request to Driver]
+
+    H --> I{Driver Response}
+
+    I -- Accept --> J[Assign Driver]
+
+    J --> K[Update Booking Status]
+
+    K --> L[Notify Customer]
+
+    L --> Z
+
+    I -- Reject --> M[Find Another Driver]
+
+    M --> B
+
+    I -- No Response --> M
+```
+
+### Business Rules Applied
+
+* Driver phải ở trạng thái Available.
+* Driver được ưu tiên dựa trên vị trí và tiêu chí vận hành.
+* Driver có quyền Accept hoặc Reject.
+* Khi Driver từ chối hoặc không phản hồi, hệ thống tiếp tục tìm Driver khác.
+* Customer không cần tạo lại Booking.
+* Nếu không tìm được Driver, Customer phải được thông báo.
+
+---
+
+# 7.6. BP-04: Trip Execution Process
+
+**Objective:**
+Quản lý quá trình thực hiện chuyến đi từ khi Driver được phân công đến khi chuyến đi hoàn thành.
+
+**Actors:**
+
+* Driver
+* Customer
+* Operator
+
+### Process Flow
+
+```mermaid
+stateDiagram-v2
+
+    [*] --> DriverAssigned
+
+    DriverAssigned --> DriverArriving
+
+    DriverArriving --> DriverArrived
+
+    DriverArrived --> PassengerPickedUp
+
+    PassengerPickedUp --> InProgress
+
+    InProgress --> Completed
+
+    Completed --> [*]
+```
+
+### Trip Status Flow
+
+```text
+Driver Assigned
+      ↓
+Driver Arriving
+      ↓
+Driver Arrived
+      ↓
+Passenger Picked Up
+      ↓
+Trip In Progress
+      ↓
+Trip Completed
+```
+
+### Business Rules Applied
+
+* Mỗi chuyến đi phải có trạng thái rõ ràng.
+* Driver chịu trách nhiệm cập nhật trạng thái chuyến.
+* Customer có thể theo dõi trạng thái chuyến.
+* Operator có thể theo dõi các chuyến đang diễn ra.
+* Lịch sử chuyến đi được lưu sau khi hoàn thành.
+
+---
+
+# 7.7. BP-05: Fare Calculation & Payment Process
+
+**Objective:**
+Tính cước và xử lý thanh toán sau khi chuyến đi hoàn thành.
+
+**Actors:**
+
+* System
+* Customer
+* Payment Provider
+
+### Process Flow
+
+```mermaid
+flowchart TD
+
+    A([Trip Completed])
+
+    A --> B[Collect Trip Information]
+
+    B --> C[Calculate Fare]
+
+    C --> D[Display Fare]
+
+    D --> E{Payment Method}
+
+    E -- Cash --> F[Confirm Cash Payment]
+
+    E -- Electronic Payment --> G[Send Payment Request]
+
+    G --> H[Payment Provider Processes Transaction]
+
+    H --> I{Payment Successful?}
+
+    I -- Yes --> J[Update Payment Status]
+
+    I -- No --> K[Notify Payment Failure]
+
+    K --> L{Retry Payment?}
+
+    L -- Yes --> G
+
+    L -- No --> M[Mark Payment Pending]
+
+    F --> J
+
+    J --> N[Notify Customer]
+
+    N --> Z([End])
+
+    M --> Z
+```
+
+### Business Rules Applied
+
+* Giá cước được xác định dựa trên thông tin chuyến đi.
+* Hệ thống hỗ trợ Cash và Electronic Payment.
+* Thông tin thanh toán nhạy cảm không được lưu trực tiếp.
+* Payment điện tử được xử lý bởi Payment Provider.
+* Payment Result phải được cập nhật vào chuyến đi.
+
+---
+
+# 7.8. BP-06: Notification Process
+
+**Objective:**
+Thông báo cho Customer và Driver về các sự kiện quan trọng.
+
+### Notification Events
+
+| Event            | Recipient        |
+| ---------------- | ---------------- |
+| Booking Created  | Customer         |
+| New Trip Request | Driver           |
+| Driver Assigned  | Customer         |
+| Driver Arrived   | Customer         |
+| Trip Completed   | Customer, Driver |
+| Payment Success  | Customer         |
+| Payment Failed   | Customer         |
+| No Driver Found  | Customer         |
+
+### Process Flow
+
+```mermaid
+flowchart LR
+
+    A[Business Event]
+
+    A --> B{Event Type}
+
+    B --> C[Booking Event]
+    B --> D[Driver Matching Event]
+    B --> E[Trip Event]
+    B --> F[Payment Event]
+
+    C --> G[Create Notification]
+    D --> G
+    E --> G
+    F --> G
+
+    G --> H[Determine Recipient]
+
+    H --> I[Send Notification]
+
+    I --> J([End])
+```
+
+---
+
+# 7.9. BP-07: Operation Management Process
+
+**Objective:**
+Hỗ trợ nhân viên vận hành theo dõi và quản lý hoạt động của hệ thống.
+
+**Primary Actor:** Operator
+
+### Process Flow
+
+```mermaid
+flowchart TD
+
+    A([Operator Login])
+
+    A --> B{Select Function}
+
+    B --> C[Manage Customers]
+
+    B --> D[Manage Drivers]
+
+    B --> E[Manage Vehicles]
+
+    B --> F[Monitor Active Trips]
+
+    B --> G[Search Trip History]
+
+    B --> H[Handle Operational Issues]
+
+    C --> I[Update Information]
+
+    D --> I
+
+    E --> I
+
+    F --> I
+
+    G --> I
+
+    H --> I
+
+    I --> Z([End])
+```
+
+### Business Rules Applied
+
+* Operator chỉ được truy cập các chức năng được phân quyền.
+* Các thao tác nhạy cảm phải được kiểm soát quyền truy cập.
+* Thông tin chuyến đi phải có khả năng tra cứu.
+* Các trường hợp lỗi phải được hỗ trợ xử lý.
+
+---
+
+# 7.10. Business Process Relationship
+
+```mermaid
+flowchart LR
+
+    BP1[BP-01<br/>User & Driver Management]
+
+    BP2[BP-02<br/>Ride Booking]
+
+    BP3[BP-03<br/>Driver Matching]
+
+    BP4[BP-04<br/>Trip Execution]
+
+    BP5[BP-05<br/>Fare & Payment]
+
+    BP6[BP-06<br/>Notification]
+
+    BP7[BP-07<br/>Operation Management]
+
+    BP1 --> BP2
+
+    BP2 --> BP3
+
+    BP3 --> BP4
+
+    BP4 --> BP5
+
+    BP2 -.-> BP6
+    BP3 -.-> BP6
+    BP4 -.-> BP6
+    BP5 -.-> BP6
+
+    BP7 -.-> BP1
+    BP7 -.-> BP2
+    BP7 -.-> BP3
+    BP7 -.-> BP4
+    BP7 -.-> BP5
+```
+
+---
+
+# 7.11. Business Process Summary
+
+| ID    | Process                  | Input                | Output             |
+| ----- | ------------------------ | -------------------- | ------------------ |
+| BP-01 | User & Driver Management | User Information     | Valid User Account |
+| BP-02 | Ride Booking             | Pickup & Destination | Booking Request    |
+| BP-03 | Driver Matching          | Booking Request      | Assigned Driver    |
+| BP-04 | Trip Execution           | Assigned Driver      | Completed Trip     |
+| BP-05 | Fare & Payment           | Completed Trip       | Payment Result     |
+| BP-06 | Notification             | Business Event       | Notification       |
+| BP-07 | Operation Management     | System Data          | Operational Action |
+
+````
+
+## Lưu ý về cấu trúc bài của bạn
+
+Mình thấy thứ tự hiện tại khá logic:
+
+```text
+1. Introduction
+        ↓
+2. Stakeholder Analysis
+        ↓
+3. Customer Requirements
+        ↓
+4. Business Goals
+        ↓
+5. Project Scope & Module Identification
+        ↓
+6. Business Requirements
+        ↓
+7. Business Process Modeling
+````
+
+Sau Business Process Modeling thì nên làm tiếp:
+
+```text
+8. Functional Requirements
+        ↓
+9. Non-Functional Requirements
+        ↓
+10. Business Rules
+        ↓
+11. Use Case Modeling
+```
+
+### Một lưu ý quan trọng
+
+Trong bài này, **BP-02 → BP-05 là các Business Process quan trọng nhất**, vì chúng tạo thành core flow:
+
+```text
+Create Booking
+      ↓
+Find Driver
+      ↓
+Assign Driver
+      ↓
+Execute Trip
+      ↓
+Calculate Fare
+      ↓
+Payment
+```
+
+Đây cũng sẽ là quy trình quan trọng nhất để sau này bạn vẽ:
+
+* BPMN Diagram
+* Activity Diagram
+* Use Case Diagram
+* Sequence Diagram
+
+Nếu đây là bài BA chính thức, mình khuyên phần sau nên chuyển sang **BPMN 2.0 có Pool và Lane**, thay vì chỉ dùng Flowchart Mermaid. Như vậy bài sẽ chuyên nghiệp và đúng chuẩn "Business Process Modeling" hơn.
+
 
