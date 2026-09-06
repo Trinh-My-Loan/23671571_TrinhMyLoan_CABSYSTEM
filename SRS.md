@@ -1,12 +1,17 @@
+Được. Bản hiện tại của bạn **bị lỗi cấu trúc ở cuối** vì phần `Stakeholder Matrix` chưa đóng Mermaid và phần Business Goals bị dính vào. Ngoài ra mình chỉnh lại một số chỗ để bài **đồng nhất mã BG, stakeholder, matrix và Mermaid**, phù hợp để nộp SRS.
+
+ Bạn có thể **xóa toàn bộ `SRS.md` hiện tại và dán nguyên đoạn dưới đây**:
+
+````
 # SRS – CAB System
 
 # 1. Stakeholder Analysis
 
 ## 1.1. Mục đích
 
-Stakeholder là các cá nhân, nhóm hoặc tổ chức có ảnh hưởng đến dự án CAB System hoặc chịu ảnh hưởng từ hoạt động của hệ thống.
+Stakeholder là các cá nhân, nhóm hoặc tổ chức có ảnh hưởng đến dự án CAB System hoặc chịu ảnh hưởng bởi hoạt động của hệ thống.
 
-Dựa trên yêu cầu của khách hàng, các stakeholder được xác định gồm các nhóm nội bộ, bên ngoài và các hệ thống bên thứ ba.
+Dựa trên yêu cầu của khách hàng, các stakeholder của CAB System được xác định gồm các nhóm nội bộ, bên ngoài và các hệ thống/dịch vụ bên thứ ba.
 
 ---
 
@@ -14,20 +19,20 @@ Dựa trên yêu cầu của khách hàng, các stakeholder được xác địn
 
 | STT | Stakeholder | Loại | Vai trò |
 |---:|---|---|---|
-| 1 | Ban giám đốc | Internal | Định hướng dự án, phê duyệt ngân sách và theo dõi hiệu quả kinh doanh |
-| 2 | Khách hàng | External | Đăng ký, đặt xe, theo dõi chuyến, thanh toán và đánh giá tài xế |
-| 3 | Tài xế | External | Nhận chuyến, thực hiện chuyến và cập nhật trạng thái chuyến |
-| 4 | Nhân viên vận hành | Internal | Quản lý khách hàng, tài xế, phương tiện và chuyến đi |
-| 5 | Quản trị viên hệ thống | Internal | Quản lý tài khoản, phân quyền, cấu hình và bảo mật hệ thống |
-| 6 | Bộ phận kế toán / tài chính | Internal | Quản lý giao dịch, doanh thu và đối soát thanh toán |
-| 7 | Bộ phận chăm sóc khách hàng | Internal | Hỗ trợ khách hàng, xử lý khiếu nại và sự cố |
-| 8 | Business Analyst | Internal | Thu thập, phân tích và làm rõ yêu cầu nghiệp vụ |
-| 9 | Đội phát triển phần mềm | Internal | Thiết kế, xây dựng và bảo trì hệ thống |
-| 10 | QA / Tester | Internal | Kiểm thử và đảm bảo chất lượng hệ thống |
-| 11 | DevOps / System Administrator | Internal | Triển khai, giám sát và đảm bảo hệ thống hoạt động ổn định |
-| 12 | Nhà cung cấp thanh toán | External | Xử lý các giao dịch thanh toán điện tử |
-| 13 | Nhà cung cấp bản đồ / GPS | External | Cung cấp vị trí, khoảng cách và hỗ trợ tính ETA |
-| 14 | Nhà cung cấp dịch vụ thông báo | External | Gửi thông báo qua Push Notification, SMS hoặc Email |
+| 1 | Ban giám đốc | Internal | Định hướng dự án, phê duyệt ngân sách, xác định mục tiêu và theo dõi hiệu quả kinh doanh |
+| 2 | Khách hàng | External | Đăng ký, đăng nhập, đặt xe, theo dõi chuyến, thanh toán và đánh giá tài xế |
+| 3 | Tài xế | External | Cập nhật hồ sơ, trạng thái hoạt động, nhận chuyến, thực hiện chuyến và cập nhật trạng thái |
+| 4 | Nhân viên vận hành | Internal | Quản lý khách hàng, tài xế, phương tiện, chuyến đi và xử lý các trường hợp bất thường |
+| 5 | Quản trị viên hệ thống | Internal | Quản lý tài khoản, phân quyền, cấu hình, bảo mật và giám sát hệ thống |
+| 6 | Bộ phận kế toán / tài chính | Internal | Quản lý giao dịch, doanh thu, thanh toán và đối soát tài chính |
+| 7 | Bộ phận chăm sóc khách hàng | Internal | Hỗ trợ khách hàng, tiếp nhận khiếu nại và xử lý các vấn đề liên quan đến chuyến đi |
+| 8 | Business Analyst | Internal | Thu thập, phân tích, làm rõ, quản lý và xác nhận yêu cầu nghiệp vụ |
+| 9 | Đội phát triển phần mềm | Internal | Phân tích kỹ thuật, thiết kế, phát triển, tích hợp và bảo trì hệ thống |
+| 10 | QA / Tester | Internal | Xây dựng kế hoạch kiểm thử, kiểm thử chức năng và đảm bảo chất lượng hệ thống |
+| 11 | DevOps / System Administrator | Internal | Triển khai, giám sát, vận hành, sao lưu và đảm bảo tính ổn định của hệ thống |
+| 12 | Nhà cung cấp thanh toán | External | Cung cấp dịch vụ xử lý thanh toán điện tử |
+| 13 | Nhà cung cấp bản đồ / GPS | External | Cung cấp dữ liệu vị trí, khoảng cách, định tuyến và hỗ trợ tính ETA |
+| 14 | Nhà cung cấp dịch vụ thông báo | External | Cung cấp các kênh gửi Push Notification, SMS hoặc Email |
 
 ---
 
@@ -37,17 +42,17 @@ Dựa trên yêu cầu của khách hàng, các stakeholder được xác địn
 
 Stakeholder được phân loại dựa trên hai tiêu chí:
 
-- **Power (Mức độ ảnh hưởng):** Khả năng tác động đến quyết định, phạm vi và kết quả dự án.
-- **Interest (Mức độ quan tâm):** Mức độ quan tâm đến hoạt động và kết quả của hệ thống.
+- **Power:** Mức độ ảnh hưởng của stakeholder đến quyết định, phạm vi và kết quả dự án.
+- **Interest:** Mức độ quan tâm của stakeholder đối với hệ thống và kết quả dự án.
 
-Mỗi stakeholder được phân loại vào một trong bốn nhóm:
+### Các nhóm Stakeholder
 
 | Nhóm | Power | Interest | Chiến lược |
 |---|---|---|---|
-| Manage Closely | Cao | Cao | Quản lý chặt chẽ, thường xuyên trao đổi |
-| Keep Satisfied | Cao | Thấp | Đảm bảo hài lòng và cập nhật khi cần |
-| Keep Informed | Thấp | Cao | Cung cấp thông tin thường xuyên |
-| Monitor | Thấp | Thấp | Theo dõi và cập nhật khi cần |
+| **Manage Closely** | Cao | Cao | Quản lý chặt chẽ, trao đổi thường xuyên và tham gia vào các quyết định quan trọng |
+| **Keep Satisfied** | Cao | Thấp | Đảm bảo stakeholder hài lòng và cung cấp thông tin cần thiết |
+| **Keep Informed** | Thấp | Cao | Cập nhật thông tin thường xuyên và thu thập phản hồi |
+| **Monitor** | Thấp | Thấp | Theo dõi và cập nhật khi cần thiết |
 
 ---
 
@@ -55,19 +60,19 @@ Mỗi stakeholder được phân loại vào một trong bốn nhóm:
 
 | Stakeholder | Power | Interest | Nhóm | Chiến lược |
 |---|---|---|---|---|
-| Ban giám đốc | Cao | Cao | Manage Closely | Báo cáo tiến độ, rủi ro và kết quả dự án |
+| Ban giám đốc | Cao | Cao | Manage Closely | Báo cáo tiến độ, rủi ro, chi phí và kết quả dự án |
 | Nhân viên vận hành | Cao | Cao | Manage Closely | Tham gia phân tích và xác nhận quy trình nghiệp vụ |
-| Khách hàng | Thấp | Cao | Keep Informed | Thu thập phản hồi và cập nhật tính năng |
-| Tài xế | Thấp | Cao | Keep Informed | Thu thập phản hồi và hướng dẫn sử dụng |
-| Quản trị viên hệ thống | Cao | Cao | Manage Closely | Tham gia thiết kế quyền, bảo mật và vận hành |
-| Kế toán / Tài chính | Cao | Cao | Manage Closely | Xác nhận yêu cầu thanh toán và báo cáo tài chính |
-| Chăm sóc khách hàng | Thấp | Cao | Keep Informed | Thu thập yêu cầu hỗ trợ và phản hồi |
+| Quản trị viên hệ thống | Cao | Cao | Manage Closely | Tham gia về phân quyền, bảo mật và vận hành |
+| Kế toán / Tài chính | Cao | Cao | Manage Closely | Xác nhận yêu cầu thanh toán, doanh thu và báo cáo |
 | Business Analyst | Cao | Cao | Manage Closely | Phân tích, quản lý và xác nhận yêu cầu |
-| Đội phát triển phần mềm | Cao | Cao | Manage Closely | Phối hợp triển khai giải pháp kỹ thuật |
+| Đội phát triển phần mềm | Cao | Cao | Manage Closely | Phối hợp thiết kế và triển khai giải pháp |
+| DevOps / System Administrator | Cao | Cao | Manage Closely | Phối hợp triển khai, giám sát và đảm bảo hệ thống hoạt động |
+| Khách hàng | Thấp | Cao | Keep Informed | Thu thập phản hồi và cập nhật thông tin |
+| Tài xế | Thấp | Cao | Keep Informed | Thu thập phản hồi và hướng dẫn sử dụng |
+| Chăm sóc khách hàng | Thấp | Cao | Keep Informed | Thu thập vấn đề hỗ trợ và phản hồi từ khách hàng |
 | QA / Tester | Thấp | Cao | Keep Informed | Cập nhật yêu cầu và tiêu chí kiểm thử |
-| DevOps / System Administrator | Cao | Cao | Manage Closely | Phối hợp triển khai, giám sát và mở rộng hệ thống |
 | Nhà cung cấp thanh toán | Cao | Thấp | Keep Satisfied | Quản lý tích hợp và đảm bảo dịch vụ ổn định |
-| Nhà cung cấp bản đồ / GPS | Thấp | Thấp | Monitor | Theo dõi chất lượng dịch vụ |
+| Nhà cung cấp bản đồ / GPS | Thấp | Thấp | Monitor | Theo dõi chất lượng và tính ổn định của dịch vụ |
 | Nhà cung cấp thông báo | Thấp | Thấp | Monitor | Theo dõi khả năng gửi thông báo |
 
 ---
@@ -101,9 +106,13 @@ quadrantChart
     "Nhà cung cấp thanh toán": [0.25, 0.75]
     "Nhà cung cấp bản đồ / GPS": [0.25, 0.30]
     "Nhà cung cấp thông báo": [0.20, 0.25]
-# Business Goals
+```
 
-## 1. Mục đích
+---
+
+# 3. Business Goals
+
+## 3.1. Mục đích
 
 Business Goals được xây dựng dựa trên yêu cầu của khách hàng nhằm xác định các mục tiêu nghiệp vụ chính mà hệ thống CAB System cần đạt được.
 
@@ -111,239 +120,30 @@ Các Business Goals tập trung vào giá trị mà hệ thống mang lại cho 
 
 ---
 
-## 2. Danh sách Business Goals
+## 3.2. Danh sách Business Goals
 
 | Mã | Business Goal | Mô tả |
 |---|---|---|
-| BG-01 | Xây dựng nền tảng đặt xe trực tuyến | Xây dựng nền tảng CAB System cho phép khách hàng đặt xe trực tuyến một cách thuận tiện, nhanh chóng và dễ sử dụng. |
-| BG-02 | Tự động hóa quy trình tìm kiếm và phân công tài xế | Tự động tìm kiếm và phân công tài xế phù hợp dựa trên vị trí, trạng thái sẵn sàng và các tiêu chí vận hành. |
-| BG-03 | Nâng cao khả năng theo dõi và quản lý chuyến đi | Cho phép khách hàng, tài xế và nhân viên vận hành theo dõi trạng thái chuyến đi một cách rõ ràng và kịp thời. |
-| BG-04 | Quản lý tính cước và thanh toán | Cung cấp cơ chế tính cước và thanh toán tập trung, hỗ trợ tiền mặt và thanh toán điện tử một cách an toàn. |
-| BG-05 | Cải thiện hệ thống thông báo | Cung cấp thông báo kịp thời cho khách hàng và tài xế về các sự kiện quan trọng trong quá trình đặt và thực hiện chuyến. |
-| BG-06 | Nâng cao hiệu quả vận hành | Cung cấp công cụ quản trị giúp nhân viên vận hành quản lý khách hàng, tài xế, phương tiện và chuyến đi. |
-| BG-07 | Cung cấp báo cáo và dữ liệu quản lý | Cung cấp dữ liệu và báo cáo về chuyến đi, doanh thu, tỷ lệ hoàn thành, tỷ lệ hủy và hiệu quả tài xế để hỗ trợ ra quyết định. |
-| BG-08 | Đảm bảo tính ổn định và khả năng mở rộng | Đảm bảo hệ thống hoạt động ổn định khi nhu cầu tăng cao và các thành phần có thể mở rộng độc lập. |
-| BG-09 | Đảm bảo an toàn và bảo mật dữ liệu | Bảo vệ thông tin cá nhân, thông tin phương tiện, dữ liệu vị trí và dữ liệu giao dịch, đồng thời kiểm soát quyền truy cập. |
-| BG-10 | Xây dựng nền tảng linh hoạt cho tương lai | Cho phép hệ thống dễ dàng bổ sung dịch vụ, phương thức thanh toán, nhà cung cấp thông báo và thay đổi thành phần kỹ thuật. |
+| **BG-01** | Xây dựng nền tảng đặt xe trực tuyến | Xây dựng nền tảng CAB System cho phép khách hàng đặt xe trực tuyến thuận tiện, nhanh chóng và dễ sử dụng |
+| **BG-02** | Tự động hóa tìm kiếm và phân công tài xế | Tự động tìm kiếm và phân công tài xế phù hợp dựa trên vị trí, trạng thái sẵn sàng và tiêu chí vận hành |
+| **BG-03** | Theo dõi và quản lý chuyến đi | Cho phép khách hàng, tài xế và nhân viên vận hành theo dõi trạng thái chuyến đi rõ ràng và kịp thời |
+| **BG-04** | Quản lý tính cước và thanh toán | Cung cấp cơ chế tính cước và thanh toán tập trung, hỗ trợ tiền mặt và thanh toán điện tử |
+| **BG-05** | Cải thiện hệ thống thông báo | Cung cấp thông báo kịp thời cho khách hàng và tài xế trong quá trình đặt và thực hiện chuyến |
+| **BG-06** | Nâng cao hiệu quả vận hành | Cung cấp công cụ quản trị giúp nhân viên vận hành quản lý khách hàng, tài xế, phương tiện và chuyến đi |
+| **BG-07** | Cung cấp báo cáo và dữ liệu quản lý | Cung cấp dữ liệu về số lượng chuyến, doanh thu, tỷ lệ hoàn thành, tỷ lệ hủy và hiệu quả tài xế |
+| **BG-08** | Đảm bảo tính ổn định và khả năng mở rộng | Đảm bảo hệ thống hoạt động ổn định khi nhu cầu tăng cao và có khả năng mở rộng độc lập |
+| **BG-09** | Đảm bảo an toàn và bảo mật dữ liệu | Bảo vệ thông tin cá nhân, phương tiện, vị trí và giao dịch, đồng thời kiểm soát quyền truy cập |
+| **BG-10** | Xây dựng nền tảng linh hoạt cho tương lai | Cho phép bổ sung dịch vụ, phương thức thanh toán, nhà cung cấp thông báo và thay đổi thành phần kỹ thuật |
 
 ---
 
-# 3. Chi tiết Business Goals
-
-## BG-01 – Xây dựng nền tảng đặt xe trực tuyến
-
-### Mục tiêu
-
-Xây dựng một nền tảng CAB System cho phép khách hàng sử dụng dịch vụ đặt xe trực tuyến một cách thuận tiện, nhanh chóng và dễ dàng.
-
-### Yêu cầu liên quan
-
-- Khách hàng có thể đăng ký tài khoản.
-- Khách hàng có thể đăng nhập.
-- Khách hàng có thể cập nhật thông tin cá nhân.
-- Khách hàng có thể nhập điểm đón và điểm đến.
-- Khách hàng có thể lựa chọn loại xe.
-- Khách hàng có thể gửi yêu cầu đặt xe.
-- Hệ thống có khả năng phục vụ số lượng lớn khách hàng và tài xế.
-
----
-
-## BG-02 – Tự động hóa quy trình tìm kiếm và phân công tài xế
-
-### Mục tiêu
-
-Giảm sự phụ thuộc vào việc phân công tài xế thủ công bằng cách tự động tìm kiếm và lựa chọn tài xế phù hợp cho khách hàng.
-
-### Yêu cầu liên quan
-
-- Xác định tài xế phù hợp dựa trên vị trí.
-- Kiểm tra trạng thái sẵn sàng của tài xế.
-- Ưu tiên tài xế phù hợp và gần khách hàng.
-- Tài xế có thể chấp nhận hoặc từ chối chuyến.
-- Tự động tìm tài xế khác nếu tài xế được đề xuất không phản hồi hoặc từ chối.
-- Không yêu cầu khách hàng tạo lại yêu cầu khi tài xế đầu tiên không nhận chuyến.
-- Thông báo cho khách hàng khi không tìm được tài xế.
-
----
-
-## BG-03 – Nâng cao khả năng theo dõi và quản lý chuyến đi
-
-### Mục tiêu
-
-Cung cấp khả năng theo dõi trạng thái chuyến đi cho khách hàng, tài xế và nhân viên vận hành nhằm tăng tính minh bạch và hiệu quả quản lý.
-
-### Yêu cầu liên quan
-
-- Khách hàng biết hệ thống đang tìm tài xế.
-- Khách hàng biết tài xế đã nhận chuyến.
-- Khách hàng biết thời gian dự kiến tài xế đến.
-- Tài xế cập nhật trạng thái chuyến.
-- Tài xế cập nhật trạng thái đã đến điểm đón.
-- Tài xế cập nhật trạng thái đã đón khách.
-- Tài xế cập nhật trạng thái đang di chuyển.
-- Tài xế cập nhật trạng thái hoàn thành chuyến.
-- Nhân viên vận hành có thể theo dõi các chuyến đang diễn ra.
-- Hệ thống lưu thông tin vị trí của tài xế.
-
----
-
-## BG-04 – Quản lý tính cước và thanh toán
-
-### Mục tiêu
-
-Xây dựng cơ chế tính cước và thanh toán tập trung, hỗ trợ nhiều phương thức thanh toán và đảm bảo an toàn dữ liệu thanh toán.
-
-### Yêu cầu liên quan
-
-- Tính số tiền khách hàng phải trả sau khi hoàn thành chuyến.
-- Hỗ trợ thanh toán bằng tiền mặt.
-- Hỗ trợ thanh toán điện tử.
-- Tích hợp với nhà cung cấp thanh toán bên ngoài.
-- Không lưu trực tiếp thông tin nhạy cảm của thẻ hoặc tài khoản thanh toán.
-- Thông báo khi giao dịch thanh toán thành công.
-- Thông báo khi giao dịch thanh toán thất bại.
-- Cho phép xử lý lại thanh toán theo chính sách của doanh nghiệp.
-
----
-
-## BG-05 – Cải thiện hệ thống thông báo
-
-### Mục tiêu
-
-Đảm bảo khách hàng và tài xế nhận được thông tin kịp thời về các sự kiện quan trọng trong quá trình đặt và thực hiện chuyến.
-
-### Yêu cầu liên quan
-
-- Thông báo khi yêu cầu đặt xe được tiếp nhận.
-- Thông báo khi tài xế nhận chuyến.
-- Thông báo khi tài xế đến điểm đón.
-- Thông báo khi chuyến hoàn thành.
-- Thông báo khi thanh toán có kết quả.
-- Tài xế nhận thông báo về chuyến mới.
-- Tài xế nhận thông báo khi có thay đổi liên quan đến chuyến.
-- Có khả năng mở rộng thêm các kênh thông báo trong tương lai.
-
----
-
-## BG-06 – Nâng cao hiệu quả vận hành
-
-### Mục tiêu
-
-Cung cấp giao diện và công cụ quản trị giúp nhân viên vận hành quản lý tập trung các hoạt động của hệ thống CAB.
-
-### Yêu cầu liên quan
-
-- Quản lý khách hàng.
-- Quản lý tài xế.
-- Quản lý phương tiện.
-- Theo dõi các chuyến đang diễn ra.
-- Kiểm tra trạng thái tài xế.
-- Xử lý các trường hợp chuyến bị lỗi.
-- Tra cứu lịch sử giao dịch.
-- Phân quyền các chức năng quản trị.
-
----
-
-## BG-07 – Cung cấp báo cáo và dữ liệu quản lý
-
-### Mục tiêu
-
-Cung cấp dữ liệu và báo cáo giúp ban lãnh đạo đánh giá hiệu quả kinh doanh và hoạt động vận hành của hệ thống.
-
-### Yêu cầu liên quan
-
-- Báo cáo số lượng chuyến.
-- Báo cáo doanh thu.
-- Báo cáo tỷ lệ chuyến hoàn thành.
-- Báo cáo tỷ lệ chuyến hủy.
-- Báo cáo hiệu quả hoạt động của tài xế.
-- Cung cấp dữ liệu phục vụ việc ra quyết định của ban lãnh đạo.
-
----
-
-## BG-08 – Đảm bảo tính ổn định và khả năng mở rộng
-
-### Mục tiêu
-
-Đảm bảo CAB System có thể hoạt động ổn định trong thời điểm nhu cầu tăng cao và có khả năng mở rộng khi số lượng người dùng và giao dịch tăng.
-
-### Yêu cầu liên quan
-
-- Hệ thống hoạt động ổn định khi nhu cầu tăng cao.
-- Lỗi ở chức năng thanh toán không làm toàn bộ hệ thống ngừng hoạt động.
-- Lỗi ở chức năng thông báo không làm toàn bộ hệ thống đặt xe ngừng hoạt động.
-- Các thành phần có khả năng mở rộng độc lập.
-- Chức năng mới có thể được triển khai từng phần.
-- Hạn chế ảnh hưởng đến các chức năng đang hoạt động khi triển khai chức năng mới.
-
----
-
-## BG-09 – Đảm bảo an toàn và bảo mật dữ liệu
-
-### Mục tiêu
-
-Đảm bảo thông tin người dùng, dữ liệu vị trí, thông tin phương tiện và dữ liệu giao dịch được bảo vệ và chỉ được truy cập bởi những đối tượng có quyền.
-
-### Yêu cầu liên quan
-
-- Khách hàng phải được xác thực trước khi sử dụng chức năng yêu cầu tài khoản.
-- Tài xế phải được xác thực trước khi sử dụng chức năng yêu cầu tài khoản.
-- Các chức năng quản trị phải được kiểm soát quyền truy cập.
-- Bảo vệ thông tin cá nhân.
-- Bảo vệ thông tin phương tiện.
-- Bảo vệ dữ liệu vị trí.
-- Bảo vệ dữ liệu giao dịch.
-- Lưu vết các thao tác quan trọng.
-- Hỗ trợ kiểm tra và điều tra khi xảy ra sự cố.
-
----
-
-## BG-10 – Xây dựng nền tảng linh hoạt cho tương lai
-
-### Mục tiêu
-
-Xây dựng hệ thống CAB có kiến trúc linh hoạt để doanh nghiệp có thể mở rộng dịch vụ và thay đổi các thành phần kỹ thuật mà không cần xây dựng lại toàn bộ hệ thống.
-
-### Yêu cầu liên quan
-
-- Có thể bổ sung loại dịch vụ mới.
-- Có thể thêm phương thức thanh toán.
-- Có thể thêm nhà cung cấp thông báo.
-- Có thể thay đổi một số thành phần kỹ thuật.
-- Hạn chế việc phải xây dựng lại toàn bộ ứng dụng.
-- Hỗ trợ phát triển hệ thống lâu dài.
-
-À hiểu rồi 😄 Bạn muốn **chỉ lấy phần mã Markdown (`.md`)**, để copy vào `SRS.md`, không cần giải thích thêm.
-
- Copy nguyên khối này:
-
-````
-# BUSINESS GOALS
-
-## 1. Danh sách Business Goals
-
-| Mã | Business Goal | Mô tả |
-|---|---|---|
-| **BG-01** | Xây dựng nền tảng đặt xe trực tuyến | Xây dựng hệ thống CAB System cho phép khách hàng đặt xe trực tuyến thuận tiện, nhanh chóng và dễ sử dụng. |
-| **BG-02** | Tự động hóa tìm kiếm và phân công tài xế | Tự động tìm kiếm và phân công tài xế phù hợp dựa trên vị trí, trạng thái sẵn sàng và các tiêu chí vận hành. |
-| **BG-03** | Theo dõi và quản lý chuyến đi | Cho phép khách hàng, tài xế và nhân viên vận hành theo dõi trạng thái chuyến đi một cách rõ ràng và kịp thời. |
-| **BG-04** | Quản lý tính cước và thanh toán | Cung cấp cơ chế tính cước và thanh toán tập trung, hỗ trợ tiền mặt và thanh toán điện tử an toàn. |
-| **BG-05** | Cải thiện hệ thống thông báo | Cung cấp thông báo kịp thời cho khách hàng và tài xế về các sự kiện quan trọng trong quá trình đặt và thực hiện chuyến. |
-| **BG-06** | Nâng cao hiệu quả vận hành | Cung cấp công cụ quản trị giúp nhân viên vận hành quản lý khách hàng, tài xế, phương tiện và chuyến đi. |
-| **BG-07** | Cung cấp báo cáo và dữ liệu quản lý | Cung cấp dữ liệu về số lượng chuyến, doanh thu, tỷ lệ hoàn thành, tỷ lệ hủy và hiệu quả hoạt động của tài xế. |
-| **BG-08** | Đảm bảo tính ổn định và khả năng mở rộng | Đảm bảo hệ thống hoạt động ổn định khi nhu cầu tăng cao và các thành phần có thể mở rộng độc lập. |
-| **BG-09** | Đảm bảo an toàn và bảo mật dữ liệu | Bảo vệ thông tin cá nhân, phương tiện, dữ liệu vị trí và dữ liệu giao dịch, đồng thời kiểm soát quyền truy cập. |
-| **BG-10** | Xây dựng nền tảng linh hoạt cho tương lai | Cho phép bổ sung dịch vụ, phương thức thanh toán, nhà cung cấp thông báo và thay đổi thành phần kỹ thuật. |
-
----
-
-## 2. Chi tiết Business Goals
+## 3.3. Chi tiết Business Goals
 
 ### BG-01 – Xây dựng nền tảng đặt xe trực tuyến
 
 **Mục tiêu:**
 
-Xây dựng nền tảng CAB System cho phép khách hàng đặt xe trực tuyến thuận tiện, nhanh chóng và dễ sử dụng.
+Xây dựng nền tảng CAB System cho phép khách hàng sử dụng dịch vụ đặt xe trực tuyến thuận tiện, nhanh chóng và dễ dàng.
 
 **Yêu cầu liên quan:**
 
@@ -387,7 +187,11 @@ Cung cấp khả năng theo dõi trạng thái chuyến đi cho khách hàng, t�
 - Khách hàng biết tài xế đã nhận chuyến.
 - Khách hàng biết thời gian dự kiến tài xế đến.
 - Tài xế có thể cập nhật trạng thái chuyến.
-- Nhân viên vận hành có thể theo dõi chuyến đang diễn ra.
+- Tài xế có thể cập nhật trạng thái đã đến điểm đón.
+- Tài xế có thể cập nhật trạng thái đã đón khách.
+- Tài xế có thể cập nhật trạng thái đang di chuyển.
+- Tài xế có thể cập nhật trạng thái hoàn thành chuyến.
+- Nhân viên vận hành có thể theo dõi các chuyến đang diễn ra.
 - Hệ thống lưu thông tin vị trí của tài xế.
 
 ---
@@ -404,9 +208,10 @@ Xây dựng cơ chế tính cước và thanh toán tập trung, hỗ trợ nhi�
 - Hỗ trợ thanh toán bằng tiền mặt.
 - Hỗ trợ thanh toán điện tử.
 - Tích hợp với nhà cung cấp thanh toán bên ngoài.
-- Không lưu trực tiếp thông tin thanh toán nhạy cảm.
-- Thông báo kết quả thanh toán.
-- Cho phép xử lý lại thanh toán khi giao dịch thất bại.
+- Không lưu trực tiếp thông tin nhạy cảm của thẻ hoặc tài khoản thanh toán.
+- Thông báo khi giao dịch thanh toán thành công.
+- Thông báo khi giao dịch thanh toán thất bại.
+- Cho phép xử lý lại thanh toán theo chính sách doanh nghiệp.
 
 ---
 
@@ -422,10 +227,10 @@ Xây dựng cơ chế tính cước và thanh toán tập trung, hỗ trợ nhi�
 - Thông báo khi tài xế nhận chuyến.
 - Thông báo khi tài xế đến điểm đón.
 - Thông báo khi chuyến hoàn thành.
-- Thông báo kết quả thanh toán.
+- Thông báo khi thanh toán có kết quả.
 - Tài xế nhận thông báo về chuyến mới.
 - Tài xế nhận thông báo khi chuyến có thay đổi.
-- Có khả năng mở rộng thêm các kênh thông báo.
+- Có khả năng mở rộng thêm các kênh thông báo trong tương lai.
 
 ---
 
@@ -433,18 +238,18 @@ Xây dựng cơ chế tính cước và thanh toán tập trung, hỗ trợ nhi�
 
 **Mục tiêu:**
 
-Cung cấp công cụ quản trị giúp nhân viên vận hành quản lý tập trung hoạt động của hệ thống CAB.
+Cung cấp giao diện và công cụ quản trị giúp nhân viên vận hành quản lý tập trung các hoạt động của hệ thống CAB.
 
 **Yêu cầu liên quan:**
 
 - Quản lý khách hàng.
 - Quản lý tài xế.
 - Quản lý phương tiện.
-- Theo dõi chuyến đang diễn ra.
+- Theo dõi các chuyến đang diễn ra.
 - Kiểm tra trạng thái tài xế.
-- Xử lý các chuyến bị lỗi.
+- Xử lý các trường hợp chuyến bị lỗi.
 - Tra cứu lịch sử giao dịch.
-- Phân quyền chức năng quản trị.
+- Phân quyền các chức năng quản trị.
 
 ---
 
@@ -461,7 +266,7 @@ Cung cấp dữ liệu và báo cáo giúp ban lãnh đạo đánh giá hiệu q
 - Báo cáo tỷ lệ chuyến hoàn thành.
 - Báo cáo tỷ lệ chuyến hủy.
 - Báo cáo hiệu quả hoạt động của tài xế.
-- Hỗ trợ ban lãnh đạo ra quyết định dựa trên dữ liệu.
+- Cung cấp dữ liệu phục vụ việc ra quyết định.
 
 ---
 
@@ -469,12 +274,12 @@ Cung cấp dữ liệu và báo cáo giúp ban lãnh đạo đánh giá hiệu q
 
 **Mục tiêu:**
 
-Đảm bảo hệ thống hoạt động ổn định khi nhu cầu tăng cao và có khả năng mở rộng trong tương lai.
+Đảm bảo CAB System hoạt động ổn định trong thời điểm nhu cầu tăng cao và có khả năng mở rộng khi số lượng người dùng và giao dịch tăng.
 
 **Yêu cầu liên quan:**
 
 - Hệ thống hoạt động ổn định khi nhu cầu tăng cao.
-- Lỗi thanh toán không làm toàn bộ hệ thống ngừng hoạt động.
+- Lỗi thanh toán không làm toàn bộ hệ thống đặt xe ngừng hoạt động.
 - Lỗi thông báo không làm toàn bộ hệ thống đặt xe ngừng hoạt động.
 - Các thành phần có khả năng mở rộng độc lập.
 - Chức năng mới có thể được triển khai từng phần.
@@ -486,13 +291,13 @@ Cung cấp dữ liệu và báo cáo giúp ban lãnh đạo đánh giá hiệu q
 
 **Mục tiêu:**
 
-Bảo vệ dữ liệu người dùng, dữ liệu vị trí, thông tin phương tiện và dữ liệu giao dịch.
+Đảm bảo thông tin người dùng, dữ liệu vị trí, thông tin phương tiện và dữ liệu giao dịch được bảo vệ.
 
 **Yêu cầu liên quan:**
 
-- Xác thực khách hàng trước khi sử dụng chức năng yêu cầu tài khoản.
-- Xác thực tài xế trước khi sử dụng chức năng yêu cầu tài khoản.
-- Kiểm soát quyền truy cập chức năng quản trị.
+- Khách hàng phải được xác thực trước khi sử dụng chức năng yêu cầu tài khoản.
+- Tài xế phải được xác thực trước khi sử dụng chức năng yêu cầu tài khoản.
+- Chức năng quản trị phải được kiểm soát quyền truy cập.
 - Bảo vệ thông tin cá nhân.
 - Bảo vệ thông tin phương tiện.
 - Bảo vệ dữ liệu vị trí.
@@ -505,37 +310,22 @@ Bảo vệ dữ liệu người dùng, dữ liệu vị trí, thông tin phươn
 
 **Mục tiêu:**
 
-Xây dựng hệ thống có kiến trúc linh hoạt, cho phép doanh nghiệp mở rộng và thay đổi hệ thống mà không phải xây dựng lại toàn bộ ứng dụng.
+Xây dựng hệ thống có kiến trúc linh hoạt để doanh nghiệp có thể mở rộng dịch vụ và thay đổi các thành phần kỹ thuật mà không phải xây dựng lại toàn bộ ứng dụng.
 
 **Yêu cầu liên quan:**
 
 - Có thể bổ sung loại dịch vụ mới.
 - Có thể thêm phương thức thanh toán.
 - Có thể thêm nhà cung cấp thông báo.
-- Có thể thay đổi thành phần kỹ thuật.
-- Hạn chế việc xây dựng lại toàn bộ hệ thống.
+- Có thể thay đổi một số thành phần kỹ thuật.
+- Hạn chế việc phải xây dựng lại toàn bộ ứng dụng.
 - Hỗ trợ phát triển hệ thống lâu dài.
 
 ---
 
-## 3. Các vấn đề cần xác nhận với khách hàng
+# 4. Business Goal Relationship
 
-| Mã | Vấn đề cần xác nhận |
-|---|---|
-| **BG-Q01** | Công thức tính cước cụ thể là gì? |
-| **BG-Q02** | Tiêu chí ưu tiên tài xế được xác định như thế nào? |
-| **BG-Q03** | Tài xế có bao nhiêu thời gian để phản hồi yêu cầu chuyến? |
-| **BG-Q04** | Chính sách hủy chuyến của khách hàng và tài xế như thế nào? |
-| **BG-Q05** | Xử lý như thế nào khi khách hàng hoặc tài xế mất kết nối mạng? |
-| **BG-Q06** | Dữ liệu được lưu trữ trong bao lâu? |
-| **BG-Q07** | Những chức năng quản trị nào cần phân quyền đặc biệt? |
-| **BG-Q08** | Những phương thức thanh toán điện tử nào được hỗ trợ? |
-| **BG-Q09** | Những kênh thông báo nào được sử dụng? |
-| **BG-Q10** | Các KPI và báo cáo cụ thể mà ban lãnh đạo cần là gì? |
-
----
-
-## 4. Sơ đồ Business Goals
+Sơ đồ dưới đây thể hiện mối quan hệ giữa hệ thống CAB System và các mục tiêu nghiệp vụ.
 
 ```mermaid
 flowchart TB
@@ -570,4 +360,65 @@ flowchart TB
     class CAB system;
     class BG01,BG02,BG03,BG04,BG05,BG06,BG07,BG08,BG09,BG10 goal;
 ```
+
+---
+
+# 5. Các vấn đề cần xác nhận với khách hàng
+
+Trong quá trình phân tích, một số yêu cầu chưa được khách hàng xác định cụ thể. Các vấn đề này cần được Business Analyst làm rõ với các bên liên quan trước khi triển khai.
+
+| Mã | Vấn đề cần xác nhận | Stakeholder liên quan |
+|---|---|---|
+| **Q-01** | Công thức tính cước cụ thể là gì? | Ban giám đốc, Kế toán / Tài chính, Vận hành |
+| **Q-02** | Tiêu chí ưu tiên và lựa chọn tài xế là gì? | Ban giám đốc, Vận hành, Tài xế |
+| **Q-03** | Tài xế có bao nhiêu thời gian để phản hồi yêu cầu chuyến? | Vận hành, Tài xế |
+| **Q-04** | Chính sách hủy chuyến của khách hàng và tài xế như thế nào? | Ban giám đốc, Vận hành, CSKH |
+| **Q-05** | Xử lý như thế nào khi khách hàng hoặc tài xế mất kết nối mạng? | Vận hành, Đội phát triển, DevOps |
+| **Q-06** | Dữ liệu khách hàng, tài xế, vị trí và giao dịch được lưu trữ trong bao lâu? | Ban giám đốc, Quản trị viên, Kế toán |
+| **Q-07** | Những chức năng quản trị nào cần phân quyền đặc biệt? | Ban giám đốc, Quản trị viên |
+| **Q-08** | Những phương thức thanh toán điện tử nào được hỗ trợ? | Kế toán / Tài chính, Nhà cung cấp thanh toán |
+| **Q-09** | Những kênh thông báo nào được sử dụng trong giai đoạn đầu? | Ban giám đốc, CSKH, Đội phát triển |
+| **Q-10** | Các KPI và báo cáo cụ thể mà ban lãnh đạo cần là gì? | Ban giám đốc, Kế toán, Vận hành |
+
+---
+
+# 6. Traceability giữa Stakeholder và Business Goals
+
+Bảng dưới đây thể hiện stakeholder chính liên quan đến từng Business Goal.
+
+| Business Goal | Stakeholder chính |
+|---|---|
+| **BG-01** | Khách hàng, Tài xế, Đội phát triển, Ban giám đốc |
+| **BG-02** | Tài xế, Khách hàng, Nhân viên vận hành, Đội phát triển |
+| **BG-03** | Khách hàng, Tài xế, Nhân viên vận hành, CSKH |
+| **BG-04** | Khách hàng, Kế toán / Tài chính, Nhà cung cấp thanh toán |
+| **BG-05** | Khách hàng, Tài xế, CSKH, Nhà cung cấp thông báo |
+| **BG-06** | Nhân viên vận hành, Quản trị viên, CSKH |
+| **BG-07** | Ban giám đốc, Kế toán / Tài chính, Nhân viên vận hành |
+| **BG-08** | Ban giám đốc, Đội phát triển, DevOps |
+| **BG-09** | Khách hàng, Tài xế, Quản trị viên, DevOps |
+| **BG-10** | Ban giám đốc, Đội phát triển, DevOps, Quản trị viên |
+
+---
+
+# 7. Tổng kết
+
+CAB System hướng đến việc xây dựng một nền tảng đặt xe trực tuyến có khả năng phục vụ khách hàng, tài xế và bộ phận vận hành trên cùng một hệ thống.
+
+Các mục tiêu nghiệp vụ trọng tâm bao gồm:
+
+1. Cung cấp nền tảng đặt xe trực tuyến.
+2. Tự động hóa việc tìm kiếm và phân công tài xế.
+3. Theo dõi và quản lý toàn bộ vòng đời chuyến đi.
+4. Quản lý tính cước và thanh toán.
+5. Cung cấp hệ thống thông báo linh hoạt.
+6. Nâng cao hiệu quả vận hành.
+7. Cung cấp báo cáo phục vụ quản lý.
+8. Đảm bảo tính ổn định và khả năng mở rộng.
+9. Đảm bảo bảo mật và an toàn dữ liệu.
+10. Xây dựng nền tảng có khả năng phát triển lâu dài.
+
+Các Business Goals trên sẽ là cơ sở để tiếp tục xác định **Business Requirements, Functional Requirements, Non-Functional Requirements, Use Cases và Business Rules** cho hệ thống CAB System.
 ````
+
+ 
