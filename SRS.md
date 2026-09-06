@@ -654,18 +654,6 @@ Hệ thống có khả năng:
 - Lưu thông tin cước của chuyến.
 - Hiển thị số tiền cần thanh toán.
 
-### Lưu ý
-
-Công thức tính cước cụ thể **chưa được khách hàng xác nhận**, do đó cần được làm rõ trước khi triển khai chính thức.
-
-### Out of Scope
-
-- Dynamic pricing phức tạp.
-- Surge pricing theo AI.
-- Hệ thống khuyến mãi nâng cao.
-- Loyalty pricing.
-
----
 
 ## 5.3.10. Payment Management
 
@@ -834,73 +822,6 @@ Hệ thống cung cấp các báo cáo cơ bản:
 
 ---
 
-# 5.5. In Scope
-
-Trong phạm vi MVP 7 tuần, hệ thống tập trung vào **core booking flow**:
-
-```mermaid
-flowchart LR
-
-    C["Customer"]
-    B["Booking"]
-    M["Driver Matching"]
-    D["Driver"]
-    T["Trip"]
-    F["Fare"]
-    P["Payment"]
-    N["Notification"]
-    R["Rating"]
-    O["Operation"]
-
-    C --> B
-    B --> M
-    M --> D
-    D --> T
-    T --> F
-    F --> P
-    T --> R
-
-    B -.-> N
-    M -.-> N
-    T -.-> N
-    P -.-> N
-
-    O -.-> B
-    O -.-> D
-    O -.-> T
-    O -.-> P
-```
-
-### Core Flow
-
-```text
-Customer
-   ↓
-Create Booking
-   ↓
-Search Driver
-   ↓
-Assign Driver
-   ↓
-Driver Accept
-   ↓
-Driver Arrive
-   ↓
-Pick Up Customer
-   ↓
-Trip In Progress
-   ↓
-Complete Trip
-   ↓
-Calculate Fare
-   ↓
-Payment
-   ↓
-Rating
-```
-
----
-
 # 5.6. Out of Scope
 
 Các chức năng sau **không thuộc phạm vi MVP 7 tuần**:
@@ -970,6 +891,62 @@ Các module được ưu tiên dựa trên mức độ quan trọng đối với
 | **P3 – Future** | Advanced Analytics | Phát triển khi có đủ dữ liệu |
 
 ---
+# BG01 – Online Booking
+
+## 1. Business Requirement
+
+Hệ thống CAB phải cung cấp nền tảng đặt xe trực tuyến
+cho phép khách hàng đặt xe nhanh chóng và thuận tiện.
+
+## 2. Business Objective
+
+- Cho phép khách hàng đặt xe trực tuyến.
+- Giảm thao tác đặt xe thủ công.
+- Cung cấp trải nghiệm đặt xe đơn giản.
+
+## 3. Stakeholder
+
+- Customer
+- Driver
+- Operation
+- Business Analyst
+- Management
+
+## 4. Business Rules
+
+- Khách hàng phải đăng nhập trước khi đặt xe.
+- Khách hàng phải cung cấp điểm đón và điểm đến.
+- Khách hàng phải chọn loại xe.
+- Một yêu cầu đặt xe phải có trạng thái rõ ràng.
+- Khách hàng có thể hủy chuyến theo chính sách.
+
+## 5. Functional Requirements
+
+| ID | Requirement |
+|---|---|
+| FR01 | Customer có thể đăng ký tài khoản |
+| FR02 | Customer có thể đăng nhập |
+| FR03 | Customer có thể nhập điểm đón |
+| FR04 | Customer có thể nhập điểm đến |
+| FR05 | Customer có thể chọn loại xe |
+| FR06 | Customer có thể tạo booking |
+| FR07 | Customer có thể xem trạng thái booking |
+| FR08 | Customer có thể hủy booking |
+
+## 6. Acceptance Criteria
+
+- Customer đăng nhập thành công có thể tạo booking.
+- Booking phải chứa điểm đón, điểm đến và loại xe.
+- Hệ thống tạo booking với trạng thái hợp lệ.
+- Customer có thể xem trạng thái booking.
+- Booking có thể được hủy nếu thỏa mãn chính sách.
+
+## 7. Related Business Goals
+
+- BG-01 – Online Booking
+- BG-03 – Trip Management
+- BG-09 – Security
+
 
 
 
