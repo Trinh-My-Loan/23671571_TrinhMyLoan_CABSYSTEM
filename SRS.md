@@ -76,7 +76,6 @@ Stakeholder được phân loại dựa trên hai tiêu chí:
 
 ## 2.3. Stakeholder Power / Interest Matrix
 
-```mermaid
 quadrantChart
     title Stakeholder Power / Interest Matrix
     x-axis "Low Interest" --> "High Interest"
@@ -103,9 +102,6 @@ quadrantChart
     "Nhà cung cấp thanh toán": [0.25, 0.75]
     "Nhà cung cấp bản đồ / GPS": [0.25, 0.30]
     "Nhà cung cấp thông báo": [0.20, 0.25]
-```
-
----
 
 # 3. Business Goals
 
