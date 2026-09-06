@@ -1710,3 +1710,433 @@ Non-Functional Requirements mô tả các yêu cầu về chất lượng và c�
 | Compatibility   | NFR-24 → NFR-25      |
 
 
+# 11. Entity Identification and ERD Design
+
+## 11.1. Entity Identification
+
+Dựa trên Business Processes và System Requirements, các thực thể chính của CAB System được xác định như sau:
+
+| ID   | Entity          | Description                         |
+| ---- | --------------- | ----------------------------------- |
+| E-01 | User            | Lưu thông tin tài khoản người dùng. |
+| E-02 | Role            | Lưu thông tin vai trò người dùng.   |
+| E-03 | Customer        | Lưu thông tin khách hàng.           |
+| E-04 | Driver          | Lưu thông tin tài xế.               |
+| E-05 | Vehicle         | Lưu thông tin phương tiện.          |
+| E-06 | Booking         | Lưu yêu cầu đặt xe của khách hàng.  |
+| E-07 | Trip            | Lưu thông tin chuyến đi.            |
+| E-08 | Payment         | Lưu thông tin thanh toán.           |
+| E-09 | Notification    | Lưu thông báo gửi đến người dùng.   |
+| E-10 | Driver Location | Lưu vị trí của tài xế.              |
+
+---
+
+## 11.2. Entity Mapping from Business Processes
+
+| Business Process               | Related Entities                         |
+| ------------------------------ | ---------------------------------------- |
+| BP-01 User & Driver Management | User, Role, Customer, Driver, Vehicle    |
+| BP-02 Ride Booking             | Customer, Booking                        |
+| BP-03 Driver Matching          | Booking, Driver, Driver Location         |
+| BP-04 Trip Execution           | Booking, Driver, Customer, Trip          |
+| BP-05 Fare & Payment           | Trip, Payment                            |
+| BP-06 Notification             | User, Notification                       |
+| BP-07 Operation Management     | Customer, Driver, Vehicle, Booking, Trip |
+
+---
+
+# 11.3. Core Entities
+
+## User
+
+Đại diện cho tài khoản đăng nhập của người dùng.
+
+| Attribute  | Description          |
+| ---------- | -------------------- |
+| user_id    | Mã người dùng        |
+| username   | Tên đăng nhập        |
+| password   | Mật khẩu đã mã hóa   |
+| full_name  | Họ tên               |
+| phone      | Số điện thoại        |
+| email      | Email                |
+| role_id    | Vai trò              |
+| status     | Trạng thái tài khoản |
+| created_at | Thời gian tạo        |
+
+---
+
+## Role
+
+Đại diện cho vai trò của người dùng trong hệ thống.
+
+| Attribute   | Description |
+| ----------- | ----------- |
+| role_id     | Mã vai trò  |
+| role_name   | Tên vai trò |
+| description | Mô tả       |
+
+Ví dụ:
+
+```text
+Customer
+Driver
+Operator
+Administrator
+```
+
+---
+
+## Customer
+
+Lưu thông tin mở rộng của khách hàng.
+
+| Attribute   | Description        |
+| ----------- | ------------------ |
+| customer_id | Mã khách hàng      |
+| user_id     | Tài khoản liên kết |
+| created_at  | Ngày tham gia      |
+
+---
+
+## Driver
+
+Lưu thông tin nghiệp vụ của tài xế.
+
+| Attribute      | Description          |
+| -------------- | -------------------- |
+| driver_id      | Mã tài xế            |
+| user_id        | Tài khoản liên kết   |
+| license_number | Số giấy phép lái xe  |
+| driver_status  | Trạng thái hoạt động |
+| rating         | Điểm đánh giá        |
+| created_at     | Ngày tạo             |
+
+---
+
+## Vehicle
+
+Lưu thông tin phương tiện.
+
+| Attribute     | Description           |
+| ------------- | --------------------- |
+| vehicle_id    | Mã phương tiện        |
+| driver_id     | Tài xế sở hữu/sử dụng |
+| license_plate | Biển số xe            |
+| vehicle_type  | Loại xe               |
+| model         | Model xe              |
+| status        | Trạng thái            |
+
+---
+
+## Booking
+
+Lưu yêu cầu đặt xe.
+
+| Attribute       | Description        |
+| --------------- | ------------------ |
+| booking_id      | Mã Booking         |
+| customer_id     | Khách hàng đặt xe  |
+| pickup_location | Điểm đón           |
+| destination     | Điểm đến           |
+| vehicle_type    | Loại xe yêu cầu    |
+| booking_status  | Trạng thái Booking |
+| created_at      | Thời gian tạo      |
+
+---
+
+## Trip
+
+Lưu thông tin chuyến đi thực tế.
+
+| Attribute       | Description          |
+| --------------- | -------------------- |
+| trip_id         | Mã chuyến đi         |
+| booking_id      | Booking liên quan    |
+| driver_id       | Driver thực hiện     |
+| trip_status     | Trạng thái chuyến    |
+| assigned_at     | Thời gian phân công  |
+| started_at      | Thời gian bắt đầu    |
+| completed_at    | Thời gian hoàn thành |
+| actual_distance | Khoảng cách thực tế  |
+| total_fare      | Tổng cước phí        |
+
+---
+
+## Payment
+
+Lưu thông tin thanh toán.
+
+| Attribute      | Description              |
+| -------------- | ------------------------ |
+| payment_id     | Mã thanh toán            |
+| trip_id        | Chuyến đi                |
+| amount         | Số tiền                  |
+| payment_method | Phương thức thanh toán   |
+| payment_status | Trạng thái               |
+| transaction_id | Mã giao dịch từ Provider |
+| paid_at        | Thời gian thanh toán     |
+
+---
+
+## Notification
+
+Lưu thông báo hệ thống.
+
+| Attribute         | Description                |
+| ----------------- | -------------------------- |
+| notification_id   | Mã thông báo               |
+| user_id           | Người nhận                 |
+| title             | Tiêu đề                    |
+| content           | Nội dung                   |
+| notification_type | Loại thông báo             |
+| status            | Trạng thái đã đọc/chưa đọc |
+| created_at        | Thời gian tạo              |
+
+---
+
+## Driver Location
+
+Lưu vị trí của Driver phục vụ Driver Matching và Trip Tracking.
+
+| Attribute   | Description        |
+| ----------- | ------------------ |
+| location_id | Mã vị trí          |
+| driver_id   | Driver             |
+| latitude    | Vĩ độ              |
+| longitude   | Kinh độ            |
+| updated_at  | Thời gian cập nhật |
+
+---
+
+# 11.4. Entity Relationships
+
+Các mối quan hệ chính:
+
+| Entity A | Relationship | Entity B        | Cardinality |
+| -------- | ------------ | --------------- | ----------- |
+| Role     | assigns      | User            | 1:N         |
+| User     | represents   | Customer        | 1:0..1      |
+| User     | represents   | Driver          | 1:0..1      |
+| Driver   | owns/uses    | Vehicle         | 1:N         |
+| Customer | creates      | Booking         | 1:N         |
+| Booking  | generates    | Trip            | 1:0..1      |
+| Driver   | performs     | Trip            | 1:N         |
+| Trip     | has          | Payment         | 1:1         |
+| User     | receives     | Notification    | 1:N         |
+| Driver   | updates      | Driver Location | 1:N         |
+
+---
+
+# 11.5. Conceptual ERD
+
+```mermaid
+erDiagram
+
+    ROLE ||--o{ USER : assigns
+
+    USER ||--o| CUSTOMER : represents
+    USER ||--o| DRIVER : represents
+
+    DRIVER ||--o{ VEHICLE : uses
+
+    CUSTOMER ||--o{ BOOKING : creates
+
+    BOOKING ||--o| TRIP : generates
+
+    DRIVER ||--o{ TRIP : performs
+
+    TRIP ||--|| PAYMENT : has
+
+    USER ||--o{ NOTIFICATION : receives
+
+    DRIVER ||--o{ DRIVER_LOCATION : updates
+```
+
+---
+
+# 11.6. Logical ERD
+
+```mermaid
+erDiagram
+
+    ROLE {
+        int role_id PK
+        string role_name
+        string description
+    }
+
+    USER {
+        int user_id PK
+        int role_id FK
+        string username
+        string password
+        string full_name
+        string phone
+        string email
+        string status
+        datetime created_at
+    }
+
+    CUSTOMER {
+        int customer_id PK
+        int user_id FK
+        datetime created_at
+    }
+
+    DRIVER {
+        int driver_id PK
+        int user_id FK
+        string license_number
+        string driver_status
+        decimal rating
+        datetime created_at
+    }
+
+    VEHICLE {
+        int vehicle_id PK
+        int driver_id FK
+        string license_plate
+        string vehicle_type
+        string model
+        string status
+    }
+
+    BOOKING {
+        int booking_id PK
+        int customer_id FK
+        string pickup_location
+        string destination
+        string vehicle_type
+        string booking_status
+        datetime created_at
+    }
+
+    TRIP {
+        int trip_id PK
+        int booking_id FK
+        int driver_id FK
+        string trip_status
+        datetime assigned_at
+        datetime started_at
+        datetime completed_at
+        decimal actual_distance
+        decimal total_fare
+    }
+
+    PAYMENT {
+        int payment_id PK
+        int trip_id FK
+        decimal amount
+        string payment_method
+        string payment_status
+        string transaction_id
+        datetime paid_at
+    }
+
+    NOTIFICATION {
+        int notification_id PK
+        int user_id FK
+        string title
+        string content
+        string notification_type
+        string status
+        datetime created_at
+    }
+
+    DRIVER_LOCATION {
+        int location_id PK
+        int driver_id FK
+        decimal latitude
+        decimal longitude
+        datetime updated_at
+    }
+
+    ROLE ||--o{ USER : has
+
+    USER ||--o| CUSTOMER : has
+    USER ||--o| DRIVER : has
+
+    DRIVER ||--o{ VEHICLE : owns
+
+    CUSTOMER ||--o{ BOOKING : creates
+
+    BOOKING ||--o| TRIP : generates
+
+    DRIVER ||--o{ TRIP : performs
+
+    TRIP ||--|| PAYMENT : has
+
+    USER ||--o{ NOTIFICATION : receives
+
+    DRIVER ||--o{ DRIVER_LOCATION : updates
+```
+
+---
+
+# 11.7. Entity Relationship Summary
+
+```text
+ROLE
+  │
+  └── USER
+        │
+        ├── CUSTOMER
+        │      │
+        │      └── BOOKING
+        │             │
+        │             └── TRIP
+        │
+        ├── DRIVER
+        │      ├── VEHICLE
+        │      ├── DRIVER_LOCATION
+        │      └── TRIP
+        │
+        └── NOTIFICATION
+
+TRIP
+  │
+  └── PAYMENT
+```
+
+---
+
+## 11.8. Core Data Flow
+
+```mermaid
+flowchart LR
+
+    Customer --> Booking
+
+    Booking --> DriverMatching
+
+    DriverMatching --> Driver
+
+    Driver --> Trip
+
+    Booking --> Trip
+
+    Trip --> FareCalculation
+
+    FareCalculation --> Payment
+
+    Trip --> Notification
+```
+
+---
+
+## 11.9. Entity Traceability
+
+| System Requirement            | Main Entities                            |
+| ----------------------------- | ---------------------------------------- |
+| SR-01 User Management         | User, Role                               |
+| SR-02 Driver Management       | Driver, Vehicle                          |
+| SR-03 Booking Management      | Customer, Booking                        |
+| SR-04 Driver Matching         | Driver, Booking, Driver Location         |
+| SR-05 Trip Management         | Trip, Booking, Driver                    |
+| SR-06 Fare Calculation        | Trip                                     |
+| SR-07 Payment Management      | Payment, Trip                            |
+| SR-08 Notification Management | Notification, User                       |
+| SR-09 Operation Management    | Customer, Driver, Vehicle, Booking, Trip |
+
+```
+```
