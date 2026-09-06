@@ -96,27 +96,6 @@ Các Business Goals tập trung vào giá trị mà hệ thống mang lại cho 
 | **BG-10** | Xây dựng nền tảng linh hoạt cho tương lai | Cho phép bổ sung dịch vụ, phương thức thanh toán, nhà cung cấp thông báo và thay đổi thành phần kỹ thuật |
 
 ---
-
-## 3.3. Chi tiết Business Goals
-
-### BG-01 – Xây dựng nền tảng đặt xe trực tuyến
-
-**Mục tiêu:**
-
-Xây dựng nền tảng CAB System cho phép khách hàng sử dụng dịch vụ đặt xe trực tuyến thuận tiện, nhanh chóng và dễ dàng.
-
-**Yêu cầu liên quan:**
-
-- Khách hàng có thể đăng ký tài khoản.
-- Khách hàng có thể đăng nhập.
-- Khách hàng có thể cập nhật thông tin cá nhân.
-- Khách hàng có thể nhập điểm đón và điểm đến.
-- Khách hàng có thể lựa chọn loại xe.
-- Khách hàng có thể gửi yêu cầu đặt xe.
-- Hệ thống có khả năng phục vụ số lượng lớn khách hàng và tài xế.
-
----
-
 ### BG-02 – Tự động hóa tìm kiếm và phân công tài xế
 
 **Mục tiêu:**
