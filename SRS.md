@@ -2519,3 +2519,177 @@ flowchart LR
 
 ```
 ```
+# 13. Acceptance Criteria
+
+## 13.1. Overview
+
+Acceptance Criteria (AC) xác định các điều kiện mà hệ thống phải đáp ứng để một chức năng được xem là hoàn thành và được chấp nhận.
+
+---
+
+## 13.2. Account Management
+
+| AC ID | Related Use Case | Acceptance Criteria                                                         |
+| ----- | ---------------- | --------------------------------------------------------------------------- |
+| AC-01 | Register Account | Customer có thể tạo tài khoản với thông tin hợp lệ.                         |
+| AC-02 | Register Account | Hệ thống từ chối đăng ký khi thông tin bắt buộc bị thiếu hoặc không hợp lệ. |
+| AC-03 | Login            | Người dùng đăng nhập thành công với thông tin hợp lệ.                       |
+| AC-04 | Login            | Hệ thống thông báo lỗi khi thông tin đăng nhập không đúng.                  |
+| AC-05 | Manage Profile   | Người dùng có thể xem và cập nhật thông tin cá nhân.                        |
+
+---
+
+## 13.3. Driver Management
+
+| AC ID | Related Use Case     | Acceptance Criteria                                               |
+| ----- | -------------------- | ----------------------------------------------------------------- |
+| AC-06 | Update Driver Status | Driver có thể thay đổi trạng thái hoạt động.                      |
+| AC-07 | Update Driver Status | Chỉ Driver ở trạng thái Available mới được nhận chuyến.           |
+| AC-08 | Manage Vehicle       | Driver có thể xem và cập nhật thông tin phương tiện.              |
+| AC-09 | Accept Trip          | Driver không thể nhận thêm chuyến khi đang thực hiện chuyến khác. |
+
+---
+
+## 13.4. Booking Management
+
+| AC ID | Related Use Case    | Acceptance Criteria                                                        |
+| ----- | ------------------- | -------------------------------------------------------------------------- |
+| AC-10 | Create Booking      | Customer có thể tạo Booking khi nhập đầy đủ điểm đón, điểm đến và loại xe. |
+| AC-11 | Create Booking      | Hệ thống từ chối tạo Booking nếu thông tin không hợp lệ.                   |
+| AC-12 | Create Booking      | Mỗi Booking được tạo có mã định danh riêng.                                |
+| AC-13 | View Booking Status | Customer có thể xem trạng thái hiện tại của Booking.                       |
+
+---
+
+## 13.5. Driver Matching
+
+| AC ID | Related Use Case      | Acceptance Criteria                                         |
+| ----- | --------------------- | ----------------------------------------------------------- |
+| AC-14 | Find Available Driver | Hệ thống chỉ tìm các Driver đủ điều kiện và đang Available. |
+| AC-15 | Driver Matching       | Hệ thống gửi yêu cầu chuyến đi đến Driver phù hợp.          |
+| AC-16 | Accept Trip           | Driver chấp nhận chuyến sẽ được phân công cho Booking.      |
+| AC-17 | Reject Trip           | Khi Driver từ chối, hệ thống tiếp tục tìm Driver khác.      |
+| AC-18 | No Driver Available   | Customer được thông báo khi không tìm thấy Driver phù hợp.  |
+
+---
+
+## 13.6. Trip Management
+
+| AC ID | Related Use Case   | Acceptance Criteria                                              |
+| ----- | ------------------ | ---------------------------------------------------------------- |
+| AC-19 | Update Trip Status | Driver có thể cập nhật trạng thái chuyến đi theo đúng quy trình. |
+| AC-20 | Track Trip         | Customer có thể theo dõi trạng thái chuyến đi.                   |
+| AC-21 | Complete Trip      | Hệ thống lưu thời gian hoàn thành chuyến đi.                     |
+| AC-22 | View Trip History  | Thông tin chuyến đi được lưu sau khi hoàn thành.                 |
+
+---
+
+## 13.7. Fare Calculation
+
+| AC ID | Related Use Case | Acceptance Criteria                                  |
+| ----- | ---------------- | ---------------------------------------------------- |
+| AC-23 | Calculate Fare   | Hệ thống tính giá cước sau khi chuyến đi hoàn thành. |
+| AC-24 | View Fare        | Customer có thể xem tổng giá cước của chuyến đi.     |
+| AC-25 | Calculate Fare   | Thông tin giá cước được lưu cùng với Trip.           |
+
+---
+
+## 13.8. Payment
+
+| AC ID | Related Use Case   | Acceptance Criteria                                          |
+| ----- | ------------------ | ------------------------------------------------------------ |
+| AC-26 | Make Payment       | Customer có thể lựa chọn phương thức thanh toán được hỗ trợ. |
+| AC-27 | Cash Payment       | Hệ thống ghi nhận thanh toán bằng tiền mặt.                  |
+| AC-28 | Electronic Payment | Hệ thống gửi yêu cầu thanh toán đến Payment Provider.        |
+| AC-29 | Payment Success    | Trạng thái Payment được cập nhật khi giao dịch thành công.   |
+| AC-30 | Payment Failed     | Customer được thông báo khi thanh toán thất bại.             |
+
+---
+
+## 13.9. Notification
+
+| AC ID | Related Use Case  | Acceptance Criteria                                          |
+| ----- | ----------------- | ------------------------------------------------------------ |
+| AC-31 | View Notification | Người dùng có thể xem các thông báo của mình.                |
+| AC-32 | Driver Matching   | Customer được thông báo khi Driver được phân công.           |
+| AC-33 | Trip Management   | Customer được thông báo về các thay đổi quan trọng của Trip. |
+| AC-34 | Payment           | Customer được thông báo về kết quả thanh toán.               |
+
+---
+
+## 13.10. Operation Management
+
+| AC ID | Related Use Case     | Acceptance Criteria                                |
+| ----- | -------------------- | -------------------------------------------------- |
+| AC-35 | Manage Customers     | Operator có thể xem và quản lý thông tin Customer. |
+| AC-36 | Manage Drivers       | Operator có thể xem và quản lý thông tin Driver.   |
+| AC-37 | Manage Vehicles      | Operator có thể xem thông tin Vehicle.             |
+| AC-38 | Monitor Active Trips | Operator có thể theo dõi các Trip đang diễn ra.    |
+| AC-39 | View Trip History    | Operator có thể tra cứu lịch sử Trip.              |
+
+---
+
+## 13.11. Authorization
+
+| AC ID | Related Use Case     | Acceptance Criteria                                               |
+| ----- | -------------------- | ----------------------------------------------------------------- |
+| AC-40 | Access System        | Người dùng chỉ truy cập được các chức năng phù hợp với vai trò.   |
+| AC-41 | Manage User Accounts | Administrator có thể quản lý tài khoản người dùng.                |
+| AC-42 | Manage Roles         | Administrator có thể quản lý vai trò hệ thống.                    |
+| AC-43 | Unauthorized Access  | Hệ thống từ chối truy cập đối với chức năng không được cấp quyền. |
+
+---
+
+## 13.12. Acceptance Criteria Summary
+
+| Module               | AC Range      |
+| -------------------- | ------------- |
+| Account Management   | AC-01 → AC-05 |
+| Driver Management    | AC-06 → AC-09 |
+| Booking Management   | AC-10 → AC-13 |
+| Driver Matching      | AC-14 → AC-18 |
+| Trip Management      | AC-19 → AC-22 |
+| Fare Calculation     | AC-23 → AC-25 |
+| Payment              | AC-26 → AC-30 |
+| Notification         | AC-31 → AC-34 |
+| Operation Management | AC-35 → AC-39 |
+| Authorization        | AC-40 → AC-43 |
+
+````
+
+### Cấu trúc cuối cùng của tài liệu
+
+```text
+1. Introduction
+2. Stakeholder Analysis
+3. Customer Requirements
+4. Business Goals
+5. Project Scope
+6. Business Requirements
+7. Business Process Modeling
+8. System Requirements & Functional Decomposition
+9. Business Rules & Exceptions
+10. Non-Functional Requirements
+11. Entity Identification & ERD
+12. Use Case Modeling
+13. Acceptance Criteria
+````
+
+**AC nên đặt sau Use Case** là hợp lý nhất vì mỗi tiêu chí chấp nhận có thể truy vết ngược lại:
+
+```text
+Business Goal
+    ↓
+Business Requirement
+    ↓
+Business Process
+    ↓
+System Requirement
+    ↓
+Use Case
+    ↓
+Acceptance Criteria
+```
+
+Cấu trúc này khá đầy đủ cho một tài liệu phân tích yêu cầu/SRS của đồ án.
+
