@@ -101,3 +101,251 @@ quadrantChart
     "Nhà cung cấp thanh toán": [0.25, 0.75]
     "Nhà cung cấp bản đồ / GPS": [0.25, 0.30]
     "Nhà cung cấp thông báo": [0.20, 0.25]
+# Business Goals
+
+## 1. Mục đích
+
+Business Goals được xây dựng dựa trên yêu cầu của khách hàng nhằm xác định các mục tiêu nghiệp vụ chính mà hệ thống CAB System cần đạt được.
+
+Các Business Goals tập trung vào giá trị mà hệ thống mang lại cho doanh nghiệp, khách hàng, tài xế và bộ phận vận hành.
+
+---
+
+## 2. Danh sách Business Goals
+
+| Mã | Business Goal | Mô tả |
+|---|---|---|
+| BG-01 | Xây dựng nền tảng đặt xe trực tuyến | Xây dựng nền tảng CAB System cho phép khách hàng đặt xe trực tuyến một cách thuận tiện, nhanh chóng và dễ sử dụng. |
+| BG-02 | Tự động hóa quy trình tìm kiếm và phân công tài xế | Tự động tìm kiếm và phân công tài xế phù hợp dựa trên vị trí, trạng thái sẵn sàng và các tiêu chí vận hành. |
+| BG-03 | Nâng cao khả năng theo dõi và quản lý chuyến đi | Cho phép khách hàng, tài xế và nhân viên vận hành theo dõi trạng thái chuyến đi một cách rõ ràng và kịp thời. |
+| BG-04 | Quản lý tính cước và thanh toán | Cung cấp cơ chế tính cước và thanh toán tập trung, hỗ trợ tiền mặt và thanh toán điện tử một cách an toàn. |
+| BG-05 | Cải thiện hệ thống thông báo | Cung cấp thông báo kịp thời cho khách hàng và tài xế về các sự kiện quan trọng trong quá trình đặt và thực hiện chuyến. |
+| BG-06 | Nâng cao hiệu quả vận hành | Cung cấp công cụ quản trị giúp nhân viên vận hành quản lý khách hàng, tài xế, phương tiện và chuyến đi. |
+| BG-07 | Cung cấp báo cáo và dữ liệu quản lý | Cung cấp dữ liệu và báo cáo về chuyến đi, doanh thu, tỷ lệ hoàn thành, tỷ lệ hủy và hiệu quả tài xế để hỗ trợ ra quyết định. |
+| BG-08 | Đảm bảo tính ổn định và khả năng mở rộng | Đảm bảo hệ thống hoạt động ổn định khi nhu cầu tăng cao và các thành phần có thể mở rộng độc lập. |
+| BG-09 | Đảm bảo an toàn và bảo mật dữ liệu | Bảo vệ thông tin cá nhân, thông tin phương tiện, dữ liệu vị trí và dữ liệu giao dịch, đồng thời kiểm soát quyền truy cập. |
+| BG-10 | Xây dựng nền tảng linh hoạt cho tương lai | Cho phép hệ thống dễ dàng bổ sung dịch vụ, phương thức thanh toán, nhà cung cấp thông báo và thay đổi thành phần kỹ thuật. |
+
+---
+
+# 3. Chi tiết Business Goals
+
+## BG-01 – Xây dựng nền tảng đặt xe trực tuyến
+
+### Mục tiêu
+
+Xây dựng một nền tảng CAB System cho phép khách hàng sử dụng dịch vụ đặt xe trực tuyến một cách thuận tiện, nhanh chóng và dễ dàng.
+
+### Yêu cầu liên quan
+
+- Khách hàng có thể đăng ký tài khoản.
+- Khách hàng có thể đăng nhập.
+- Khách hàng có thể cập nhật thông tin cá nhân.
+- Khách hàng có thể nhập điểm đón và điểm đến.
+- Khách hàng có thể lựa chọn loại xe.
+- Khách hàng có thể gửi yêu cầu đặt xe.
+- Hệ thống có khả năng phục vụ số lượng lớn khách hàng và tài xế.
+
+---
+
+## BG-02 – Tự động hóa quy trình tìm kiếm và phân công tài xế
+
+### Mục tiêu
+
+Giảm sự phụ thuộc vào việc phân công tài xế thủ công bằng cách tự động tìm kiếm và lựa chọn tài xế phù hợp cho khách hàng.
+
+### Yêu cầu liên quan
+
+- Xác định tài xế phù hợp dựa trên vị trí.
+- Kiểm tra trạng thái sẵn sàng của tài xế.
+- Ưu tiên tài xế phù hợp và gần khách hàng.
+- Tài xế có thể chấp nhận hoặc từ chối chuyến.
+- Tự động tìm tài xế khác nếu tài xế được đề xuất không phản hồi hoặc từ chối.
+- Không yêu cầu khách hàng tạo lại yêu cầu khi tài xế đầu tiên không nhận chuyến.
+- Thông báo cho khách hàng khi không tìm được tài xế.
+
+---
+
+## BG-03 – Nâng cao khả năng theo dõi và quản lý chuyến đi
+
+### Mục tiêu
+
+Cung cấp khả năng theo dõi trạng thái chuyến đi cho khách hàng, tài xế và nhân viên vận hành nhằm tăng tính minh bạch và hiệu quả quản lý.
+
+### Yêu cầu liên quan
+
+- Khách hàng biết hệ thống đang tìm tài xế.
+- Khách hàng biết tài xế đã nhận chuyến.
+- Khách hàng biết thời gian dự kiến tài xế đến.
+- Tài xế cập nhật trạng thái chuyến.
+- Tài xế cập nhật trạng thái đã đến điểm đón.
+- Tài xế cập nhật trạng thái đã đón khách.
+- Tài xế cập nhật trạng thái đang di chuyển.
+- Tài xế cập nhật trạng thái hoàn thành chuyến.
+- Nhân viên vận hành có thể theo dõi các chuyến đang diễn ra.
+- Hệ thống lưu thông tin vị trí của tài xế.
+
+---
+
+## BG-04 – Quản lý tính cước và thanh toán
+
+### Mục tiêu
+
+Xây dựng cơ chế tính cước và thanh toán tập trung, hỗ trợ nhiều phương thức thanh toán và đảm bảo an toàn dữ liệu thanh toán.
+
+### Yêu cầu liên quan
+
+- Tính số tiền khách hàng phải trả sau khi hoàn thành chuyến.
+- Hỗ trợ thanh toán bằng tiền mặt.
+- Hỗ trợ thanh toán điện tử.
+- Tích hợp với nhà cung cấp thanh toán bên ngoài.
+- Không lưu trực tiếp thông tin nhạy cảm của thẻ hoặc tài khoản thanh toán.
+- Thông báo khi giao dịch thanh toán thành công.
+- Thông báo khi giao dịch thanh toán thất bại.
+- Cho phép xử lý lại thanh toán theo chính sách của doanh nghiệp.
+
+---
+
+## BG-05 – Cải thiện hệ thống thông báo
+
+### Mục tiêu
+
+Đảm bảo khách hàng và tài xế nhận được thông tin kịp thời về các sự kiện quan trọng trong quá trình đặt và thực hiện chuyến.
+
+### Yêu cầu liên quan
+
+- Thông báo khi yêu cầu đặt xe được tiếp nhận.
+- Thông báo khi tài xế nhận chuyến.
+- Thông báo khi tài xế đến điểm đón.
+- Thông báo khi chuyến hoàn thành.
+- Thông báo khi thanh toán có kết quả.
+- Tài xế nhận thông báo về chuyến mới.
+- Tài xế nhận thông báo khi có thay đổi liên quan đến chuyến.
+- Có khả năng mở rộng thêm các kênh thông báo trong tương lai.
+
+---
+
+## BG-06 – Nâng cao hiệu quả vận hành
+
+### Mục tiêu
+
+Cung cấp giao diện và công cụ quản trị giúp nhân viên vận hành quản lý tập trung các hoạt động của hệ thống CAB.
+
+### Yêu cầu liên quan
+
+- Quản lý khách hàng.
+- Quản lý tài xế.
+- Quản lý phương tiện.
+- Theo dõi các chuyến đang diễn ra.
+- Kiểm tra trạng thái tài xế.
+- Xử lý các trường hợp chuyến bị lỗi.
+- Tra cứu lịch sử giao dịch.
+- Phân quyền các chức năng quản trị.
+
+---
+
+## BG-07 – Cung cấp báo cáo và dữ liệu quản lý
+
+### Mục tiêu
+
+Cung cấp dữ liệu và báo cáo giúp ban lãnh đạo đánh giá hiệu quả kinh doanh và hoạt động vận hành của hệ thống.
+
+### Yêu cầu liên quan
+
+- Báo cáo số lượng chuyến.
+- Báo cáo doanh thu.
+- Báo cáo tỷ lệ chuyến hoàn thành.
+- Báo cáo tỷ lệ chuyến hủy.
+- Báo cáo hiệu quả hoạt động của tài xế.
+- Cung cấp dữ liệu phục vụ việc ra quyết định của ban lãnh đạo.
+
+---
+
+## BG-08 – Đảm bảo tính ổn định và khả năng mở rộng
+
+### Mục tiêu
+
+Đảm bảo CAB System có thể hoạt động ổn định trong thời điểm nhu cầu tăng cao và có khả năng mở rộng khi số lượng người dùng và giao dịch tăng.
+
+### Yêu cầu liên quan
+
+- Hệ thống hoạt động ổn định khi nhu cầu tăng cao.
+- Lỗi ở chức năng thanh toán không làm toàn bộ hệ thống ngừng hoạt động.
+- Lỗi ở chức năng thông báo không làm toàn bộ hệ thống đặt xe ngừng hoạt động.
+- Các thành phần có khả năng mở rộng độc lập.
+- Chức năng mới có thể được triển khai từng phần.
+- Hạn chế ảnh hưởng đến các chức năng đang hoạt động khi triển khai chức năng mới.
+
+---
+
+## BG-09 – Đảm bảo an toàn và bảo mật dữ liệu
+
+### Mục tiêu
+
+Đảm bảo thông tin người dùng, dữ liệu vị trí, thông tin phương tiện và dữ liệu giao dịch được bảo vệ và chỉ được truy cập bởi những đối tượng có quyền.
+
+### Yêu cầu liên quan
+
+- Khách hàng phải được xác thực trước khi sử dụng chức năng yêu cầu tài khoản.
+- Tài xế phải được xác thực trước khi sử dụng chức năng yêu cầu tài khoản.
+- Các chức năng quản trị phải được kiểm soát quyền truy cập.
+- Bảo vệ thông tin cá nhân.
+- Bảo vệ thông tin phương tiện.
+- Bảo vệ dữ liệu vị trí.
+- Bảo vệ dữ liệu giao dịch.
+- Lưu vết các thao tác quan trọng.
+- Hỗ trợ kiểm tra và điều tra khi xảy ra sự cố.
+
+---
+
+## BG-10 – Xây dựng nền tảng linh hoạt cho tương lai
+
+### Mục tiêu
+
+Xây dựng hệ thống CAB có kiến trúc linh hoạt để doanh nghiệp có thể mở rộng dịch vụ và thay đổi các thành phần kỹ thuật mà không cần xây dựng lại toàn bộ hệ thống.
+
+### Yêu cầu liên quan
+
+- Có thể bổ sung loại dịch vụ mới.
+- Có thể thêm phương thức thanh toán.
+- Có thể thêm nhà cung cấp thông báo.
+- Có thể thay đổi một số thành phần kỹ thuật.
+- Hạn chế việc phải xây dựng lại toàn bộ ứng dụng.
+- Hỗ trợ phát triển hệ thống lâu dài.
+
+---
+
+# 4. Business Goal Relationship
+
+```mermaid
+flowchart TB
+
+    CAB["CAB System"]
+
+    BG01["BG-01<br/>Nền tảng đặt xe trực tuyến"]
+    BG02["BG-02<br/>Tự động tìm và phân công tài xế"]
+    BG03["BG-03<br/>Theo dõi và quản lý chuyến"]
+    BG04["BG-04<br/>Tính cước và thanh toán"]
+    BG05["BG-05<br/>Hệ thống thông báo"]
+    BG06["BG-06<br/>Nâng cao hiệu quả vận hành"]
+    BG07["BG-07<br/>Báo cáo và dữ liệu quản lý"]
+    BG08["BG-08<br/>Ổn định và khả năng mở rộng"]
+    BG09["BG-09<br/>An toàn và bảo mật dữ liệu"]
+    BG10["BG-10<br/>Linh hoạt phát triển tương lai"]
+
+    CAB --> BG01
+    CAB --> BG02
+    CAB --> BG03
+    CAB --> BG04
+    CAB --> BG05
+    CAB --> BG06
+    CAB --> BG07
+    CAB --> BG08
+    CAB --> BG09
+    CAB --> BG10
+
+    classDef system fill:#2563eb,color:#fff,stroke:#1e3a8a,stroke-width:3px;
+    classDef goal fill:#dcfce7,color:#166534,stroke:#22c55e,stroke-width:2px;
+
+    class CAB system;
+    class BG01,BG02,BG03,BG04,BG05,BG06,BG07,BG08,BG09,BG10 goal;
