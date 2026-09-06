@@ -44,9 +44,6 @@ Dựa trên yêu cầu của khách hàng, các stakeholder của CAB System đ�
 
 
 ### Sơ đồ quan hệ đơn giản hơn
-
-Nếu thầy/cô yêu cầu **chỉ vẽ stakeholder → hệ thống**, dùng bản này sẽ dễ nhìn hơn:
-
 ```markdown
 ```mermaid
 flowchart LR
