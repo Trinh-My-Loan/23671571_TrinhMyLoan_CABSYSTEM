@@ -2140,3 +2140,382 @@ flowchart LR
 
 ```
 ```
+# 12. Use Case Modeling
+
+## 12.1. Actor Identification
+
+| Actor            | Role                                     |
+| ---------------- | ---------------------------------------- |
+| Customer         | Đặt xe, theo dõi chuyến đi và thanh toán |
+| Driver           | Nhận và thực hiện chuyến đi              |
+| Operator         | Quản lý và giám sát hoạt động            |
+| Administrator    | Quản lý tài khoản và quyền hệ thống      |
+| Payment Provider | Xử lý thanh toán điện tử                 |
+
+---
+
+## 12.2. Use Case Diagram
+
+```mermaid
+flowchart LR
+
+    Customer[👤 Customer]
+    Driver[👤 Driver]
+    Operator[👤 Operator]
+    Admin[👤 Administrator]
+    PaymentProvider[External System: Payment Provider]
+
+    subgraph CAB["CAB System"]
+
+        UC01([Register Account])
+        UC02([Login])
+        UC03([Manage Profile])
+
+        UC04([Create Booking])
+        UC05([View Booking Status])
+        UC06([Track Trip])
+
+        UC07([Update Driver Status])
+        UC08([Manage Vehicle])
+
+        UC09([Accept Trip])
+        UC10([Reject Trip])
+        UC11([Update Trip Status])
+
+        UC12([View Fare])
+        UC13([Make Payment])
+
+        UC14([View Notification])
+
+        UC15([Manage Customers])
+        UC16([Manage Drivers])
+        UC17([Manage Vehicles])
+        UC18([Monitor Active Trips])
+        UC19([View Trip History])
+
+        UC20([Manage User Accounts])
+        UC21([Manage Roles])
+
+    end
+
+    Customer --> UC01
+    Customer --> UC02
+    Customer --> UC03
+    Customer --> UC04
+    Customer --> UC05
+    Customer --> UC06
+    Customer --> UC12
+    Customer --> UC13
+    Customer --> UC14
+
+    Driver --> UC02
+    Driver --> UC03
+    Driver --> UC07
+    Driver --> UC08
+    Driver --> UC09
+    Driver --> UC10
+    Driver --> UC11
+    Driver --> UC14
+
+    Operator --> UC02
+    Operator --> UC15
+    Operator --> UC16
+    Operator --> UC17
+    Operator --> UC18
+    Operator --> UC19
+
+    Admin --> UC02
+    Admin --> UC20
+    Admin --> UC21
+
+    PaymentProvider --> UC13
+```
+
+---
+
+# 12.3. Customer Use Case Diagram
+
+```mermaid
+flowchart LR
+
+    Customer[👤 Customer]
+
+    subgraph CAB["CAB System"]
+
+        UC01([Register Account])
+        UC02([Login])
+        UC03([Manage Profile])
+
+        UC04([Create Booking])
+        UC05([View Booking Status])
+        UC06([Track Trip])
+
+        UC07([View Fare])
+        UC08([Make Payment])
+
+        UC09([View Notifications])
+
+    end
+
+    Customer --> UC01
+    Customer --> UC02
+    Customer --> UC03
+
+    Customer --> UC04
+    Customer --> UC05
+    Customer --> UC06
+
+    Customer --> UC07
+    Customer --> UC08
+
+    Customer --> UC09
+```
+
+---
+
+# 12.4. Driver Use Case Diagram
+
+```mermaid
+flowchart LR
+
+    Driver[👤 Driver]
+
+    subgraph CAB["CAB System"]
+
+        UC01([Login])
+        UC02([Manage Profile])
+
+        UC03([Update Driver Status])
+        UC04([Manage Vehicle])
+
+        UC05([Receive Trip Request])
+        UC06([Accept Trip])
+        UC07([Reject Trip])
+
+        UC08([Update Trip Status])
+
+        UC09([View Notifications])
+
+    end
+
+    Driver --> UC01
+    Driver --> UC02
+
+    Driver --> UC03
+    Driver --> UC04
+
+    Driver --> UC05
+    Driver --> UC06
+    Driver --> UC07
+
+    Driver --> UC08
+
+    Driver --> UC09
+```
+
+---
+
+# 12.5. Operator Use Case Diagram
+
+```mermaid
+flowchart LR
+
+    Operator[👤 Operator]
+
+    subgraph CAB["CAB System"]
+
+        UC01([Login])
+
+        UC02([Manage Customers])
+        UC03([Manage Drivers])
+        UC04([Manage Vehicles])
+
+        UC05([Monitor Active Trips])
+        UC06([View Trip History])
+
+        UC07([Handle Operational Issues])
+
+    end
+
+    Operator --> UC01
+
+    Operator --> UC02
+    Operator --> UC03
+    Operator --> UC04
+
+    Operator --> UC05
+    Operator --> UC06
+
+    Operator --> UC07
+```
+
+---
+
+# 12.6. Administrator Use Case Diagram
+
+```mermaid
+flowchart LR
+
+    Admin[👤 Administrator]
+
+    subgraph CAB["CAB System"]
+
+        UC01([Login])
+
+        UC02([Manage User Accounts])
+        UC03([Manage Roles])
+        UC04([Manage Access Permissions])
+
+    end
+
+    Admin --> UC01
+    Admin --> UC02
+    Admin --> UC03
+    Admin --> UC04
+```
+
+---
+
+# 12.7. Core Booking Process Use Case Diagram
+
+Đây là Use Case quan trọng nhất của hệ thống.
+
+```mermaid
+flowchart LR
+
+    Customer[👤 Customer]
+    Driver[👤 Driver]
+    PaymentProvider[Payment Provider]
+
+    subgraph CAB["CAB System"]
+
+        UC01([Create Booking])
+
+        UC02([Validate Booking Information])
+
+        UC03([Find Available Driver])
+
+        UC04([Send Trip Request])
+
+        UC05([Accept Trip])
+
+        UC06([Reject Trip])
+
+        UC07([Assign Driver])
+
+        UC08([Update Trip Status])
+
+        UC09([Calculate Fare])
+
+        UC10([Make Payment])
+
+        UC11([Send Notification])
+
+    end
+
+    Customer --> UC01
+
+    UC01 -. "<<include>>" .-> UC02
+
+    UC01 -. "<<include>>" .-> UC03
+
+    UC03 -. "<<include>>" .-> UC04
+
+    Driver --> UC05
+    Driver --> UC06
+
+    UC05 -.-> UC07
+
+    UC06 -. "<<extend>>" .-> UC03
+
+    Driver --> UC08
+
+    UC08 --> UC09
+
+    Customer --> UC10
+
+    PaymentProvider --> UC10
+
+    UC07 -. "<<include>>" .-> UC11
+    UC08 -. "<<include>>" .-> UC11
+    UC10 -. "<<include>>" .-> UC11
+```
+
+---
+
+# 12.8. Use Case Relationships
+
+## Include Relationships
+
+| Base Use Case         | Relationship  | Included Use Case            |
+| --------------------- | ------------- | ---------------------------- |
+| Create Booking        | `<<include>>` | Validate Booking Information |
+| Create Booking        | `<<include>>` | Find Available Driver        |
+| Find Available Driver | `<<include>>` | Send Trip Request            |
+| Accept Trip           | `<<include>>` | Assign Driver                |
+| Make Payment          | `<<include>>` | Update Payment Status        |
+| Assign Driver         | `<<include>>` | Send Notification            |
+
+---
+
+## Extend Relationships
+
+| Base Use Case         | Relationship | Extended Use Case     |
+| --------------------- | ------------ | --------------------- |
+| Find Available Driver | `<<extend>>` | Find Another Driver   |
+| Find Available Driver | `<<extend>>` | No Driver Available   |
+| Make Payment          | `<<extend>>` | Retry Payment         |
+| Login                 | `<<extend>>` | Authentication Failed |
+
+---
+
+# 12.9. Use Case Traceability
+
+| Use Case              | Related SR          |
+| --------------------- | ------------------- |
+| Register Account      | SR-01.01            |
+| Login                 | SR-01.03            |
+| Manage Profile        | SR-01.05, SR-01.06  |
+| Update Driver Status  | SR-02.04            |
+| Manage Vehicle        | SR-02.03            |
+| Create Booking        | SR-03.01 → SR-03.06 |
+| View Booking Status   | SR-03.07, SR-03.08  |
+| Find Available Driver | SR-04.01 → SR-04.05 |
+| Accept / Reject Trip  | SR-04.06 → SR-04.09 |
+| Update Trip Status    | SR-05.03, SR-05.04  |
+| Track Trip            | SR-05.05            |
+| View Fare             | SR-06               |
+| Make Payment          | SR-07               |
+| View Notifications    | SR-08               |
+| Manage Operations     | SR-09               |
+
+---
+
+# 12.10. Use Case Summary
+
+| ID    | Use Case             | Primary Actor    |
+| ----- | -------------------- | ---------------- |
+| UC-01 | Register Account     | Customer         |
+| UC-02 | Login                | All Users        |
+| UC-03 | Manage Profile       | Customer, Driver |
+| UC-04 | Create Booking       | Customer         |
+| UC-05 | View Booking Status  | Customer         |
+| UC-06 | Track Trip           | Customer         |
+| UC-07 | Update Driver Status | Driver           |
+| UC-08 | Manage Vehicle       | Driver           |
+| UC-09 | Accept Trip          | Driver           |
+| UC-10 | Reject Trip          | Driver           |
+| UC-11 | Update Trip Status   | Driver           |
+| UC-12 | View Fare            | Customer         |
+| UC-13 | Make Payment         | Customer         |
+| UC-14 | View Notifications   | Customer, Driver |
+| UC-15 | Manage Customers     | Operator         |
+| UC-16 | Manage Drivers       | Operator         |
+| UC-17 | Manage Vehicles      | Operator         |
+| UC-18 | Monitor Active Trips | Operator         |
+| UC-19 | View Trip History    | Operator         |
+| UC-20 | Manage User Accounts | Administrator    |
+| UC-21 | Manage Roles         | Administrator    |
+
+```
+```
