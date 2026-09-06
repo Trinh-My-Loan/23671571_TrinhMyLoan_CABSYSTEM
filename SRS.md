@@ -2655,41 +2655,4 @@ Acceptance Criteria (AC) xác định các điều kiện mà hệ thống phả
 | Operation Management | AC-35 → AC-39 |
 | Authorization        | AC-40 → AC-43 |
 
-````
-
-### Cấu trúc cuối cùng của tài liệu
-
-```text
-1. Introduction
-2. Stakeholder Analysis
-3. Customer Requirements
-4. Business Goals
-5. Project Scope
-6. Business Requirements
-7. Business Process Modeling
-8. System Requirements & Functional Decomposition
-9. Business Rules & Exceptions
-10. Non-Functional Requirements
-11. Entity Identification & ERD
-12. Use Case Modeling
-13. Acceptance Criteria
-````
-
-**AC nên đặt sau Use Case** là hợp lý nhất vì mỗi tiêu chí chấp nhận có thể truy vết ngược lại:
-
-```text
-Business Goal
-    ↓
-Business Requirement
-    ↓
-Business Process
-    ↓
-System Requirement
-    ↓
-Use Case
-    ↓
-Acceptance Criteria
-```
-
-Cấu trúc này khá đầy đủ cho một tài liệu phân tích yêu cầu/SRS của đồ án.
 
