@@ -1,1 +1,49 @@
-
+openapi: 3.0.3
+info:
+  title: Authentication API
+  version: 1.0.0
+  description: Quản lý đăng nhập, đăng ký và xác thực Token.
+paths:
+  /auth/login:
+    post:
+      summary: Đăng nhập vào hệ thống
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  type: string
+                  example: "+84901234567"
+                password:
+                  type: string
+                  example: "Secret123!"
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                    example: "Bearer"
+  /auth/logout:
+    post:
+      summary: Đăng xuất
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Đăng xuất thành công
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
