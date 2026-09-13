@@ -1,0 +1,43 @@
+openapi: 3.0.3
+info:
+  title: Driver Status API Specification
+  version: 1.0.0
+  description: API cập nhật trạng thái hoạt động và vị trí GPS tài xế.
+paths:
+  /drivers/status:
+    patch:
+      summary: Bật/Tắt trạng thái sẵn sàng nhận chuyến
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [isOnline]
+              properties:
+                isOnline:
+                  type: boolean
+      responses:
+        '200':
+          description: Cập nhật trạng thái thành công
+
+  /drivers/location:
+    post:
+      summary: Cập nhật vị trí GPS thời gian thực của tài xế
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [latitude, longitude]
+              properties:
+                latitude:
+                  type: number
+                  format: double
+                longitude:
+                  type: number
+                  format: double
+      responses:
+        '200':
+          description: Cập nhật vị trí thành công
