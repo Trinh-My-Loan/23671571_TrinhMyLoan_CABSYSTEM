@@ -1,1 +1,15 @@
-
+openapi: 3.0.0
+info:
+  title: CAB System API Document
+  description: Tài liệu mô tả API hệ thống CAB
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Local Server
+paths:
+  /users:
+    get:
+      summary: Lấy danh sách người dùng
+      responses:
+        '200':
+          description: Thành công
