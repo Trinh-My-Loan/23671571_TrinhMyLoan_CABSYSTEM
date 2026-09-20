@@ -2836,73 +2836,79 @@ flowchart TD
     SR --> ERD[Entities and ERD]
 ```
 
-# 15. Test Cases
+# CHƯƠNG 5: DANH MỤC TEST SCENARIOS VÀ TEST CASES CHUẨN KIỂM THỬ (CAB SYSTEM)
 
-## 15.1. Danh sách Test Case
+## 5.1. Danh mục Test Scenarios theo Module Nghiệp vụ (MVP)
 
-| TC ID | Chức năng | Loại kiểm thử | Dữ liệu / Điều kiện kiểm thử | Bước thực hiện | Kết quả mong đợi |
-|---|---|---|---|---|---|
-| **TC01** | Đăng ký tài khoản | Positive | Thông tin tài khoản hợp lệ và đầy đủ | Nhập đầy đủ thông tin → chọn **Đăng ký** | Tài khoản được tạo thành công |
-| **TC02** | Đăng ký tài khoản | Negative | Thông tin tài khoản không hợp lệ | Nhập thông tin không hợp lệ → chọn **Đăng ký** | Hệ thống từ chối đăng ký và hiển thị thông báo lỗi |
-| **TC03** | Đăng ký tài khoản | Empty | Bỏ trống một trường thông tin bắt buộc | Để trống trường bắt buộc → chọn **Đăng ký** | Hệ thống không cho đăng ký và yêu cầu nhập lại |
-| **TC04** | Đăng ký tài khoản | Invalid Format | Nhập thông tin không đúng định dạng | Nhập dữ liệu sai định dạng → chọn **Đăng ký** | Hệ thống thông báo dữ liệu không hợp lệ |
-| **TC05** | Đăng nhập | Positive | Username và Password hợp lệ | Nhập thông tin đúng → chọn **Đăng nhập** | Đăng nhập thành công và hệ thống xác định đúng vai trò người dùng |
-| **TC06** | Đăng nhập | Negative | Username hoặc Password không đúng | Nhập thông tin sai → chọn **Đăng nhập** | Hệ thống thông báo thông tin đăng nhập không đúng |
-| **TC07** | Đăng nhập | Empty | Username hoặc Password để trống | Không nhập Username/Password → chọn **Đăng nhập** | Hệ thống không cho đăng nhập và yêu cầu nhập thông tin |
-| **TC08** | Tạo Booking | Positive | Điểm đón, điểm đến và loại xe hợp lệ | Nhập đầy đủ thông tin → chọn **Tạo Booking** | Booking được tạo thành công và có mã định danh riêng |
-| **TC09** | Tạo Booking | Empty | Bỏ trống điểm đón | Nhập điểm đến và loại xe, bỏ trống điểm đón → tạo Booking | Hệ thống từ chối tạo Booking |
-| **TC10** | Tạo Booking | Empty | Bỏ trống điểm đến | Nhập điểm đón và loại xe, bỏ trống điểm đến → tạo Booking | Hệ thống từ chối tạo Booking |
-| **TC11** | Tạo Booking | Negative | Thông tin Booking không hợp lệ | Nhập thông tin không hợp lệ → chọn **Tạo Booking** | Hệ thống thông báo lỗi và yêu cầu nhập lại |
-| **TC12** | Tạo Booking | Invalid Format | Điểm đón hoặc điểm đến nhập sai định dạng | Nhập dữ liệu sai định dạng → tạo Booking | Hệ thống từ chối dữ liệu không hợp lệ |
-| **TC13** | Tìm Driver | Positive | Có Driver ở trạng thái `AVAILABLE` và phù hợp | Tạo Booking → hệ thống tìm Driver | Hệ thống tìm và gửi yêu cầu chuyến đi đến Driver phù hợp |
-| **TC14** | Nhận chuyến | Boundary | Driver chuyển từ `AVAILABLE` sang `BUSY` | Driver đang Available → nhận một chuyến → trạng thái chuyển sang Busy | Driver không được nhận thêm chuyến khi đang thực hiện chuyến khác |
-| **TC15** | Nhận chuyến | Negative | Driver đang ở trạng thái `BUSY` | Gửi yêu cầu chuyến mới cho Driver đang Busy | Hệ thống không cho Driver nhận chuyến mới |
-| **TC16** | Từ chối chuyến | Negative | Driver từ chối yêu cầu chuyến | Driver nhận yêu cầu → chọn **Từ chối** | Hệ thống tiếp tục tìm Driver khác; Customer không cần tạo Booking mới |
-| **TC17** | Cập nhật Trip | Boundary | Các trạng thái `Assigned → Arriving → Arrived → PickedUp → InProgress → Completed` | Driver cập nhật trạng thái theo từng bước | Hệ thống cho phép cập nhật trạng thái đúng quy trình |
-| **TC18** | Cập nhật Trip | Negative | Cập nhật trạng thái không đúng quy trình | Thực hiện chuyển trạng thái không hợp lệ, ví dụ `Assigned → Completed` | Hệ thống từ chối cập nhật trạng thái |
-| **TC19** | Thanh toán | Positive | Trip đã hoàn thành, chọn thanh toán tiền mặt | Hoàn thành Trip → chọn **Cash** → xác nhận thanh toán | Hệ thống ghi nhận thanh toán và cập nhật trạng thái Payment |
-| **TC20** | Thanh toán | Negative / Boundary | Thanh toán điện tử thất bại hoặc Payment Provider không khả dụng | Chọn **Electronic Payment** → thực hiện thanh toán | Hệ thống thông báo thanh toán thất bại hoặc chuyển trạng thái Pending và cho phép thanh toán lại |
+| Mã Module | Module Nghiệp vụ | Test Scenario ID | Tên Test Scenario (Tình huống kiểm thử) |
+| :--- | :--- | :--- | :--- |
+| **M-01** | Account & Auth | `TS_AUTH_01` | Kiểm tra chức năng Đăng ký tài khoản (Customer / Driver) |
+| | | `TS_AUTH_02` | Kiểm tra chức năng Đăng nhập hệ thống (Xác thực & Phân quyền) |
+| | | `TS_AUTH_03` | Kiểm tra chức năng Quản lý thông tin cá nhân (Profile) |
+| **M-02** | Driver Management | `TS_DRV_01` | Kiểm tra chuyển đổi trạng thái hoạt động tài xế (Offline/Online/Available/Busy) |
+| | | `TS_DRV_02` | Kiểm tra chức năng Quản lý thông tin phương tiện (Vehicle) |
+| **M-03** | Booking Management | `TS_BOOK_01` | Kiểm tra chức năng Tạo yêu cầu đặt xe (Create Booking) |
+| | | `TS_BOOK_02` | Kiểm tra chức năng Theo dõi trạng thái Booking |
+| **M-04** | Driver Matching | `TS_MATCH_01` | Kiểm tra tự động tìm kiếm và phân công tài xế phù hợp |
+| | | `TS_MATCH_02` | Kiểm tra tài xế Phản hồi yêu cầu chuyến đi (Accept / Reject / Timeout) |
+| **M-05** | Trip Management | `TS_TRIP_01` | Kiểm tra vòng đời trạng thái chuyến đi (Assigned -> Arriving -> PickedUp -> Completed) |
+| | | `TS_TRIP_02` | Kiểm tra chức năng Khách hàng theo dõi vị trí & chuyến đi thực tế |
+| **M-06 & M-07** | Fare & Payment | `TS_PAY_01` | Kiểm tra chức năng Tính cước tự động (Fare Calculation) |
+| | | `TS_PAY_02` | Kiểm tra chức năng Thanh toán chuyến đi (Tiền mặt & Ví điện tử/Thẻ) |
+| **M-08** | Notification | `TS_NOTI_01` | Kiểm tra hệ thống Gửi thông báo Push/SMS theo sự kiện |
+| **M-09** | Operation Admin | `TS_OPS_01` | Kiểm tra Vận hành viên (Operator) giám sát chuyến đi & Quản lý người dùng |
 
 ---
 
-## 15.2. Phân loại Test Case
+## 5.2. Chi tiết Bộ Test Cases Minh họa (Bao phủ 5 Nhóm Kiểm thử)
 
-| Tiêu chí | Số lượng | Test Case |
-|---|---:|---|
-| **Positive** | 5 | TC01, TC05, TC08, TC13, TC19 |
-| **Negative** | 7 | TC02, TC06, TC11, TC15, TC16, TC18, TC20 |
-| **Boundary** | 2 | TC14, TC17 |
-| **Empty / Null** | 4 | TC03, TC07, TC09, TC10 |
-| **Invalid Format** | 2 | TC04, TC12 |
-| **Tổng cộng** | **20** | **TC01 – TC20** |
+> **Ghi chú về 5 nhóm kiểm thử được áp dụng:**
+> 1. **Positive:** Trường hợp sử dụng đúng, dữ liệu hợp lệ.
+> 2. **Negative:** Trường hợp thao tác sai logic, nghiệp vụ không hợp lệ.
+> 3. **Boundary:** Kiểm thử giá trị biên (khoảng cách, thời gian, số dư).
+> 4. **Empty:** Để trống các trường dữ liệu bắt buộc.
+> 5. **Invalid format/type:** Nhập sai định dạng hoặc sai kiểu dữ liệu.
 
 ---
 
-## 15.3. Traceability Test Case
+### Scenario 1: `TS_BOOK_01` – Kiểm tra chức năng Tạo yêu cầu đặt xe (Create Booking)
 
-| TC ID | Use Case liên quan | Acceptance Criteria |
-|---|---|---|
-| TC01 | UC-01 Register Account | AC-01 |
-| TC02 | UC-01 Register Account | AC-02 |
-| TC03 | UC-01 Register Account | AC-02 |
-| TC04 | UC-01 Register Account | AC-02 |
-| TC05 | UC-02 Login | AC-03 |
-| TC06 | UC-02 Login | AC-04 |
-| TC07 | UC-02 Login | AC-04 |
-| TC08 | UC-04 Create Booking | AC-10, AC-12 |
-| TC09 | UC-04 Create Booking | AC-11 |
-| TC10 | UC-04 Create Booking | AC-11 |
-| TC11 | UC-04 Create Booking | AC-11 |
-| TC12 | UC-04 Create Booking | AC-11 |
-| TC13 | UC-09 Accept Trip | AC-14, AC-15 |
-| TC14 | UC-09 Accept Trip | AC-09 |
-| TC15 | UC-09 Accept Trip | AC-07, AC-09 |
-| TC16 | UC-10 Reject Trip | AC-17 |
-| TC17 | UC-11 Update Trip Status | AC-19 |
-| TC18 | UC-11 Update Trip Status | AC-19 |
-| TC19 | UC-13 Make Payment | AC-26, AC-27, AC-29 |
-| TC20 | UC-13 Make Payment | AC-28, AC-30 |
+* **Điều kiện tiên quyết (Preconditions):** Khách hàng đã đăng nhập tài khoản Customer thành công, ứng dụng đã được cấp quyền truy cập vị trí (GPS).
+
+| Test Case ID | Test Category | Test Case (Mô tả trường hợp) | Preconditions | Test Steps | Test Data | Expected Result | Priority |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **TC_BOOK_001** | **Positive** | Đặt xe thành công với thông tin hợp lệ | Khách hàng đã đăng nhập | 1. Chọn điểm đón<br>2. Chọn điểm đến<br>3. Chọn loại xe 4 chỗ<br>4. Nhấn "Đặt xe" | Điểm đón: 123 Nguyễn Huệ<br>Điểm đến: Sân bay Tân Sơn Nhất<br>Loại xe: Car 4 seats | Đặt xe thành công; Booking ở trạng thái `Created`; hệ thống chuyển sang màn hình tìm tài xế. | High |
+| **TC_BOOK_002** | **Negative** | Tạo booking khi điểm đón trùng điểm đến | Khách hàng đã đăng nhập | 1. Chọn điểm đón<br>2. Chọn điểm đến giống điểm đón<br>3. Nhấn "Đặt xe" | Điểm đón: 123 Nguyễn Huệ<br>Điểm đến: 123 Nguyễn Huệ | Hệ thống báo lỗi: "Điểm đến không được trùng với điểm đón". | High |
+| **TC_BOOK_003** | **Boundary** | Đặt xe với khoảng cách tối thiểu hệ thống hỗ trợ (100m) | Khách hàng đã đăng nhập | 1. Chọn điểm đón<br>2. Chọn điểm đến cách 100m<br>3. Nhấn "Đặt xe" | Khoảng cách: 0.1 km | Đặt xe thành công; Giá cước hiển thị bằng giá cước mở cửa (mức giá tối thiểu). | Medium |
+| **TC_BOOK_004** | **Boundary** | Đặt xe vượt quá khoảng cách phục vụ tối đa (> 300km) | Khách hàng đã đăng nhập | 1. Chọn điểm đón<br>2. Chọn điểm đến cách 350km<br>3. Nhấn "Đặt xe" | Khoảng cách: 350 km | Hệ thống thông báo vượt quá phạm vi di chuyển hỗ trợ. | Medium |
+| **TC_BOOK_005** | **Empty** | Để trống thông tin điểm đến | Khách hàng đã đăng nhập | 1. Chọn điểm đón<br>2. Để trống điểm đến<br>3. Nhấn "Đặt xe" | Điểm đón: 123 Nguyễn Huệ<br>Điểm đến: *[Để trống]* | Nút "Đặt xe" bị ẩn hoặc hệ thống báo lỗi yêu cầu nhập điểm đến. | High |
+| **TC_BOOK_006** | **Empty** | Không lựa chọn loại xe dịch vụ | Khách hàng đã đăng nhập | 1. Chọn điểm đón & điểm đến<br>2. Bỏ chọn loại xe<br>3. Nhấn "Đặt xe" | Loại xe: *[Chưa chọn]* | Hệ thống yêu cầu người dùng chọn loại phương tiện trước khi đặt. | High |
+| **TC_BOOK_007** | **Invalid format/type** | Nhập ký tự đặc biệt/mã độc vào ô tìm kiếm địa chỉ | Khách hàng đã đăng nhập | 1. Nhập ký tự mã hóa/đặc biệt vào ô tìm kiếm điểm đến | Điểm đến: `<script>alert(1)</script>` hoặc `%%%%%` | Hệ thống lọc dữ liệu (Sanitize) và thông báo "Không tìm thấy địa điểm phù hợp". | High |
 
 ---
 
-> **Lưu ý:** SRS hiện tại không quy định cụ thể giới hạn số ký tự, giá trị min/max hay định dạng cụ thể của email/số điện thoại. Vì vậy các Test Case **Boundary** được xây dựng dựa trên ranh giới nghiệp vụ và trạng thái của hệ thống.
+### Scenario 2: `TS_MATCH_02` – Kiểm tra tài xế Phản hồi yêu cầu chuyến đi (Driver Matching)
+
+* **Điều kiện tiên quyết (Preconditions):** Tài xế đang ở trạng thái `AVAILABLE`, có chuyến đi vừa được hệ thống tự động tìm kiếm và gửi tới màn hình ứng dụng.
+
+| Test Case ID | Test Category | Test Case (Mô tả trường hợp) | Preconditions | Test Steps | Test Data | Expected Result | Priority |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **TC_MATCH_001** | **Positive** | Tài xế bấm "Chấp nhận" chuyến đi trong thời gian quy định | Có thông báo chuyến đi gửi tới tài xế | 1. Nhận notification yêu cầu chuyến<br>2. Bấm "Chấp nhận" trong vòng 15 giây | Thời gian phản hồi: 5 giây | Chuyến đi chuyển sang trạng thái `ASSIGNED`; tài xế chuyển sang `BUSY`; gửi thông báo tới Khách hàng. | High |
+| **TC_MATCH_002** | **Negative** | Tài xế chủ động bấm "Từ chối" chuyến đi | Có thông báo chuyến đi gửi tới tài xế | 1. Nhận notification yêu cầu chuyến<br>2. Bấm "Từ chối" | Hành động: Bấm Từ chối | Yêu cầu bị hủy với tài xế này; hệ thống tự động chuyển yêu cầu tới tài xế `AVAILABLE` khác. | High |
+| **TC_MATCH_003** | **Boundary** | Tài xế phản hồi đúng ở giây cuối cùng của đếm ngược (Giây thứ 15/15) | Có thông báo chuyến đi gửi tới tài xế | 1. Nhận notification yêu cầu chuyến<br>2. Chờ đến giây thứ 15<br>3. Bấm "Chấp nhận" | Thời gian phản hồi: 14.9 giây | Hệ thống vẫn ghi nhận nhận chuyến thành công. | Medium |
+| **TC_MATCH_004** | **Negative / Empty** | Tài xế không thực hiện thao tác (Timeout 15 giây) | Có thông báo chuyến đi gửi tới tài xế | 1. Nhận notification yêu cầu chuyến<br>2. Không bấm nút nào trong 15 giây | Thời gian chờ: > 15 giây | Yêu cầu tự động bị hủy trên máy tài xế; hệ thống chuyển chuyến sang tài xế tiếp theo. | High |
+| **TC_MATCH_005** | **Invalid format/type** | Tài xế nhận chuyến khi trạng thái tài xế đã bị chuyển thành `BUSY` từ thiết bị khác | Đăng nhập tài khoản tài xế trên 2 thiết bị | 1. Máy 1 bấm nhận chuyến<br>2. Máy 2 cố gắng bấm nhận chuyến cùng lúc | Request trùng từ Máy 2 khi status đã là `BUSY` | Hệ thống báo lỗi: "Chuyến đi không còn khả dụng hoặc bạn đang thực hiện chuyến khác". | High |
+
+---
+
+### Scenario 3: `TS_PAY_02` – Kiểm tra chức năng Thanh toán chuyến đi (Payment)
+
+* **Điều kiện tiên quyết (Preconditions):** Chuyến đi vừa kết thúc (`Trip Status: Completed`), màn hình hiển thị tổng chi phí $100.000\text{ VNĐ}$.
+
+| Test Case ID | Test Category | Test Case (Mô tả trường hợp) | Preconditions | Test Steps | Test Data | Expected Result | Priority |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **TC_PAY_001** | **Positive** | Thanh toán thành công qua Ví/Thẻ đủ số dư | Chuyến đi đã hoàn thành | 1. Chọn phương thức Ví điện tử/Thẻ<br>2. Bấm "Thanh toán" | Số dư ví: $200.000\text{ VNĐ}$<br>Giá cước: $100.000\text{ VNĐ}$ | Giao dịch thành công; Trạng thái Payment chuyển thành `SUCCESS`; hiển thị hóa đơn. | High |
+| **TC_PAY_002** | **Negative** | Thanh toán thất bại do Ví điện tử không đủ số dư | Chuyến đi đã hoàn thành | 1. Chọn phương thức Ví điện tử<br>2. Bấm "Thanh toán" | Số dư ví: $50.000\text{ VNĐ}$<br>Giá cước: $100.000\text{ VNĐ}$ | Báo lỗi thanh toán thất bại; yêu cầu nạp thêm tiền hoặc đổi sang thanh toán Tiền mặt. | High |
+| **TC_PAY_003** | **Boundary** | Thanh toán với số dư ví bằng đúng số tiền cước | Chuyến đi đã hoàn thành | 1. Chọn phương thức Ví điện tử<br>2. Bấm "Thanh toán" | Số dư ví: $100.000\text{ VNĐ}$<br>Giá cước: $100.000\text{ VNĐ}$ | Giao dịch thành công; Số dư ví còn $0\text{ VNĐ}$. | Medium |
+| **TC_PAY_004** | **Empty** | Không chọn phương thức thanh toán khi xác nhận | Chuyến đi đã hoàn thành | 1. Đến màn hình thanh toán<br>2. Bỏ chọn tất cả phương thức<br>3. Bấm "Xác nhận" | Phương thức: *[Để trống]* | Hệ thống cảnh báo: "Vui lòng chọn phương thức thanh toán". | High |
+| **TC_PAY_005** | **Invalid format/type** | Nhập mã OTP xác thực có chứa chữ cái hoặc ký tự sai quy định | Đang ở bước xác thực OTP thanh toán | 1. Chọn thanh toán Thẻ<br>2. Nhập mã OTP chứa chữ cái | Mã OTP: `12A4B` | Từ chối đầu vào; báo lỗi "Mã OTP chỉ bao gồm các chữ số". | High |
