@@ -1,1 +1,54 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Register Customer
+  version: 1.0.0
+  description: Đăng ký tài khoản Customer.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/auth/register:
+    post:
+      summary: Register Customer
+      description: Đăng ký tài khoản Customer.
+      tags:
+        - Register Customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, password, full_name, phone, email]
+              properties:
+                username: {type: string, example: loan123}
+                password: {type: string, format: password, example: Password@123}
+                full_name: {type: string, example: Trinh My Loan}
+                phone: {type: string, example: "0901234567"}
+                email: {type: string, format: email, example: loan@example.com}
+      responses:
+        '201':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      user_id: {type: integer, example: 1}
+                      username: {type: string, example: loan123}
+                      role: {type: string, example: Customer}
+                      status: {type: string, example: ACTIVE}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
 
