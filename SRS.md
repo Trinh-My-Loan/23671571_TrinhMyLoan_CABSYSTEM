@@ -2836,4 +2836,73 @@ flowchart TD
     SR --> ERD[Entities and ERD]
 ```
 
+# 15. Test Cases
 
+## 15.1. Danh sách Test Case
+
+| TC ID | Chức năng | Loại kiểm thử | Dữ liệu / Điều kiện kiểm thử | Bước thực hiện | Kết quả mong đợi |
+|---|---|---|---|---|---|
+| **TC01** | Đăng ký tài khoản | Positive | Thông tin tài khoản hợp lệ và đầy đủ | Nhập đầy đủ thông tin → chọn **Đăng ký** | Tài khoản được tạo thành công |
+| **TC02** | Đăng ký tài khoản | Negative | Thông tin tài khoản không hợp lệ | Nhập thông tin không hợp lệ → chọn **Đăng ký** | Hệ thống từ chối đăng ký và hiển thị thông báo lỗi |
+| **TC03** | Đăng ký tài khoản | Empty | Bỏ trống một trường thông tin bắt buộc | Để trống trường bắt buộc → chọn **Đăng ký** | Hệ thống không cho đăng ký và yêu cầu nhập lại |
+| **TC04** | Đăng ký tài khoản | Invalid Format | Nhập thông tin không đúng định dạng | Nhập dữ liệu sai định dạng → chọn **Đăng ký** | Hệ thống thông báo dữ liệu không hợp lệ |
+| **TC05** | Đăng nhập | Positive | Username và Password hợp lệ | Nhập thông tin đúng → chọn **Đăng nhập** | Đăng nhập thành công và hệ thống xác định đúng vai trò người dùng |
+| **TC06** | Đăng nhập | Negative | Username hoặc Password không đúng | Nhập thông tin sai → chọn **Đăng nhập** | Hệ thống thông báo thông tin đăng nhập không đúng |
+| **TC07** | Đăng nhập | Empty | Username hoặc Password để trống | Không nhập Username/Password → chọn **Đăng nhập** | Hệ thống không cho đăng nhập và yêu cầu nhập thông tin |
+| **TC08** | Tạo Booking | Positive | Điểm đón, điểm đến và loại xe hợp lệ | Nhập đầy đủ thông tin → chọn **Tạo Booking** | Booking được tạo thành công và có mã định danh riêng |
+| **TC09** | Tạo Booking | Empty | Bỏ trống điểm đón | Nhập điểm đến và loại xe, bỏ trống điểm đón → tạo Booking | Hệ thống từ chối tạo Booking |
+| **TC10** | Tạo Booking | Empty | Bỏ trống điểm đến | Nhập điểm đón và loại xe, bỏ trống điểm đến → tạo Booking | Hệ thống từ chối tạo Booking |
+| **TC11** | Tạo Booking | Negative | Thông tin Booking không hợp lệ | Nhập thông tin không hợp lệ → chọn **Tạo Booking** | Hệ thống thông báo lỗi và yêu cầu nhập lại |
+| **TC12** | Tạo Booking | Invalid Format | Điểm đón hoặc điểm đến nhập sai định dạng | Nhập dữ liệu sai định dạng → tạo Booking | Hệ thống từ chối dữ liệu không hợp lệ |
+| **TC13** | Tìm Driver | Positive | Có Driver ở trạng thái `AVAILABLE` và phù hợp | Tạo Booking → hệ thống tìm Driver | Hệ thống tìm và gửi yêu cầu chuyến đi đến Driver phù hợp |
+| **TC14** | Nhận chuyến | Boundary | Driver chuyển từ `AVAILABLE` sang `BUSY` | Driver đang Available → nhận một chuyến → trạng thái chuyển sang Busy | Driver không được nhận thêm chuyến khi đang thực hiện chuyến khác |
+| **TC15** | Nhận chuyến | Negative | Driver đang ở trạng thái `BUSY` | Gửi yêu cầu chuyến mới cho Driver đang Busy | Hệ thống không cho Driver nhận chuyến mới |
+| **TC16** | Từ chối chuyến | Negative | Driver từ chối yêu cầu chuyến | Driver nhận yêu cầu → chọn **Từ chối** | Hệ thống tiếp tục tìm Driver khác; Customer không cần tạo Booking mới |
+| **TC17** | Cập nhật Trip | Boundary | Các trạng thái `Assigned → Arriving → Arrived → PickedUp → InProgress → Completed` | Driver cập nhật trạng thái theo từng bước | Hệ thống cho phép cập nhật trạng thái đúng quy trình |
+| **TC18** | Cập nhật Trip | Negative | Cập nhật trạng thái không đúng quy trình | Thực hiện chuyển trạng thái không hợp lệ, ví dụ `Assigned → Completed` | Hệ thống từ chối cập nhật trạng thái |
+| **TC19** | Thanh toán | Positive | Trip đã hoàn thành, chọn thanh toán tiền mặt | Hoàn thành Trip → chọn **Cash** → xác nhận thanh toán | Hệ thống ghi nhận thanh toán và cập nhật trạng thái Payment |
+| **TC20** | Thanh toán | Negative / Boundary | Thanh toán điện tử thất bại hoặc Payment Provider không khả dụng | Chọn **Electronic Payment** → thực hiện thanh toán | Hệ thống thông báo thanh toán thất bại hoặc chuyển trạng thái Pending và cho phép thanh toán lại |
+
+---
+
+## 15.2. Phân loại Test Case
+
+| Tiêu chí | Số lượng | Test Case |
+|---|---:|---|
+| **Positive** | 5 | TC01, TC05, TC08, TC13, TC19 |
+| **Negative** | 7 | TC02, TC06, TC11, TC15, TC16, TC18, TC20 |
+| **Boundary** | 2 | TC14, TC17 |
+| **Empty / Null** | 4 | TC03, TC07, TC09, TC10 |
+| **Invalid Format** | 2 | TC04, TC12 |
+| **Tổng cộng** | **20** | **TC01 – TC20** |
+
+---
+
+## 15.3. Traceability Test Case
+
+| TC ID | Use Case liên quan | Acceptance Criteria |
+|---|---|---|
+| TC01 | UC-01 Register Account | AC-01 |
+| TC02 | UC-01 Register Account | AC-02 |
+| TC03 | UC-01 Register Account | AC-02 |
+| TC04 | UC-01 Register Account | AC-02 |
+| TC05 | UC-02 Login | AC-03 |
+| TC06 | UC-02 Login | AC-04 |
+| TC07 | UC-02 Login | AC-04 |
+| TC08 | UC-04 Create Booking | AC-10, AC-12 |
+| TC09 | UC-04 Create Booking | AC-11 |
+| TC10 | UC-04 Create Booking | AC-11 |
+| TC11 | UC-04 Create Booking | AC-11 |
+| TC12 | UC-04 Create Booking | AC-11 |
+| TC13 | UC-09 Accept Trip | AC-14, AC-15 |
+| TC14 | UC-09 Accept Trip | AC-09 |
+| TC15 | UC-09 Accept Trip | AC-07, AC-09 |
+| TC16 | UC-10 Reject Trip | AC-17 |
+| TC17 | UC-11 Update Trip Status | AC-19 |
+| TC18 | UC-11 Update Trip Status | AC-19 |
+| TC19 | UC-13 Make Payment | AC-26, AC-27, AC-29 |
+| TC20 | UC-13 Make Payment | AC-28, AC-30 |
+
+---
+
+> **Lưu ý:** SRS hiện tại không quy định cụ thể giới hạn số ký tự, giá trị min/max hay định dạng cụ thể của email/số điện thoại. Vì vậy các Test Case **Boundary** được xây dựng dựa trên ranh giới nghiệp vụ và trạng thái của hệ thống.
