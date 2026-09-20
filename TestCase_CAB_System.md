@@ -1,8 +1,6 @@
 # CAB System – Test Scenario & Test Case
 
-**Nguồn đối chiếu:** `SRS(3).md` và 17 file OpenAPI YAML trong `CAB_System_17_API_YAML(1).zip`.
 
-**Nguyên tắc:** mỗi Business Process (BP) trong SRS là một Test Scenario lớn; mỗi Test Scenario có 20 Test Case và bao phủ 5 nhóm: Positive, Negative, Boundary, Empty, Invalid Format/Type.
 
 ## 1. Traceability Test Scenario
 
