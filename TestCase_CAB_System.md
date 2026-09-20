@@ -16,29 +16,9 @@
 | BP-08 | BR-08 | FR-08.01–FR-08.05 | AC-08.01–AC-08.05 | 15, 16 | 20 |
 | BP-09 | BR-09 | FR-09.01–FR-09.03 | AC-09.01–AC-09.03 | 16, 17 | 20 |
 
-## 2. API đã đối chiếu
 
-| # | Method | Endpoint | File |
-|---:|---|---|---|
-| 1 | POST | `/api/v1/auth/register` | `01-register-customer.yaml` |
-| 2 | POST | `/api/v1/auth/login` | `02-login.yaml` |
-| 3 | POST | `/api/v1/auth/logout` | `03-logout.yaml` |
-| 4 | GET | `/api/v1/users/me` | `04-get-profile.yaml` |
-| 5 | PUT | `/api/v1/users/me` | `05-update-profile.yaml` |
-| 6 | PATCH | `/api/v1/drivers/me/status` | `06-update-driver-status.yaml` |
-| 7 | PUT | `/api/v1/drivers/me/location` | `07-update-driver-location.yaml` |
-| 8 | GET | `/api/v1/drivers/me/vehicles` | `08-get-driver-vehicles.yaml` |
-| 9 | GET | `/api/v1/vehicle-types` | `09-get-vehicle-types.yaml` |
-| 10 | POST | `/api/v1/ride-requests` | `10-create-ride-request.yaml` |
-| 11 | GET | `/api/v1/ride-requests/{id}/drivers` | `11-get-available-drivers.yaml` |
-| 12 | POST | `/api/v1/ride-requests/{id}/driver-selection` | `12-select-driver.yaml` |
-| 13 | GET | `/api/v1/drivers/me/trip-offers` | `13-get-trip-offers.yaml` |
-| 14 | PATCH | `/api/v1/trip-offers/{id}/response` | `14-respond-trip-offer.yaml` |
-| 15 | GET | `/api/v1/trips/{id}` | `15-get-trip.yaml` |
-| 16 | PATCH | `/api/v1/trips/{id}/status` | `16-update-trip-status.yaml` |
-| 17 | GET | `/api/v1/users/me/trips` | `17-get-trip-history.yaml` |
 
-## 3. Chi tiết Test Case
+## 2. Chi tiết Test Case
 
 ## BP-01 – Customer Account Management
 
@@ -283,11 +263,6 @@
 | TC-BP09-019 | BP-09 – Trip History | Invalid Format/Type | Dùng sai HTTP method | User login | 1. POST vào history endpoint | Token hợp lệ | Method không được chấp nhận | Low | 17-get-trip-history.yaml |
 | TC-BP09-020 | BP-09 – Trip History | Invalid Format/Type | Header Authorization có giá trị không hợp lệ | User login không hợp lệ | 1. GET history | Authorization=123 | HTTP 401 | High | 17-get-trip-history.yaml |
 
-## 4. Tổng hợp
-
-- **09 Test Scenario** tương ứng chính xác **BP-01 → BP-09** trong SRS.
-- **20 Test Case cho mỗi Test Scenario**, tổng cộng **180 Test Case**.
-- Bao phủ đủ 5 nhóm theo mẫu: **Positive, Negative, Boundary, Empty, Invalid Format/Type**.
 - Các endpoint, HTTP method, request field, enum và HTTP response được đối chiếu với **17 file YAML hiện tại**.
 - Các quy tắc nghiệp vụ quan trọng được kiểm thử: chỉ Driver `AVAILABLE`, đúng Vehicle Type, Customer tự chọn Driver, một Driver không thực hiện nhiều Trip cùng lúc, Driver chỉ phản hồi Offer của mình, Trip chỉ tạo sau Accept và Trip status phải theo đúng thứ tự.
 - Không tạo Test Case cho Payment, Rating, Notification, AI Matching hoặc Dynamic Pricing vì SRS xác định chúng ngoài phạm vi MVP.
