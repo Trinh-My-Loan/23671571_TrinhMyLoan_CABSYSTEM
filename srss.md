@@ -1,4 +1,4 @@
-*** I. Stakeholder và vai trò
+# I. Stakeholder và vai trò
 | Stakeholder | Vai trò |
 | :--- | :--- |
 | **Ban lãnh đạo Công ty ABC** | Định hướng chiến lược, phê duyệt triển khai dự án trong 7 tuần và theo dõi các báo cáo vận hành, doanh thu[cite: 1]. |
