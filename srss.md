@@ -53,7 +53,6 @@ quadrantChart
     "Nha cung cap thong bao": [0.20, 0.25]
     "Khach hang (Rider)": [0.88, 0.28]
     "Tai xe (Driver)": [0.85, 0.25]
-
 ## 2.4. Stakeholder Relationship Diagram
 
 Sơ đồ thể hiện mối quan hệ hợp tác, phân cấp quản lý, quyền giám sát và các luồng tương tác thông tin chính giữa các bên liên quan (Stakeholders) trong và ngoài dự án đối với Nền tảng Đặt xe (CAB System).
