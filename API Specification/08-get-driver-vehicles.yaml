@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Get Driver Vehicles
+  version: 1.0.0
+  description: Xem phương tiện thuộc Driver đang đăng nhập.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/drivers/me/vehicles:
+    get:
+      summary: Get Driver Vehicles
+      description: Xem phương tiện thuộc Driver đang đăng nhập.
+      tags:
+        - Get Driver Vehicles
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      vehicles:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            vehicle_id: {type: integer, example: 5}
+                            vehicle_type: {type: string, example: CAR}
+                            license_plate: {type: string, example: 51A-12345}
+                            model: {type: string, example: Toyota Vios}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

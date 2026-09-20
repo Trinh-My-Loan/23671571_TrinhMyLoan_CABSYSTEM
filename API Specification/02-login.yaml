@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Login
+  version: 1.0.0
+  description: Đăng nhập cho Customer hoặc Driver.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/auth/login:
+    post:
+      summary: Login
+      description: Đăng nhập cho Customer hoặc Driver.
+      tags:
+        - Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, password]
+              properties:
+                username: {type: string, example: loan123}
+                password: {type: string, format: password, example: Password@123}
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      access_token: {type: string, example: eyJhbGciOi...}
+                      token_type: {type: string, example: Bearer}
+                      role: {type: string, example: Customer}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên

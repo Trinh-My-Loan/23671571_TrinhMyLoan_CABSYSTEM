@@ -1,0 +1,62 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Get Available Drivers
+  version: 1.0.0
+  description: Hiển thị Driver AVAILABLE có loại xe phù hợp để Customer lựa chọn.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/ride-requests/{id}/drivers:
+    get:
+      summary: Get Available Drivers
+      description: Hiển thị Driver AVAILABLE có loại xe phù hợp để Customer lựa chọn.
+      tags:
+        - Get Available Drivers
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Mã định danh của tài nguyên
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      drivers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            driver_id: {type: integer, example: 10}
+                            full_name: {type: string, example: Nguyen Van A}
+                            vehicle_id: {type: integer, example: 5}
+                            vehicle_type: {type: string, example: CAR}
+                            status: {type: string, example: AVAILABLE}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

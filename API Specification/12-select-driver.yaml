@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Select Driver
+  version: 1.0.0
+  description: Customer lựa chọn một Driver phù hợp và tạo Trip Offer.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/ride-requests/{id}/driver-selection:
+    post:
+      summary: Select Driver
+      description: Customer lựa chọn một Driver phù hợp và tạo Trip Offer.
+      tags:
+        - Select Driver
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Mã định danh của tài nguyên
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [driver_id]
+              properties:
+                driver_id: {type: integer, example: 10}
+      responses:
+        '201':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      offer_id: {type: integer, example: 201}
+                      request_id: {type: integer, example: 101}
+                      driver_id: {type: integer, example: 10}
+                      status: {type: string, example: PENDING}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,66 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Update Trip Status
+  version: 1.0.0
+  description: Driver được phân công cập nhật trạng thái Trip theo đúng thứ tự.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/trips/{id}/status:
+    patch:
+      summary: Update Trip Status
+      description: Driver được phân công cập nhật trạng thái Trip theo đúng thứ tự.
+      tags:
+        - Update Trip Status
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Mã định danh của tài nguyên
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status:
+                  type: string
+                  enum: [Assigned, Arriving, Arrived, PickedUp, InProgress, Completed]
+                  example: Arriving
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      trip_id: {type: integer, example: 501}
+                      status: {type: string, example: Arriving}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

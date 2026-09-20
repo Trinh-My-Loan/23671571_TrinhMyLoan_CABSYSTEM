@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Create Ride Request
+  version: 1.0.0
+  description: Customer tạo yêu cầu đặt xe bằng điểm đón, điểm đến và loại xe.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/ride-requests:
+    post:
+      summary: Create Ride Request
+      description: Customer tạo yêu cầu đặt xe bằng điểm đón, điểm đến và loại xe.
+      tags:
+        - Create Ride Request
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [pickup_location, destination, vehicle_type_id]
+              properties:
+                pickup_location: {type: string, example: 12 Nguyen Van Bao, Go Vap}
+                destination: {type: string, example: 268 Ly Thuong Kiet, District 10}
+                vehicle_type_id: {type: integer, example: 1}
+      responses:
+        '201':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      request_id: {type: integer, example: 101}
+                      status: {type: string, example: CREATED}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

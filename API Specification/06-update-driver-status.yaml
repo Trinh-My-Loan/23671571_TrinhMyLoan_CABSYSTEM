@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Update Driver Status
+  version: 1.0.0
+  description: Driver cập nhật trạng thái hoạt động.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/drivers/me/status:
+    patch:
+      summary: Update Driver Status
+      description: Driver cập nhật trạng thái hoạt động.
+      tags:
+        - Update Driver Status
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status:
+                  type: string
+                  enum: [OFFLINE, ONLINE, AVAILABLE, BUSY]
+                  example: AVAILABLE
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      driver_id: {type: integer, example: 10}
+                      status: {type: string, example: AVAILABLE}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

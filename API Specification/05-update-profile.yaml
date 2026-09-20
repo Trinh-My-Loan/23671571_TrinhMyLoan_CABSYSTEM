@@ -1,0 +1,55 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Update Profile
+  version: 1.0.0
+  description: Cập nhật hồ sơ người dùng.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/users/me:
+    put:
+      summary: Update Profile
+      description: Cập nhật hồ sơ người dùng.
+      tags:
+        - Update Profile
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name: {type: string, example: Trinh My Loan}
+                phone: {type: string, example: "0901234567"}
+                email: {type: string, format: email, example: loan@example.com}
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      message: {type: string, example: Profile updated successfully}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

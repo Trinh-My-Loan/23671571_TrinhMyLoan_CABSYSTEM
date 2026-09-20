@@ -1,0 +1,55 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Update Driver Location
+  version: 1.0.0
+  description: Driver cập nhật vị trí hiện tại.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/drivers/me/location:
+    put:
+      summary: Update Driver Location
+      description: Driver cập nhật vị trí hiện tại.
+      tags:
+        - Update Driver Location
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [latitude, longitude]
+              properties:
+                latitude: {type: number, format: double, example: 10.822}
+                longitude: {type: number, format: double, example: 106.687}
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      message: {type: string, example: Driver location updated successfully}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

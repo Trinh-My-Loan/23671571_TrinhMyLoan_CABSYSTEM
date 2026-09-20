@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Get Vehicle Types
+  version: 1.0.0
+  description: Customer xem các loại xe được hỗ trợ.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/vehicle-types:
+    get:
+      summary: Get Vehicle Types
+      description: Customer xem các loại xe được hỗ trợ.
+      tags:
+        - Get Vehicle Types
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      vehicle_types:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            vehicle_type_id: {type: integer, example: 1}
+                            type_name: {type: string, example: CAR}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

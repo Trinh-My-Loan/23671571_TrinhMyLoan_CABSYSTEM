@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - Get Trip History
+  version: 1.0.0
+  description: Customer hoặc Driver xem lịch sử các Trip của mình.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/users/me/trips:
+    get:
+      summary: Get Trip History
+      description: Customer hoặc Driver xem lịch sử các Trip của mình.
+      tags:
+        - Get Trip History
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      trips:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            trip_id: {type: integer, example: 501}
+                            status: {type: string, example: Completed}
+                            pickup_location: {type: string, example: Go Vap}
+                            destination: {type: string, example: District 10}
+                            completed_at: {type: string, format: date-time, example: "2026-09-20T10:30:00Z"}
+        '400':
+          description: Dữ liệu yêu cầu không hợp lệ
+        '401':
+          description: Chưa xác thực hoặc token không hợp lệ
+        '403':
+          description: Không có quyền thực hiện chức năng
+        '404':
+          description: Không tìm thấy tài nguyên
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
